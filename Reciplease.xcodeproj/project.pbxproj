@@ -14,7 +14,9 @@
 		4D42DA8822B12873006B5A9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D42DA8622B12873006B5A9F /* LaunchScreen.storyboard */; };
 		4D42DA9322B12873006B5A9F /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42DA9222B12873006B5A9F /* RecipleaseTests.swift */; };
 		4D42DA9E22B12873006B5A9F /* RecipleaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42DA9D22B12873006B5A9F /* RecipleaseUITests.swift */; };
-		4D42DAAE22B1377D006B5A9F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42DAAD22B1377D006B5A9F /* SearchViewController.swift */; };
+		4D7DA49E22B13D9300395680 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7DA49D22B13D9300395680 /* SearchTableViewController.swift */; };
+		4D7DA4A022B13FA200395680 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7DA49F22B13FA200395680 /* FavoriteTableViewController.swift */; };
+		4D7DA4A222B1401700395680 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7DA4A122B1401700395680 /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +50,9 @@
 		4D42DA9922B12873006B5A9F /* RecipleaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D42DA9D22B12873006B5A9F /* RecipleaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseUITests.swift; sourceTree = "<group>"; };
 		4D42DA9F22B12873006B5A9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4D42DAAD22B1377D006B5A9F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		4D7DA49D22B13D9300395680 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		4D7DA49F22B13FA200395680 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
+		4D7DA4A122B1401700395680 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,8 +134,8 @@
 		4D42DAAB22B12C29006B5A9F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4D42DA8622B12873006B5A9F /* LaunchScreen.storyboard */,
 				4D42DA7E22B12871006B5A9F /* Main.storyboard */,
+				4D42DA8622B12873006B5A9F /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -139,7 +143,9 @@
 		4D42DAAC22B136F9006B5A9F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4D42DAAD22B1377D006B5A9F /* SearchViewController.swift */,
+				4D7DA49D22B13D9300395680 /* SearchTableViewController.swift */,
+				4D7DA4A122B1401700395680 /* SearchViewController.swift */,
+				4D7DA49F22B13FA200395680 /* FavoriteTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -275,8 +281,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D42DAAE22B1377D006B5A9F /* SearchViewController.swift in Sources */,
+				4D7DA4A222B1401700395680 /* SearchViewController.swift in Sources */,
 				4D42DA8322B12871006B5A9F /* Reciplease.xcdatamodeld in Sources */,
+				4D7DA4A022B13FA200395680 /* FavoriteTableViewController.swift in Sources */,
+				4D7DA49E22B13D9300395680 /* SearchTableViewController.swift in Sources */,
 				4D42DA7B22B12871006B5A9F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
