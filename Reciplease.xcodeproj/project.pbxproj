@@ -101,8 +101,8 @@
 			children = (
 				4D42DA7A22B12871006B5A9F /* AppDelegate.swift */,
 				4D42DA7C22B12871006B5A9F /* ViewController.swift */,
-				4D42DA7E22B12871006B5A9F /* Main.storyboard */,
 				4D42DA8422B12873006B5A9F /* Assets.xcassets */,
+				4D42DAAB22B12C29006B5A9F /* View */,
 				4D42DA8622B12873006B5A9F /* LaunchScreen.storyboard */,
 				4D42DA8922B12873006B5A9F /* Info.plist */,
 				4D42DA8122B12871006B5A9F /* Reciplease.xcdatamodeld */,
@@ -126,6 +126,14 @@
 				4D42DA9F22B12873006B5A9F /* Info.plist */,
 			);
 			path = RecipleaseUITests;
+			sourceTree = "<group>";
+		};
+		4D42DAAB22B12C29006B5A9F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4D42DA7E22B12871006B5A9F /* Main.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
