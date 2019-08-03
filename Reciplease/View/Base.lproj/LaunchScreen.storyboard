@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VdF-o7-zhr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="de7-1f-jig">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,38 +10,20 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="7xe-5k-kBI">
+        <!--View Controller-->
+        <scene sceneID="uH7-BW-Hvb">
             <objects>
-                <navigationController id="VdF-o7-zhr" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XDn-6P-7BJ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.9946722388" green="0.40607778439999997" blue="0.28059561529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="pnt-7c-2p6" kind="relationship" relationship="rootViewController" id="tIV-nv-7ZY"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uYF-3R-AwJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-23" y="149"/>
-        </scene>
-        <!--Search-->
-        <scene sceneID="VqT-CI-fFD">
-            <objects>
-                <viewController id="pnt-7c-2p6" customClass="SearchViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="iBO-a0-i3H">
+                <viewController id="de7-1f-jig" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1l9-Wp-Awi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="2Lv-Ff-tr4"/>
+                        <viewLayoutGuide key="safeArea" id="hpy-nK-bXR"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Search" id="jux-Cf-VM0"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="krj-aV-lT2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LE6-ip-Caj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="793" y="149"/>
+            <point key="canvasLocation" x="-653" y="-158"/>
         </scene>
     </scenes>
 </document>

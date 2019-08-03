@@ -143,8 +143,8 @@
 		4D42DAAC22B136F9006B5A9F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4D7DA49D22B13D9300395680 /* SearchTableViewController.swift */,
 				4D7DA4A122B1401700395680 /* SearchViewController.swift */,
+				4D7DA49D22B13D9300395680 /* SearchTableViewController.swift */,
 				4D7DA49F22B13FA200395680 /* FavoriteTableViewController.swift */,
 			);
 			path = Controller;
