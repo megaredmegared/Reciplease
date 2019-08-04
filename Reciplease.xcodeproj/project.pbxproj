@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D1B6B9822F6BB8A0025C936 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1B6B9722F6BB8A0025C936 /* RecipeService.swift */; };
 		4D42DA7B22B12871006B5A9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42DA7A22B12871006B5A9F /* AppDelegate.swift */; };
 		4D42DA8022B12871006B5A9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D42DA7E22B12871006B5A9F /* Main.storyboard */; };
 		4D42DA8322B12871006B5A9F /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D42DA8122B12871006B5A9F /* Reciplease.xcdatamodeld */; };
@@ -17,6 +18,8 @@
 		4D7DA49E22B13D9300395680 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7DA49D22B13D9300395680 /* SearchTableViewController.swift */; };
 		4D7DA4A022B13FA200395680 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7DA49F22B13FA200395680 /* FavoriteTableViewController.swift */; };
 		4D7DA4A222B1401700395680 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7DA4A122B1401700395680 /* SearchViewController.swift */; };
+		4DCA1F8822F71DFA009ECE75 /* LogoInNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA1F8722F71DFA009ECE75 /* LogoInNavBar.swift */; };
+		4DCA1F8A22F76079009ECE75 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA1F8922F76079009ECE75 /* TabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D1B6B9722F6BB8A0025C936 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
 		4D42DA7722B12871006B5A9F /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D42DA7A22B12871006B5A9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D42DA7F22B12871006B5A9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -53,6 +57,8 @@
 		4D7DA49D22B13D9300395680 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		4D7DA49F22B13FA200395680 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 		4D7DA4A122B1401700395680 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		4DCA1F8722F71DFA009ECE75 /* LogoInNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoInNavBar.swift; sourceTree = "<group>"; };
+		4DCA1F8922F76079009ECE75 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D1B6B9622F6BB600025C936 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4D1B6B9722F6BB8A0025C936 /* RecipeService.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		4D42DA6E22B12871006B5A9F = {
 			isa = PBXGroup;
 			children = (
@@ -105,8 +119,9 @@
 			children = (
 				4D42DA7A22B12871006B5A9F /* AppDelegate.swift */,
 				4D42DA8422B12873006B5A9F /* Assets.xcassets */,
-				4D42DAAC22B136F9006B5A9F /* Controller */,
+				4D1B6B9622F6BB600025C936 /* Model */,
 				4D42DAAB22B12C29006B5A9F /* View */,
+				4D42DAAC22B136F9006B5A9F /* Controller */,
 				4D42DA8922B12873006B5A9F /* Info.plist */,
 				4D42DA8122B12871006B5A9F /* Reciplease.xcdatamodeld */,
 			);
@@ -136,6 +151,7 @@
 			children = (
 				4D42DA7E22B12871006B5A9F /* Main.storyboard */,
 				4D42DA8622B12873006B5A9F /* LaunchScreen.storyboard */,
+				4DCA1F8722F71DFA009ECE75 /* LogoInNavBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -146,6 +162,7 @@
 				4D7DA4A122B1401700395680 /* SearchViewController.swift */,
 				4D7DA49D22B13D9300395680 /* SearchTableViewController.swift */,
 				4D7DA49F22B13FA200395680 /* FavoriteTableViewController.swift */,
+				4DCA1F8922F76079009ECE75 /* TabBarViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -281,8 +298,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DCA1F8A22F76079009ECE75 /* TabBarViewController.swift in Sources */,
 				4D7DA4A222B1401700395680 /* SearchViewController.swift in Sources */,
+				4D1B6B9822F6BB8A0025C936 /* RecipeService.swift in Sources */,
 				4D42DA8322B12871006B5A9F /* Reciplease.xcdatamodeld in Sources */,
+				4DCA1F8822F71DFA009ECE75 /* LogoInNavBar.swift in Sources */,
 				4D7DA4A022B13FA200395680 /* FavoriteTableViewController.swift in Sources */,
 				4D7DA49E22B13D9300395680 /* SearchTableViewController.swift in Sources */,
 				4D42DA7B22B12871006B5A9F /* AppDelegate.swift in Sources */,

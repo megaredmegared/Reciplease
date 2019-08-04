@@ -12,9 +12,10 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationItem.titleView = UIImageView.init(image: UIImage(named: "logoReciplease"))
         // Do any additional setup after loading the view.
     }
+  
     
 
     /*
