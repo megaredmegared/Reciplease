@@ -42,6 +42,9 @@
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="Obt-dX-LKg" id="lGp-du-QfL"/>
+                                                                </connections>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nX6-eP-Jge">
                                                                 <rect key="frame" x="250" y="0.0" width="50" height="30"/>
@@ -146,19 +149,31 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="5cT-OF-oXQ" firstAttribute="leading" secondItem="WcD-sG-bWt" secondAttribute="leading" id="1Qz-WB-VP7"/>
-                            <constraint firstItem="5cT-OF-oXQ" firstAttribute="top" secondItem="WcD-sG-bWt" secondAttribute="top" id="So3-1m-PQG"/>
-                            <constraint firstItem="5cT-OF-oXQ" firstAttribute="trailing" secondItem="WcD-sG-bWt" secondAttribute="trailing" id="vwt-nA-Tbd"/>
-                            <constraint firstItem="WcD-sG-bWt" firstAttribute="bottom" secondItem="5cT-OF-oXQ" secondAttribute="bottom" constant="10" id="wdI-gl-A1I"/>
+                            <constraint firstItem="5cT-OF-oXQ" firstAttribute="leading" secondItem="Amq-yG-i1T" secondAttribute="leading" id="1Qz-WB-VP7"/>
+                            <constraint firstItem="5cT-OF-oXQ" firstAttribute="top" secondItem="Amq-yG-i1T" secondAttribute="top" id="So3-1m-PQG"/>
+                            <constraint firstItem="5cT-OF-oXQ" firstAttribute="trailing" secondItem="Amq-yG-i1T" secondAttribute="trailing" id="vwt-nA-Tbd"/>
+                            <constraint firstItem="Amq-yG-i1T" firstAttribute="bottom" secondItem="5cT-OF-oXQ" secondAttribute="bottom" constant="10" id="wdI-gl-A1I"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="WcD-sG-bWt"/>
+                        <viewLayoutGuide key="safeArea" id="Amq-yG-i1T"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="mFS-as-Oti" appends="YES" id="Ax5-Ar-UlA"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Reciplease" id="nlM-vk-wnm">
                         <barButtonItem key="backBarButtonItem" title="Ingredients" id="Weu-Tk-OEg"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="ingredientTextField" destination="aix-b6-aBN" id="X62-yL-2jW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ste-Pr-Dtu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="mFS-as-Oti">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="Obt-dX-LKg" id="AIt-g6-Wec"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1127.536231884058" y="-368.30357142857139"/>
         </scene>
@@ -199,7 +214,7 @@
         <scene sceneID="mpq-9Y-WsR">
             <objects>
                 <tabBarController id="u5i-Hq-LkP" customClass="TabBarViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LJT-cr-Moc">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="fill" id="LJT-cr-Moc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -247,12 +262,12 @@
                     </subviews>
                     <color key="backgroundColor" name="ContrastColor"/>
                     <constraints>
-                        <constraint firstItem="pEN-UP-880" firstAttribute="top" secondItem="cgV-f1-dNJ" secondAttribute="top" id="5mQ-Px-Lxy"/>
-                        <constraint firstItem="pEN-UP-880" firstAttribute="leading" secondItem="cgV-f1-dNJ" secondAttribute="leading" id="AtY-tD-YqO"/>
-                        <constraint firstItem="cgV-f1-dNJ" firstAttribute="trailing" secondItem="pEN-UP-880" secondAttribute="trailing" id="EkT-EY-e2J"/>
-                        <constraint firstItem="cgV-f1-dNJ" firstAttribute="bottom" secondItem="pEN-UP-880" secondAttribute="bottom" id="mvl-I2-q8E"/>
+                        <constraint firstItem="pEN-UP-880" firstAttribute="top" secondItem="hC4-EK-8q1" secondAttribute="top" id="5mQ-Px-Lxy"/>
+                        <constraint firstItem="pEN-UP-880" firstAttribute="leading" secondItem="hC4-EK-8q1" secondAttribute="leading" id="AtY-tD-YqO"/>
+                        <constraint firstAttribute="trailing" secondItem="pEN-UP-880" secondAttribute="trailing" id="EkT-EY-e2J"/>
+                        <constraint firstItem="ZKF-dM-ASD" firstAttribute="bottom" secondItem="pEN-UP-880" secondAttribute="bottom" id="mvl-I2-q8E"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="cgV-f1-dNJ"/>
+                    <viewLayoutGuide key="safeArea" id="ZKF-dM-ASD"/>
                 </view>
             </objects>
             <point key="canvasLocation" x="-1203" y="15"/>

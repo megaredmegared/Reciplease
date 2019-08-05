@@ -20,3 +20,4 @@ func LogoInNavBar() {
     // 5
     //navigationItem.titleView = imageView
 }
+
