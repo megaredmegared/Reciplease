@@ -16,7 +16,7 @@
             <objects>
                 <viewController id="Obt-dX-LKg" customClass="SearchViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NJO-Zj-LHh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5cT-OF-oXQ">
@@ -211,7 +211,7 @@
             <objects>
                 <tableViewController id="yq0-pR-vaH" customClass="SearchTableViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="yeC-li-Lyb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -243,7 +243,7 @@
         <scene sceneID="mpq-9Y-WsR">
             <objects>
                 <tabBarController id="u5i-Hq-LkP" customClass="TabBarViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="fill" id="LJT-cr-Moc">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" itemPositioning="fill" id="LJT-cr-Moc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -251,53 +251,11 @@
                         <color key="barTintColor" name="SecondColor"/>
                     </tabBar>
                     <connections>
-                        <outlet property="customTabBarView" destination="hC4-EK-8q1" id="EsV-NW-cjG"/>
-                        <outlet property="favoriteButton" destination="cfo-cL-WGu" id="VRY-WE-1B8"/>
-                        <outlet property="searchButton" destination="vnj-HV-mEe" id="WjY-0u-TGW"/>
                         <segue destination="cbK-yZ-GYZ" kind="relationship" relationship="viewControllers" id="BKr-DF-ICr"/>
                         <segue destination="zJQ-tX-5rn" kind="relationship" relationship="viewControllers" id="PyJ-QH-2II"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fuz-cx-EdI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="hC4-EK-8q1">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="pEN-UP-880">
-                            <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vnj-HV-mEe">
-                                    <rect key="frame" x="0.0" y="0.0" width="119" height="50"/>
-                                    <color key="backgroundColor" name="SecondColor"/>
-                                    <state key="normal" title="Search">
-                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="changeTab:" destination="u5i-Hq-LkP" eventType="touchUpInside" id="w7p-XZ-VKb"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfo-cL-WGu">
-                                    <rect key="frame" x="121" y="0.0" width="119" height="50"/>
-                                    <color key="backgroundColor" name="SecondColor"/>
-                                    <state key="normal" title="Favorite">
-                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="changeTab:" destination="u5i-Hq-LkP" eventType="touchUpInside" id="ic7-5h-dbd"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                        </stackView>
-                    </subviews>
-                    <color key="backgroundColor" name="ContrastColor"/>
-                    <constraints>
-                        <constraint firstItem="pEN-UP-880" firstAttribute="top" secondItem="hC4-EK-8q1" secondAttribute="top" id="5mQ-Px-Lxy"/>
-                        <constraint firstItem="pEN-UP-880" firstAttribute="leading" secondItem="hC4-EK-8q1" secondAttribute="leading" id="AtY-tD-YqO"/>
-                        <constraint firstAttribute="trailing" secondItem="pEN-UP-880" secondAttribute="trailing" id="EkT-EY-e2J"/>
-                        <constraint firstItem="ZKF-dM-ASD" firstAttribute="bottom" secondItem="pEN-UP-880" secondAttribute="bottom" id="mvl-I2-q8E"/>
-                    </constraints>
-                    <viewLayoutGuide key="safeArea" id="ZKF-dM-ASD"/>
-                </view>
             </objects>
             <point key="canvasLocation" x="-1203" y="15"/>
         </scene>
@@ -306,7 +264,7 @@
             <objects>
                 <tableViewController id="k5S-To-dkP" customClass="FavoriteTableViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kbF-QV-aSP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -332,11 +290,11 @@
             </objects>
             <point key="canvasLocation" x="1128" y="389"/>
         </scene>
-        <!--Favorite-->
+        <!--Navigation Controller-->
         <scene sceneID="Vj7-Zd-m4U">
             <objects>
                 <navigationController id="zJQ-tX-5rn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorite" id="te1-n7-6RP"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="te1-n7-6RP"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LTG-99-XoE">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -354,11 +312,11 @@
             </objects>
             <point key="canvasLocation" x="207" y="389"/>
         </scene>
-        <!--Search-->
+        <!--Navigation Controller-->
         <scene sceneID="ihW-GS-GEw">
             <objects>
                 <navigationController id="cbK-yZ-GYZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" id="SYO-ut-6wy"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="SYO-ut-6wy"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="r3I-AP-Zle">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

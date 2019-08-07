@@ -14,6 +14,7 @@ class IngredientService {
     
     var ingredients: [Ingredient] = []
     
+    /// add an ingredient at the top of the list
     func add(ingredient: Ingredient) {
         ingredients.insert(ingredient, at: 0)
     }
