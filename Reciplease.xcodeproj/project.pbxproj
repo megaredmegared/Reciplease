@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D15AD9A22FAFA3C007F25B6 /* IngredientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15AD9922FAFA3C007F25B6 /* IngredientService.swift */; };
+		4D15AD9C22FAFB35007F25B6 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15AD9B22FAFB35007F25B6 /* Ingredient.swift */; };
 		4D1B6B9822F6BB8A0025C936 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1B6B9722F6BB8A0025C936 /* RecipeService.swift */; };
 		4D42DA7B22B12871006B5A9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42DA7A22B12871006B5A9F /* AppDelegate.swift */; };
 		4D42DA8022B12871006B5A9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D42DA7E22B12871006B5A9F /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D15AD9922FAFA3C007F25B6 /* IngredientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientService.swift; sourceTree = "<group>"; };
+		4D15AD9B22FAFB35007F25B6 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		4D1B6B9722F6BB8A0025C936 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
 		4D42DA7722B12871006B5A9F /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D42DA7A22B12871006B5A9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				4D1B6B9722F6BB8A0025C936 /* RecipeService.swift */,
+				4D15AD9B22FAFB35007F25B6 /* Ingredient.swift */,
+				4D15AD9922FAFA3C007F25B6 /* IngredientService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -300,8 +306,10 @@
 			files = (
 				4DCA1F8A22F76079009ECE75 /* TabBarViewController.swift in Sources */,
 				4D7DA4A222B1401700395680 /* SearchViewController.swift in Sources */,
+				4D15AD9C22FAFB35007F25B6 /* Ingredient.swift in Sources */,
 				4D1B6B9822F6BB8A0025C936 /* RecipeService.swift in Sources */,
 				4D42DA8322B12871006B5A9F /* Reciplease.xcdatamodeld in Sources */,
+				4D15AD9A22FAFA3C007F25B6 /* IngredientService.swift in Sources */,
 				4DCA1F8822F71DFA009ECE75 /* LogoInNavBar.swift in Sources */,
 				4D7DA4A022B13FA200395680 /* FavoriteTableViewController.swift in Sources */,
 				4D7DA49E22B13D9300395680 /* SearchTableViewController.swift in Sources */,
