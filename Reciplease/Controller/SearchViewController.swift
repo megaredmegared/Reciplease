@@ -17,6 +17,7 @@ class SearchViewController: UIViewController {
     // MARK: - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
+        /// add logo to navigation
         navigationItem.titleView = UIImageView.init(image: UIImage(named: "logoReciplease"))
         // Do any additional setup after loading the view.
     }
@@ -66,7 +67,15 @@ extension SearchViewController: UITableViewDataSource {
         cell.textLabel?.text = ingredient.name
         return cell
     }
-    
+    // delete a row by swiping it
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // handle delete by removing the data from the array and removing the tableview row)
+            IngredientService.shared.ingredients.remove(at: indexPath.row)
+            listIngredients.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    // Button to clear the ingredients list
     @IBAction func clearIngredientsList() {
         IngredientService.shared.ingredients = []
         listIngredients.reloadData()
