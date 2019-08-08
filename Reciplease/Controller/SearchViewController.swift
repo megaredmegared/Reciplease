@@ -17,9 +17,8 @@ class SearchViewController: UIViewController {
     // MARK: - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
-        /// add logo to navigation
+        // add logo to navigation
         navigationItem.titleView = UIImageView.init(image: UIImage(named: "logoReciplease"))
-        // Do any additional setup after loading the view.
     }
     
     // MARK: - Adding ingredients
@@ -55,22 +54,22 @@ class SearchViewController: UIViewController {
 
 // MARK: - List of ingredients
 extension SearchViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+
+    // Return the number of rows for the table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return IngredientService.shared.ingredients.count
     }
+    // Provide a cell object for each row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
         let ingredient = IngredientService.shared.ingredients[indexPath.row]
         cell.textLabel?.text = ingredient.name
         return cell
     }
-    // delete a row by swiping it
+    // Enable swipe-to-delete feature
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // handle delete by removing the data from the array and removing the tableview row)
+            // handle delete by removing the data from the array first and then removing the tableview row
             IngredientService.shared.ingredients.remove(at: indexPath.row)
             listIngredients.deleteRows(at: [indexPath], with: .fade)
         }

@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Reciplease-->
+        <!--Search View Controller-->
         <scene sceneID="F5H-nQ-Qjq">
             <objects>
                 <viewController id="Obt-dX-LKg" customClass="SearchViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
@@ -38,7 +38,7 @@
                                                         <rect key="frame" x="0.0" y="47.5" width="300" height="30"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="+ lemon, cheese, sausages..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aix-b6-aBN">
-                                                                <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="230" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -46,20 +46,15 @@
                                                                     <outlet property="delegate" destination="Obt-dX-LKg" id="lGp-du-QfL"/>
                                                                 </connections>
                                                             </textField>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nX6-eP-Jge">
-                                                                <rect key="frame" x="250" y="0.0" width="50" height="30"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nX6-eP-Jge" customClass="CustomButton" customModule="Reciplease" customModuleProvider="target">
+                                                                <rect key="frame" x="240" y="0.0" width="60" height="30"/>
                                                                 <color key="backgroundColor" name="MainColor"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="50" id="hjQ-rZ-f9v"/>
+                                                                    <constraint firstAttribute="width" constant="60" id="hjQ-rZ-f9v"/>
                                                                 </constraints>
                                                                 <state key="normal" title=" Add ">
                                                                     <color key="titleColor" name="ContrastColor"/>
                                                                 </state>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="5"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="addIngredients" destination="Obt-dX-LKg" eventType="touchUpInside" id="vj9-an-aFX"/>
                                                                 </connections>
@@ -91,25 +86,20 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your ingredients :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMB-tK-Th5">
-                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="230" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xy-hl-6EV">
-                                                        <rect key="frame" x="250" y="0.0" width="50" height="30"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xy-hl-6EV" customClass="CustomButton" customModule="Reciplease" customModuleProvider="target">
+                                                        <rect key="frame" x="240" y="0.0" width="60" height="30"/>
                                                         <color key="backgroundColor" name="MainColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="50" id="zTI-cN-N9L"/>
+                                                            <constraint firstAttribute="width" constant="60" id="zTI-cN-N9L"/>
                                                         </constraints>
                                                         <state key="normal" title="Clear">
                                                             <color key="titleColor" name="ContrastColor"/>
                                                         </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="5"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="clearIngredientsList" destination="Obt-dX-LKg" eventType="touchUpInside" id="QKm-1f-ggp"/>
                                                         </connections>
@@ -147,7 +137,7 @@
                                             </tableView>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aA1-kO-Kq1">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aA1-kO-Kq1" customClass="CustomButton" customModule="Reciplease" customModuleProvider="target">
                                         <rect key="frame" x="10" y="405" width="300" height="40"/>
                                         <color key="backgroundColor" name="MainColor"/>
                                         <constraints>
@@ -156,11 +146,6 @@
                                         <state key="normal" title="Search for recipes">
                                             <color key="titleColor" name="ContrastColor"/>
                                         </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <segue destination="yq0-pR-vaH" kind="show" id="ZMx-Lv-y2t"/>
                                         </connections>
@@ -189,7 +174,7 @@
                             <outletCollection property="gestureRecognizers" destination="mFS-as-Oti" appends="YES" id="Ax5-Ar-UlA"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Reciplease" id="nlM-vk-wnm">
+                    <navigationItem key="navigationItem" id="nlM-vk-wnm">
                         <barButtonItem key="backBarButtonItem" title="Ingredients" id="Weu-Tk-OEg"/>
                     </navigationItem>
                     <connections>
@@ -206,7 +191,7 @@
             </objects>
             <point key="canvasLocation" x="1127.536231884058" y="-368.30357142857139"/>
         </scene>
-        <!--Reciplease-->
+        <!--Search Table View Controller-->
         <scene sceneID="EWn-95-wFE">
             <objects>
                 <tableViewController id="yq0-pR-vaH" customClass="SearchTableViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
@@ -229,8 +214,8 @@
                             <outlet property="delegate" destination="yq0-pR-vaH" id="KhJ-Bb-fIO"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Reciplease" id="DlX-l2-DkP">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="tbw-9F-NIv">
+                    <navigationItem key="navigationItem" id="DlX-l2-DkP">
+                        <barButtonItem key="backBarButtonItem" title="Receipts" id="tbw-9F-NIv">
                             <color key="tintColor" red="0.9946722388" green="0.40607778439999997" blue="0.28059561529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
                     </navigationItem>
@@ -323,10 +308,11 @@
                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                         <color key="barTintColor" name="MainColor"/>
                         <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
-                            <fontDescription key="fontDescription" type="system" pointSize="1"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
