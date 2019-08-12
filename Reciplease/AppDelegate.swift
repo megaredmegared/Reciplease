@@ -72,6 +72,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
+    
+    // MARK: - Core Data properties to simplify access
+    
+    static var persistentContainer: NSPersistentContainer {
+        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+    }
+    
+    // Fetch context
+    static var viewContext: NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
 
     // MARK: - Core Data Saving support
 
