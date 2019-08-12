@@ -42,41 +42,42 @@ extension Ingredient {
         let ingredientNameList = listOfNames.components(separatedBy: ",")
         var cleanNamedIngredients: [String] = []
         
+        // Clean the name of the ingredient
         for ingredientName in ingredientNameList {
-            // Clean the name of the ingredient
             if let name = self.formatIngredient(name: ingredientName) {
-                
                 cleanNamedIngredients.append(name)
             }
-            
         }
+        
         // delete duplicated names
         cleanNamedIngredients = Array(Set(cleanNamedIngredients))
         print("1      \(cleanNamedIngredients)")
         
+        // remove ingredients that are already listed
         for ingredientName in cleanNamedIngredients {
             let ingredients = Ingredient.all
-            // remove ingredients that are already listed
-            for ingredient in ingredients {
-                guard ingredientName == ingredient.name! else {
-                    return
-                }
-                if let index = cleanNamedIngredients.firstIndex(of: ingredientName) {
-                    cleanNamedIngredients.remove(at: index)
-                }
-
-            }
-            // Save the ingredients
-            for ingredientName in cleanNamedIngredients {
-                let ingredient = Ingredient(context: AppDelegate.viewContext)
-                ingredient.name = ingredientName
-                try? AppDelegate.viewContext.save()
-            }
             
+            for ingredient in ingredients {
+                if ingredientName == ingredient.name! {
+                    if let index = cleanNamedIngredients.firstIndex(of: ingredientName) {
+                        cleanNamedIngredients.remove(at: index)
+                    }
+                }
+                
+            }
+            print("2      \(cleanNamedIngredients)")
+        }
+        
+        // Save the ingredients
+        for ingredientName in cleanNamedIngredients {
+            
+            let ingredient = Ingredient(context: AppDelegate.viewContext)
+            print("3      \(cleanNamedIngredients)")
+            ingredient.name = ingredientName
+            try? AppDelegate.viewContext.save()
         }
     }
 }
-
 extension Ingredient: Comparable {
     static func < (lhs: Ingredient, rhs: Ingredient) -> Bool {
         
