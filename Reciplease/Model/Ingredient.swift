@@ -56,17 +56,19 @@ extension Ingredient {
         // remove ingredients that are already listed
         for ingredientName in cleanNamedIngredients {
             let ingredients = Ingredient.all
-            
             for ingredient in ingredients {
-                if ingredientName == ingredient.name! {
-                    if let index = cleanNamedIngredients.firstIndex(of: ingredientName) {
-                        cleanNamedIngredients.remove(at: index)
+                if (ingredient.name != nil) {
+                    if ingredientName == ingredient.name {
+                        if let index = cleanNamedIngredients.firstIndex(of: ingredientName) {
+                            cleanNamedIngredients.remove(at: index)
+                        }
                     }
                 }
                 
             }
-            print("2      \(cleanNamedIngredients)")
+            
         }
+        print("2      \(cleanNamedIngredients)")
         
         // Save the ingredients
         for ingredientName in cleanNamedIngredients {

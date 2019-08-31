@@ -17,6 +17,8 @@
 		4D42DA8822B12873006B5A9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D42DA8622B12873006B5A9F /* LaunchScreen.storyboard */; };
 		4D42DA9322B12873006B5A9F /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42DA9222B12873006B5A9F /* RecipleaseTests.swift */; };
 		4D42DA9E22B12873006B5A9F /* RecipleaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42DA9D22B12873006B5A9F /* RecipleaseUITests.swift */; };
+		4D760AB0231AA83500B75C5E /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D760AAF231AA83500B75C5E /* ApiKeys.plist */; };
+		4D760AB2231AA86500B75C5E /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D760AB1231AA86500B75C5E /* ApiKeys.swift */; };
 		4D7DA49E22B13D9300395680 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7DA49D22B13D9300395680 /* SearchTableViewController.swift */; };
 		4D7DA4A022B13FA200395680 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7DA49F22B13FA200395680 /* FavoriteTableViewController.swift */; };
 		4D7DA4A222B1401700395680 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7DA4A122B1401700395680 /* SearchViewController.swift */; };
@@ -58,6 +60,8 @@
 		4D42DA9922B12873006B5A9F /* RecipleaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D42DA9D22B12873006B5A9F /* RecipleaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseUITests.swift; sourceTree = "<group>"; };
 		4D42DA9F22B12873006B5A9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D760AAF231AA83500B75C5E /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
+		4D760AB1231AA86500B75C5E /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		4D7DA49D22B13D9300395680 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		4D7DA49F22B13FA200395680 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 		4D7DA4A122B1401700395680 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 				4D1B6B9722F6BB8A0025C936 /* RecipeService.swift */,
 				4D42DA8122B12871006B5A9F /* Reciplease.xcdatamodeld */,
 				4D15AD9B22FAFB35007F25B6 /* Ingredient.swift */,
+				4D760AB1231AA86500B75C5E /* ApiKeys.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 		4D42DA7922B12871006B5A9F /* Reciplease */ = {
 			isa = PBXGroup;
 			children = (
+				4D760AB3231AA88300B75C5E /* Supporting files */,
 				4D42DA7A22B12871006B5A9F /* AppDelegate.swift */,
 				4D42DA8422B12873006B5A9F /* Assets.xcassets */,
 				4D1B6B9622F6BB600025C936 /* Model */,
@@ -171,6 +177,14 @@
 				4DCA1F8922F76079009ECE75 /* TabBarViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		4D760AB3231AA88300B75C5E /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				4D760AAF231AA83500B75C5E /* ApiKeys.plist */,
+			);
+			path = "Supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D42DA8822B12873006B5A9F /* LaunchScreen.storyboard in Resources */,
+				4D760AB0231AA83500B75C5E /* ApiKeys.plist in Resources */,
 				4D42DA8522B12873006B5A9F /* Assets.xcassets in Resources */,
 				4D42DA8022B12871006B5A9F /* Main.storyboard in Resources */,
 			);
@@ -305,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DCA1F8A22F76079009ECE75 /* TabBarViewController.swift in Sources */,
+				4D760AB2231AA86500B75C5E /* ApiKeys.swift in Sources */,
 				4D7DA4A222B1401700395680 /* SearchViewController.swift in Sources */,
 				4D15AD9C22FAFB35007F25B6 /* Ingredient.swift in Sources */,
 				4D1B6B9822F6BB8A0025C936 /* RecipeService.swift in Sources */,
