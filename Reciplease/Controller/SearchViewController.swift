@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Alamofire
 
 class SearchViewController: UIViewController {
     
@@ -18,6 +19,7 @@ class SearchViewController: UIViewController {
    
     //var ingredients = Ingredient.all.sorted(by: { $0.name! < $1.name! })
     var ingredients = Ingredient.all.sorted(by: < )
+    
     
     // MARK: - viewDidLoad()
     override func viewDidLoad() {
@@ -39,6 +41,39 @@ class SearchViewController: UIViewController {
         listIngredients.reloadData()
     }
     
+    // trigger button "Search recipes"
+    @IBAction func searchRecipe() {
+
+        let ingredientsNames = listIngredientsNames(for: ingredients)
+//        APIRecipe.search(for: ingredientsNames)
+        let url = "https://api.edamam.com/search?app_id=\(ApiKeys.appID)&app_key=\(ApiKeys.appKey)"
+
+//        AF.request(url ,method: .get, parameters: parameters).validate().responseDecodable(of: Recipes.self) { response in
+//            debugPrint("Response: \(response)")
+//
+//        }
+        
+        let parameters = ["from": "0", "to": "1", "q": ingredientsNames]
+        
+        AF.request(url, method: .get, parameters: parameters).responseDecodable(of: Recipes.self) { response in
+            debugPrint("Response: \(response)")
+        }
+    }
+    
+}
+
+/// List the names of all ingredients in one string
+private func listIngredientsNames(for ingredients: [Ingredient]) -> String {
+    var ingredientsNames = ""
+    for ingredient in ingredients {
+        // insert a coma if not the first in the list
+        if ingredients.firstIndex(of: ingredient) != 0 {
+            ingredientsNames += ", "
+        }
+        // insert the name of the ingredient
+        ingredientsNames += ingredient.name ?? ""
+    }
+    return ingredientsNames
 }
 
 // MARK: - List of ingredients

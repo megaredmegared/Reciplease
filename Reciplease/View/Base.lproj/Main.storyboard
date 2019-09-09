@@ -147,6 +147,7 @@
                                             <color key="titleColor" name="ContrastColor"/>
                                         </state>
                                         <connections>
+                                            <action selector="searchRecipe" destination="Obt-dX-LKg" eventType="touchUpInside" id="2sR-ny-qxH"/>
                                             <segue destination="yq0-pR-vaH" kind="show" id="ZMx-Lv-y2t"/>
                                         </connections>
                                     </button>

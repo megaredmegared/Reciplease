@@ -16,8 +16,8 @@ func valueForAPIKey(named keyname: String) -> String {
 }
 
 struct ApiKeys {
-    let appID = valueForAPIKey(named: "app_id")
-    let appKey = valueForAPIKey(named: "app_key")
+    static let appID = valueForAPIKey(named: "app_id")
+    static let appKey = valueForAPIKey(named: "app_key")
 }
 
 
