@@ -22,6 +22,7 @@
 		4D42DA8822B12873006B5A9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D42DA8622B12873006B5A9F /* LaunchScreen.storyboard */; };
 		4D42DA9322B12873006B5A9F /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42DA9222B12873006B5A9F /* RecipleaseTests.swift */; };
 		4D42DA9E22B12873006B5A9F /* RecipleaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42DA9D22B12873006B5A9F /* RecipleaseUITests.swift */; };
+		4D56E274232924F0003F8E5C /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56E273232924F0003F8E5C /* RecipeTableViewCell.swift */; };
 		4D760AB0231AA83500B75C5E /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D760AAF231AA83500B75C5E /* ApiKeys.plist */; };
 		4D760AB2231AA86500B75C5E /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D760AB1231AA86500B75C5E /* ApiKeys.swift */; };
 		4D7DA49E22B13D9300395680 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7DA49D22B13D9300395680 /* SearchTableViewController.swift */; };
@@ -70,6 +71,7 @@
 		4D42DA9922B12873006B5A9F /* RecipleaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D42DA9D22B12873006B5A9F /* RecipleaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseUITests.swift; sourceTree = "<group>"; };
 		4D42DA9F22B12873006B5A9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D56E273232924F0003F8E5C /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		4D760AAF231AA83500B75C5E /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		4D760AB1231AA86500B75C5E /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		4D7DA49D22B13D9300395680 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				4D42DA7E22B12871006B5A9F /* Main.storyboard */,
+				4D56E273232924F0003F8E5C /* RecipeTableViewCell.swift */,
 				4D42DA8622B12873006B5A9F /* LaunchScreen.storyboard */,
 				4DCA1F8722F71DFA009ECE75 /* LogoInNavBar.swift */,
 				4D21536922FC216200B61320 /* CustomButton.swift */,
@@ -418,6 +421,7 @@
 				4D42DA7B22B12871006B5A9F /* AppDelegate.swift in Sources */,
 				4D39593B231FC25C00ECDE74 /* APIClient.swift in Sources */,
 				4DFE0FC3232648DE00288CED /* APIRecipe.swift in Sources */,
+				4D56E274232924F0003F8E5C /* RecipeTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

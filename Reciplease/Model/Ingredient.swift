@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 class Ingredient: NSManagedObject {
-    
+    // MARK: - Variables
     static var all: [Ingredient] {
         let request: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
         guard let ingredients = try? AppDelegate.viewContext.fetch(request) else {
@@ -18,11 +18,8 @@ class Ingredient: NSManagedObject {
         }
         return ingredients
     }
-}
-
-// MARK: - Decompositing of the text line in more ingredients
-extension Ingredient {
     
+    // MARK: - Decompositing of the text line in more ingredients
     /// Formating ingredient name
     static private func formatIngredient(name: String) -> String? {
         var ingredientName = name
@@ -79,7 +76,24 @@ extension Ingredient {
             try? AppDelegate.viewContext.save()
         }
     }
+    
+    // MARK: - Transform an array of ingredients in a single String line
+    /// List the names of all ingredients in one string
+    static func makeOneString(from ingredients: [Ingredient]) -> String {
+        var ingredientsNames = ""
+        for ingredient in ingredients {
+            // insert a coma if not the first in the list
+            if ingredients.firstIndex(of: ingredient) != 0 {
+                ingredientsNames += ", "
+            }
+            // insert the name of the ingredient
+            ingredientsNames += ingredient.name ?? ""
+        }
+        return ingredientsNames
+    }
 }
+
+// MARK: - Make ingredient comparable
 extension Ingredient: Comparable {
     static func < (lhs: Ingredient, rhs: Ingredient) -> Bool {
         
@@ -88,5 +102,6 @@ extension Ingredient: Comparable {
     
     
 }
+
 
 

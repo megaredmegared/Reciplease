@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import Alamofire
 
 class SearchViewController: UIViewController {
     
@@ -16,7 +15,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var ingredientTextField: UITextField!
     @IBOutlet weak var listIngredients: UITableView!
     
-   
+    
     //var ingredients = Ingredient.all.sorted(by: { $0.name! < $1.name! })
     var ingredients = Ingredient.all.sorted(by: < )
     
@@ -43,37 +42,35 @@ class SearchViewController: UIViewController {
     
     // trigger button "Search recipes"
     @IBAction func searchRecipe() {
-
-        let ingredientsNames = listIngredientsNames(for: ingredients)
-//        APIRecipe.search(for: ingredientsNames)
-        let url = "https://api.edamam.com/search?app_id=\(ApiKeys.appID)&app_key=\(ApiKeys.appKey)"
-
-//        AF.request(url ,method: .get, parameters: parameters).validate().responseDecodable(of: Recipes.self) { response in
-//            debugPrint("Response: \(response)")
-//
+        
+//    let ingredientsNames = listIngredientsNames(for: ingredients)
+//        let url = "https://api.edamam.com/search?app_id=\(ApiKeys.appID)&app_key=\(ApiKeys.appKey)"
+//        let from = "0"
+//        let to = "6"
+//        let parameters = ["from": from, "to": to, "q": ingredientsNames]
+//        
+//        AF.request(url, method: .get, parameters: parameters).validate().responseDecodable(of: Recipes.self) { response in
+//            //debugPrint("Response: \(response)")
+//            
+//            switch response.result {
+//            case .success:
+//                print("Validation Successful")
+//                guard let recipesResponse = response.value else {
+//                    return
+//                }
+//                SearchViewController.recipes = recipesResponse
+//                for (index, _) in SearchViewController.recipes.hits.enumerated() {
+//                    print(SearchViewController.recipes.hits[index].recipe.label)
+//                }
+//                
+//            case let .failure(error):
+//                print(error)
+//            }
+//            
 //        }
         
-        let parameters = ["from": "0", "to": "1", "q": ingredientsNames]
-        
-        AF.request(url, method: .get, parameters: parameters).responseDecodable(of: Recipes.self) { response in
-            debugPrint("Response: \(response)")
-        }
     }
     
-}
-
-/// List the names of all ingredients in one string
-private func listIngredientsNames(for ingredients: [Ingredient]) -> String {
-    var ingredientsNames = ""
-    for ingredient in ingredients {
-        // insert a coma if not the first in the list
-        if ingredients.firstIndex(of: ingredient) != 0 {
-            ingredientsNames += ", "
-        }
-        // insert the name of the ingredient
-        ingredientsNames += ingredient.name ?? ""
-    }
-    return ingredientsNames
 }
 
 // MARK: - List of ingredients

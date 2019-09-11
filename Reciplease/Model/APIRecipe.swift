@@ -13,20 +13,22 @@ class APIRecipe {
     
     // WARNING app_id must be before app_key in the URL
     private static let url = "https://api.edamam.com/search?app_id=\(ApiKeys.appID)&app_key=\(ApiKeys.appKey)"
+    private static var recipes = Recipes()
+//    static func search(for ingredients: String) {
+//
+//        let parameters = ["q": ingredients]
+//
+//        AF.request(url ,method: .get, parameters: parameters).validate().responseJSON { response in
+//            debugPrint(response)
+//            switch response.result {
+//            case .success:
+//                print("Validation Successful")
+//            case let .failure(error):
+//                print(error)
+//            }
+//        }
+//
+//    }
 
-    static func search(for ingredients: String) {
-        
-        let parameters = ["q": ingredients]
-        
-        AF.request(url ,method: .get, parameters: parameters).validate().responseJSON { response in
-            debugPrint(response)
-            switch response.result {
-            case .success:
-                print("Validation Successful")
-            case let .failure(error):
-                print(error)
-            }
-        }
-        
-    }
+    
 }
