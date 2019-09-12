@@ -120,7 +120,7 @@ class SearchTableViewController: UITableViewController {
         }
     
     }
-    
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -155,15 +155,24 @@ class SearchTableViewController: UITableViewController {
         return true
     }
     */
-
-    /*
+    
+     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
+     guard
+     let selectedCell = sender as? UITableViewCell,
+     let selectedRowIndex = tableView.indexPath(for: selectedCell)?.row, segue.identifier == "RecipeDetails"
+     else {
+     fatalError("sender is not a UITableViewCell or was not found in the tableView, or segue.identifier is incorrect")
+     }
         // Pass the selected object to the new view controller.
+        let recipe = self.recipes.hits[selectedRowIndex]
+     let recipeDetails = segue.destination as! DetailsViewController
+     recipeDetails.recipe = recipe
     }
-    */
+    
 
 }

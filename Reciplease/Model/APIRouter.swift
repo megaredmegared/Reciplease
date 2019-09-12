@@ -80,7 +80,7 @@ enum APIRouter: URLRequestConvertible {
 debug address
 
 """)
-       print(urlRequest)
+       
         
         return urlRequest!
     }

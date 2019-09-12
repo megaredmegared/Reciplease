@@ -23,6 +23,8 @@
 		4D42DA9322B12873006B5A9F /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42DA9222B12873006B5A9F /* RecipleaseTests.swift */; };
 		4D42DA9E22B12873006B5A9F /* RecipleaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42DA9D22B12873006B5A9F /* RecipleaseUITests.swift */; };
 		4D56E274232924F0003F8E5C /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56E273232924F0003F8E5C /* RecipeTableViewCell.swift */; };
+		4D57A125232A3D6400C659F0 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D57A124232A3D6400C659F0 /* DetailsViewController.swift */; };
+		4D57A127232A842100C659F0 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D57A126232A842100C659F0 /* WebViewController.swift */; };
 		4D760AB0231AA83500B75C5E /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D760AAF231AA83500B75C5E /* ApiKeys.plist */; };
 		4D760AB2231AA86500B75C5E /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D760AB1231AA86500B75C5E /* ApiKeys.swift */; };
 		4D7DA49E22B13D9300395680 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7DA49D22B13D9300395680 /* SearchTableViewController.swift */; };
@@ -72,6 +74,8 @@
 		4D42DA9D22B12873006B5A9F /* RecipleaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseUITests.swift; sourceTree = "<group>"; };
 		4D42DA9F22B12873006B5A9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D56E273232924F0003F8E5C /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
+		4D57A124232A3D6400C659F0 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		4D57A126232A842100C659F0 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		4D760AAF231AA83500B75C5E /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		4D760AB1231AA86500B75C5E /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		4D7DA49D22B13D9300395680 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
@@ -197,9 +201,11 @@
 			isa = PBXGroup;
 			children = (
 				4D7DA4A122B1401700395680 /* SearchViewController.swift */,
+				4D57A124232A3D6400C659F0 /* DetailsViewController.swift */,
 				4D7DA49D22B13D9300395680 /* SearchTableViewController.swift */,
 				4D7DA49F22B13FA200395680 /* FavoriteTableViewController.swift */,
 				4DCA1F8922F76079009ECE75 /* TabBarViewController.swift */,
+				4D57A126232A842100C659F0 /* WebViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -407,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DCA1F8A22F76079009ECE75 /* TabBarViewController.swift in Sources */,
+				4D57A127232A842100C659F0 /* WebViewController.swift in Sources */,
 				4D760AB2231AA86500B75C5E /* ApiKeys.swift in Sources */,
 				4D7DA4A222B1401700395680 /* SearchViewController.swift in Sources */,
 				4D15AD9C22FAFB35007F25B6 /* Ingredient.swift in Sources */,
@@ -415,6 +422,7 @@
 				4DCA1F8822F71DFA009ECE75 /* LogoInNavBar.swift in Sources */,
 				4D12906C2320002E0099E2DC /* Constants.swift in Sources */,
 				4D21536A22FC216200B61320 /* CustomButton.swift in Sources */,
+				4D57A125232A3D6400C659F0 /* DetailsViewController.swift in Sources */,
 				4D12906E2320F4DD0099E2DC /* Recipes.swift in Sources */,
 				4D7DA4A022B13FA200395680 /* FavoriteTableViewController.swift in Sources */,
 				4D7DA49E22B13D9300395680 /* SearchTableViewController.swift in Sources */,
@@ -597,6 +605,7 @@
 			baseConfigurationReference = 553B30F572F490B38CA5769E /* Pods-Reciplease.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q9VHCJ3UG6;
 				INFOPLIST_FILE = Reciplease/Info.plist;
@@ -606,6 +615,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sebastien.sarrazin.Reciplease;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -616,6 +626,7 @@
 			baseConfigurationReference = F4D27E6F40664073250EF1DD /* Pods-Reciplease.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q9VHCJ3UG6;
 				INFOPLIST_FILE = Reciplease/Info.plist;
@@ -625,6 +636,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sebastien.sarrazin.Reciplease;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
