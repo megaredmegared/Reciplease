@@ -43,32 +43,6 @@ class SearchViewController: UIViewController {
     // trigger button "Search recipes"
     @IBAction func searchRecipe() {
         
-//    let ingredientsNames = listIngredientsNames(for: ingredients)
-//        let url = "https://api.edamam.com/search?app_id=\(ApiKeys.appID)&app_key=\(ApiKeys.appKey)"
-//        let from = "0"
-//        let to = "6"
-//        let parameters = ["from": from, "to": to, "q": ingredientsNames]
-//        
-//        AF.request(url, method: .get, parameters: parameters).validate().responseDecodable(of: Recipes.self) { response in
-//            //debugPrint("Response: \(response)")
-//            
-//            switch response.result {
-//            case .success:
-//                print("Validation Successful")
-//                guard let recipesResponse = response.value else {
-//                    return
-//                }
-//                SearchViewController.recipes = recipesResponse
-//                for (index, _) in SearchViewController.recipes.hits.enumerated() {
-//                    print(SearchViewController.recipes.hits[index].recipe.label)
-//                }
-//                
-//            case let .failure(error):
-//                print(error)
-//            }
-//            
-//        }
-        
     }
     
 }

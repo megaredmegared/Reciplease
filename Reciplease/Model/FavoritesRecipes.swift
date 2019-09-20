@@ -1,14 +1,14 @@
 //
-//  Recipe.swift
+//  FavoritesRecipes.swift
 //  Reciplease
 //
-//  Created by megared on 05/09/2019.
+//  Created by megared on 13/09/2019.
 //  Copyright © 2019 OpenClassrooms. All rights reserved.
 //
 
 import Foundation
 
-struct Recipes: Codable {
+struct FavoritesRecipes: Decodable {
     
     var from: Int = 0
     var to: Int = 0
@@ -17,20 +17,18 @@ struct Recipes: Codable {
     
     var hits: [Hit] = []
     
-    struct Hit: Codable {
+    struct Hit: Decodable {
         var recipe: Recipe = Recipe()
         
-        struct Recipe: Codable {
+        struct Recipe: Decodable {
             var label: String = ""
             var image: String = ""
-            var imageData: Data? = Data()
-            var uri: String = ""
             var url: String = ""
             var shareAs: String = ""
             var ingredientLines: [String] = []
             var ingredients: [Ingredient] = []
             
-            struct Ingredient: Codable {
+            struct Ingredient: Decodable {
                 var text: String = ""
                 var food: String = ""
             }

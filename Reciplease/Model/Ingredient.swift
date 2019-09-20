@@ -48,7 +48,6 @@ class Ingredient: NSManagedObject {
         
         // delete duplicated names
         cleanNamedIngredients = Array(Set(cleanNamedIngredients))
-        print("1      \(cleanNamedIngredients)")
         
         // remove ingredients that are already listed
         for ingredientName in cleanNamedIngredients {
@@ -65,13 +64,11 @@ class Ingredient: NSManagedObject {
             }
             
         }
-        print("2      \(cleanNamedIngredients)")
         
         // Save the ingredients
         for ingredientName in cleanNamedIngredients {
             
             let ingredient = Ingredient(context: AppDelegate.viewContext)
-            print("3      \(cleanNamedIngredients)")
             ingredient.name = ingredientName
             try? AppDelegate.viewContext.save()
         }
@@ -84,7 +81,7 @@ class Ingredient: NSManagedObject {
         for ingredient in ingredients {
             // insert a coma if not the first in the list
             if ingredients.firstIndex(of: ingredient) != 0 {
-                ingredientsNames += ", "
+                ingredientsNames += ","
             }
             // insert the name of the ingredient
             ingredientsNames += ingredient.name ?? ""

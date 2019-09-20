@@ -19,10 +19,9 @@ class WebViewController: UIViewController, WKUIDelegate {
         webView.uiDelegate = self
         view = webView
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let myURL = URL(string:"https://www.apple.com")
         let myRequest = URLRequest(url: url!)
         webView.load(myRequest)
     }}

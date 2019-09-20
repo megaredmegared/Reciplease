@@ -3,7 +3,8 @@ import Alamofire
 
 enum APIRouter: URLRequestConvertible {
     
-    case searchRecipe(ingredient: String)
+    case searchRecipe(numberOfRecipesToFetch: Int, Intingredients: [Ingredient], recipes: Recipes)
+    
     
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
@@ -13,76 +14,71 @@ enum APIRouter: URLRequestConvertible {
         }
     }
     
+    // MARK: - BaseURL
+    private var baseURL: String {
+        switch self {
+        case .searchRecipe:
+            return "https://api.edamam.com"
+        }
+    }
+    
     // MARK: - Path
     private var path: String {
         switch self {
         case .searchRecipe:
-//            let appID = "${844bfc12}" //ApiKeys().appID
-//            let appKey = "${9b24648aba0f0acbab1c905c2f77f751}" //ApiKeys().appKey
-            return "/search"//"/search?q=\(ingredient)&app_id=\(appID)&app_key=\(appKey)"
+            let identification = "app_id=\(ApiKeys.appID)&app_key=\(ApiKeys.appKey)"
+            return "/search?\(identification)"
         }
     }
     
     // MARK: - Parameters
     private var parameters: Parameters? {
         switch self {
-        case .searchRecipe(let ingredient):
-            let appID = "844bfc12"
-            let appKey = "9b24648aba0f0acbab1c905c2f77f751"
-            return [K.APIParameterKey.ingredient: ingredient, K.APIParameterKey.appKey: appKey, K.APIParameterKey.appID: appID]
-        }
-    }
-    
-    var dataRequest: DataRequest {
-        switch self {
-        case .searchRecipe:
-            return AF.request("https://api.edamam.com/search/get", parameters: parameters).validate().responseJSON { response in
-                debugPrint(response)
-            }
+        case .searchRecipe(let numberOfRecipesToFetch, let ingredients, let recipes):
+            // make one string of ingredient with no white spaces
+            let ingredientLine = Ingredient.makeOneString(from: ingredients).replacingOccurrences(of: " ", with: "%20")
+            let fromInt = recipes.to
+            let from = String(fromInt)
+            let to = String(fromInt + numberOfRecipesToFetch)
+            
+            return ["q": ingredientLine, "from": from, "to": to]
         }
     }
     
     // MARK: - URLRequestConvertible
     func asURLRequest() throws -> URLRequest {
         
-//        let urlComponents = URLComponents(string: "https://api.edamam.com/search?app_id=${844bfc12}&app_key=${9b24648aba0f0acbab1c905c2f77f751}&q=chicken")
-//        let url = try K.ProductionServer.baseURL.asURL().appendingPathComponent(path)
-//
-//        var urlRequest = URLRequest(url: url) //URLRequest(url: url.appendingPathComponent(path))
-//
-//        // HTTP Method
-//        urlRequest.httpMethod = method.rawValue
-//
-//        // Common Headers
-//        urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.acceptType.rawValue)
-//        urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-//
-//        // Parameters
-//        if let parameters = parameters {
-//            do {
-//                print("ça marche")
-//                print(urlRequest)
-//                urlRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
-//                print("ça marche2")
-//                print(urlRequest)
-//            } catch {
-//                throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
-//            }
-//        }
-//
-        
+        switch self {
+        case .searchRecipe:
+            
+            // convert parameters in one string because method is get and not post so no httpbody
+            var parametersString = ""
+            if let parameters = self.parameters as? [String: String] {
+                for (key, value) in parameters {
+                    parametersString += "&" + key + "=" + value
+                }
+            }
+            
+            // concatenation of the elements in an URL
+            let stringUrl = self.baseURL + self.path + parametersString
+            let url = try stringUrl.asURL()
+            
+            // creation of the URLRequest
+            let urlRequest: URLRequest = try URLRequest(url: url, method:  HTTPMethod(rawValue: method.rawValue))
+            
+            
+            
+            print("""
+                
+                
+                \(urlRequest)
 
 
-        
-        
-        print("""
-
-debug address
 
 """)
-       
-        
-        return urlRequest!
+
+            return urlRequest
+        }
     }
 }
 

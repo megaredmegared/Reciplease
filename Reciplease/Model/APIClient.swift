@@ -2,26 +2,12 @@
 import Alamofire
 
 class APIClient {
-    @discardableResult
-    private static func performRequest<T:Decodable>(route: APIRouter, decoder: JSONDecoder = JSONDecoder(), completion:@escaping (Result<T, AFError>)->Void) -> DataRequest {
-       
-        return AF.request(route)
-            .responseDecodable (decoder: decoder){ (response:  AFDataResponse<T>) in
-                completion(response.result)
-                print("""
----------
+    /// search function for recipes datas
+    static func search(numberOfRecipesToFetch: Int, recipes: Recipes, ingredients: [Ingredient], completionHandler: @escaping (_ response: DataResponse<Recipes, AFError>) -> Void ) {
 
-debug
-
----------
-""")
-                print(response)
-//                debugPrint(response) // TODO: à enlever
+        AF.request(APIRouter.searchRecipe(numberOfRecipesToFetch: numberOfRecipesToFetch, Intingredients: ingredients, recipes: recipes)).validate().responseDecodable(of: Recipes.self) { response in
+            completionHandler(response)
         }
-    }
-
-    static func searchRecipe(ingredient: String, completion:@escaping (Result<Recipes, AFError>)->Void) {
-        performRequest(route: APIRouter.searchRecipe(ingredient: ingredient), completion: completion)
     }
     
 }

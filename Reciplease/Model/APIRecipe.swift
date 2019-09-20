@@ -8,27 +8,36 @@
 
 import Foundation
 import Alamofire
+import UIKit
 
 class APIRecipe {
     
-    // WARNING app_id must be before app_key in the URL
-    private static let url = "https://api.edamam.com/search?app_id=\(ApiKeys.appID)&app_key=\(ApiKeys.appKey)"
-    private static var recipes = Recipes()
-//    static func search(for ingredients: String) {
-//
-//        let parameters = ["q": ingredients]
-//
-//        AF.request(url ,method: .get, parameters: parameters).validate().responseJSON { response in
-//            debugPrint(response)
-//            switch response.result {
-//            case .success:
-//                print("Validation Successful")
-//            case let .failure(error):
-//                print(error)
-//            }
-//        }
-//
-//    }
+    static func search(numberOfRecipesToFetch: Int, recipes: Recipes, ingredients: [Ingredient], completionHandler: @escaping (_ response: DataResponse<Recipes, AFError>) -> Void ) {
+        let ingredientsline = Ingredient.makeOneString(from: ingredients)
+        let url = "https://api.edamam.com/search?app_id=\(ApiKeys.appID)&app_key=\(ApiKeys.appKey)"
+        let from = recipes.to
+        let to = from + numberOfRecipesToFetch
+        let fromString = String(from)
+        let toString = String(to)
+        
+        let parameters = ["from": fromString, "to": toString, "q": ingredientsline]
+        
+        AF.request(url, method: .get, parameters: parameters).validate().responseDecodable(of: Recipes.self) { response in
+            debugPrint("Response: \(response)")
+            print("""
 
+
+debug 2
+\(AF.request(url, method: .get, parameters: parameters))
+
+
+
+
+
+""")
+            completionHandler(response)
+            
+            }
+        }
     
 }

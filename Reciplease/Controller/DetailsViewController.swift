@@ -10,6 +10,7 @@ import UIKit
 
 class DetailsViewController: UIViewController {
     
+    @IBOutlet weak var starFavorite: UIBarButtonItem!
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var ingredientList: UITextView!
