@@ -23,10 +23,9 @@ class Ingredient: NSManagedObject {
     /// Formating ingredient name
     static private func formatIngredient(name: String) -> String? {
         var ingredientName = name
-        /// remove whitespaces
-        ingredientName = name.trimmingCharacters(in: .whitespaces)
-        /// remove points
-        ingredientName = ingredientName.trimmingCharacters(in: .init(charactersIn: "."))
+        /// remove unwanted caracters
+        let characterToTrim = CharacterSet.init(charactersIn: " ./@')([]_;?!+*$€^¨£`%<>#°§")
+        ingredientName = name.trimmingCharacters(in: characterToTrim)
         /// return nil if just a whitespace
         if ingredientName == "" {
             return nil

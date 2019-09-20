@@ -15,7 +15,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var ingredientList: UITextView!
     
-    var recipe = Recipes.Hit() //or var recipe: Recipes.Hit!
+    var recipe: Recipes.Hit?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +30,11 @@ class DetailsViewController: UIViewController {
     }
     
     func showDetail() {
-        recipeTitle.text = recipe.recipe.label
+        
+        recipeTitle.text = recipe?.recipe.label
         var ingredientText: String {
             var text = ""
-            for line in recipe.recipe.ingredientLines {
+            for line in recipe?.recipe.ingredientLines ?? [""] {
                 text += line + "\n"
             }
             
@@ -50,7 +51,7 @@ class DetailsViewController: UIViewController {
 //         Get the new view controller using segue.destination.
      
 //         Pass the selected object to the new view controller.
-        let stringURL = recipe.recipe.shareAs
+        let stringURL = recipe?.recipe.shareAs ?? ""
         let recipeURL = URL(string: stringURL)
         let send = segue.destination as! WebViewController
         send.url = recipeURL
