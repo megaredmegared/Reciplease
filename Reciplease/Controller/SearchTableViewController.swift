@@ -8,11 +8,15 @@
 
 import UIKit
 import Alamofire
+import Kingfisher
 
 class SearchTableViewController: UITableViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loadMoreButton: UIButton!
+    @IBOutlet var searchTableView: UITableView! // FIXME: obliger de faire un lien là ?
     
+    
+    let identities = ["", ""]
     var ingredients = Ingredient.all
     
     var recipes = Recipes()
@@ -20,13 +24,16 @@ class SearchTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         searchRecipes()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         navigationItem.titleView = UIImageView.init(image: UIImage(named: "logoReciplease"))
+        
+//        let nibName = UINib(nibName: "RecipesTableViewCell", bundle: nil)
+//        searchTableView.register(nibName, forCellReuseIdentifier: "RecipesCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,12 +47,12 @@ class SearchTableViewController: UITableViewController {
         searchRecipes()
     }
     
-    func hide(button: Bool, activity: Bool) {
+    private func hide(button: Bool, activity: Bool) {
         loadMoreButton.isHidden = button
         self.activityIndicator.isHidden = activity
     }
     
-    func updateLoadButton() {
+    private func updateLoadButton() {
         let numberOfRecipesLoaded = recipes.hits.count
         let totalRecipes = recipes.count
         if numberOfRecipesLoaded < totalRecipes {
@@ -57,6 +64,7 @@ class SearchTableViewController: UITableViewController {
             loadMoreButton.isEnabled = false
         }
     }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -71,47 +79,21 @@ class SearchTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as? RecipeTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipesCell", for: indexPath) as? RecipesTableViewCell else {
             return UITableViewCell()
         }
+        
         let recipe = self.recipes.hits[indexPath.row]
-        
-        // Configure the cell...
-        
         let recipeName = recipe.recipe.label
         
-        // FIXME: - Put in get func
-        var ingredientsNames = ""
-        // Fill ingredientsNames
+        // Fill all the ingredients names in one ingredientsNames String
         let ingredients = recipe.recipe.ingredients
-        for (index, ingredient) in ingredients.enumerated() {
-            // insert the name of the ingredient
-            ingredientsNames += "\(ingredient.food)"
-            if index == ingredients.count - 1 {
-                ingredientsNames += "."
-            } else {
-                ingredientsNames += ", "
-            }
-        }
+        let ingredientsNames = Ingredient.listIngredients(ingredients: ingredients)
         
+        // Load image
+        let imageUrl: URL? = URL(string: recipe.recipe.image)
         
-        
-        // FIXME: - load image
-        //        let imageUrl = recipe.recipe.image
-        //        var imageOK: UIImage? = UIImage(named: "ingredients")
-        
-        //        AF.download(imageUrl).validate().responseData { response in
-        //            guard let image = UIImage(data: response.value ?? Data()) else {
-        //                imageOK = UIImage(named: "ingredients")
-        //                return
-        //            }
-        //
-        //            imageOK = image
-        //
-        //        }
-        var imageOK = UIImage(named: "ingredients")
-        
-        cell.configureWith(image: imageOK, recipe: recipeName, ingredients: ingredientsNames)
+        cell.searchConfigureWith(imageUrl: imageUrl, recipe: recipeName, ingredients: ingredientsNames)
         
         return cell
     }
@@ -120,7 +102,7 @@ class SearchTableViewController: UITableViewController {
     func searchRecipes() {
         
         let recipesLoaded = self.recipes.hits.count
-        let numberOfRecipesToFetch = 10
+        let numberOfRecipesToFetch = 20
         
         APIClient.search(numberOfRecipesToFetch: numberOfRecipesToFetch, recipes: recipes, ingredients: ingredients) { response in
             
@@ -197,16 +179,24 @@ class SearchTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         guard
-            let selectedCell = sender as? UITableViewCell,
+            let selectedCell = sender as? RecipesTableViewCell,
             let selectedRowIndex = tableView.indexPath(for: selectedCell)?.row, segue.identifier == "RecipeDetails"
             else {
                 fatalError("sender is not a UITableViewCell or was not found in the tableView, or segue.identifier is incorrect")
         }
-        // Pass the selected object to the new view controller.
-        let recipe = self.recipes.hits[selectedRowIndex]
-        let recipeDetails = segue.destination as! DetailsViewController
-        recipeDetails.recipe = recipe
+        // Pass the selected recipe to the DetailsViewController
+        let recipe = self.recipes.hits[selectedRowIndex].recipe
+        
+        // FIXME: - fetch image in cache
+        
+        // fetch and cache images with Kingfisher
+        
+        let imageThumbnail = selectedCell.recipeImage.image
+        let details = segue.destination as! DetailsViewController
+        details.recipe = recipe
+        details.imageThumbnail = imageThumbnail
+
     }
-    
+
     
 }

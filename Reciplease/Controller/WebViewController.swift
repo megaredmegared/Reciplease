@@ -22,9 +22,14 @@ class WebViewController: UIViewController, WKUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let myRequest = URLRequest(url: url!)
         webView.load(myRequest)
-    }}
+    }
+    
+}
+
+
 
 //class WebViewController: UIViewController, WKUIDelegate {
 //

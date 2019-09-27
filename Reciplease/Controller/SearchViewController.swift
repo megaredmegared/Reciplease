@@ -15,8 +15,6 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var ingredientTextField: UITextField!
     @IBOutlet weak var listIngredients: UITableView!
     
-    
-    //var ingredients = Ingredient.all.sorted(by: { $0.name! < $1.name! })
     var ingredients = Ingredient.all.sorted(by: < )
     
     

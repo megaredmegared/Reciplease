@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FavoriteRecipe" representedClassName=".FavoriteRecipe" syncable="YES" codeGenerationType="category">
+        <attribute name="imageThumbnail" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="ingredients" optional="YES" attributeType="Transformable" customClassName=".[String]"/>
+        <attribute name="ingredientsLines" optional="YES" attributeType="Transformable" customClassName=".[String]"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="shareAs" optional="YES" attributeType="String"/>
+        <attribute name="uri" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Ingredient" representedClassName=".Ingredient" syncable="YES" codeGenerationType="category">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
     <elements>
+        <element name="FavoriteRecipe" positionX="175.12109375" positionY="-5.94921875" width="128" height="148"/>
         <element name="Ingredient" positionX="-63" positionY="-18" width="128" height="60"/>
     </elements>
 </model>

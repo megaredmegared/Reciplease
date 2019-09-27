@@ -23,7 +23,6 @@ struct Recipes: Codable {
         struct Recipe: Codable {
             var label: String = ""
             var image: String = ""
-            var imageData: Data? = Data()
             var uri: String = ""
             var url: String = ""
             var shareAs: String = ""

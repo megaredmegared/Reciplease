@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 class Ingredient: NSManagedObject {
+    
     // MARK: - Variables
     static var all: [Ingredient] {
         let request: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
@@ -18,7 +19,6 @@ class Ingredient: NSManagedObject {
         }
         return ingredients
     }
-    
     // MARK: - Decompositing of the text line in more ingredients
     /// Formating ingredient name
     static private func formatIngredient(name: String) -> String? {
@@ -84,6 +84,21 @@ class Ingredient: NSManagedObject {
             }
             // insert the name of the ingredient
             ingredientsNames += ingredient.name ?? ""
+        }
+        return ingredientsNames
+    }
+    
+    /// List the names of all ingredients in one string
+    static func listIngredients(ingredients: [Recipes.Hit.Recipe.Ingredient]) -> String {
+        var ingredientsNames = ""
+        for (index, ingredient) in ingredients.enumerated() {
+            // insert the name of the ingredient
+            ingredientsNames += "\(ingredient.food)"
+            if index == ingredients.count - 1 {
+                ingredientsNames += "."
+            } else {
+                ingredientsNames += ", "
+            }
         }
         return ingredientsNames
     }
