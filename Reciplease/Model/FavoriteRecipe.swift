@@ -18,6 +18,7 @@ class FavoriteRecipe: NSManagedObject {
         }
         return favortiesRecipes
     }
+
 }
 
 

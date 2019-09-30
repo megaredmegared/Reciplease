@@ -21,7 +21,9 @@ class DetailsViewController: UIViewController {
     // MARK: - Variables
     
     var recipe: Recipes.Hit.Recipe?
-    var favoritesRecipes = FavoriteRecipe.all
+    var favoritesRecipes: [FavoriteRecipe] {
+        FavoriteRecipe.all
+    }
     var image: UIImage?
     var imageThumbnail: UIImage?
     
@@ -38,6 +40,7 @@ class DetailsViewController: UIViewController {
     
     /// Check if the recipe is in the Favorite
     private func isInFavorites() -> Bool {
+        
         let recipeURI = recipe?.uri
         if self.favoritesRecipes.contains(where: {$0.uri == recipeURI}) {
             return true
@@ -63,7 +66,7 @@ class DetailsViewController: UIViewController {
             print("ajoute aux favoris")
         } else {
             starFavorite.image = UIImage(named: "starEmpty")
-            deleteFavorite()
+//            deleteFavorite()
             print("déjà dans les favoris")
         }
     }
@@ -87,19 +90,20 @@ class DetailsViewController: UIViewController {
         favoriteRecipe.imageThumbnail = imageThumbnail?.pngData()
     
         try? AppDelegate.viewContext.save()
+        updateStarButton()
     }
     
     /// delete favorite
-    private func deleteFavorite() {
-        let recipeURI = recipe?.uri
-        for (index, recipe) in self.favoritesRecipes.enumerated() {
-            if recipe.uri == recipeURI {
-                AppDelegate.persistentContainer.viewContext.delete(recipe)
-                self.favoritesRecipes.remove(at: index)
-                try? AppDelegate.viewContext.save()
-            }
-        }
-    }
+//    private func deleteFavorite() {
+//        let recipeURI = recipe?.uri
+//        for (index, recipe) in self.favoritesRecipes.enumerated() {
+//            if recipe.uri == recipeURI {
+//                AppDelegate.persistentContainer.viewContext.delete(recipe)
+//                self.favoritesRecipes.remove(at: index)
+//                try? AppDelegate.viewContext.save()
+//            }
+//        }
+//    }
 
 
     // Update the view with infos of the recipe

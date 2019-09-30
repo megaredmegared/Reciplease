@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eo5-Vu-5Gb">
-                        <rect key="frame" x="10" y="10" width="300" height="70"/>
+                        <rect key="frame" x="10" y="5" width="300" height="70"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QIY-95-Cw0">
                                 <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
@@ -48,10 +48,10 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="eo5-Vu-5Gb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="9Sg-cN-rmr"/>
+                    <constraint firstItem="eo5-Vu-5Gb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="9Sg-cN-rmr"/>
                     <constraint firstItem="eo5-Vu-5Gb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Iht-Oh-qdZ"/>
                     <constraint firstAttribute="trailing" secondItem="eo5-Vu-5Gb" secondAttribute="trailing" constant="10" id="Plg-yi-oso"/>
-                    <constraint firstAttribute="bottom" secondItem="eo5-Vu-5Gb" secondAttribute="bottom" id="dES-Fg-7kF"/>
+                    <constraint firstAttribute="bottom" secondItem="eo5-Vu-5Gb" secondAttribute="bottom" constant="5" id="dES-Fg-7kF"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
