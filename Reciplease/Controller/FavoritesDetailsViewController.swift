@@ -8,24 +8,50 @@
 
 import UIKit
 
+//protocol JobProtocol {
+//    var title: String { get }
+//    var description: String { get }
+//    var isFavorite: Bool { get }
+//}
+//
+//struct JobServiceModel: JobProtocol {
+//    var title: String {
+//        return dictionary["title"] ?? ""
+//    }
+//
+//    var description: String {
+//        return dictionary["description"] ?? ""
+//    }
+//
+//    var dictionary: [String: String]
+//}
+//
+//struct JobServiceEntity: JobProtocol {
+//    var title: String
+//    var description: String
+//    let isFavorite = true
+//}
+
 class FavoritesDetailsViewController: UIViewController {
 
-    @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var recipeTitle: UILabel!
-    @IBOutlet weak var ingredientList: UITextView!
+    @IBOutlet weak var detailsView: DetailsView!
     
     var favoriteRecipe: FavoriteRecipe?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationItem.titleView = UIImageView.init(image: UIImage(named: "logoReciplease"))
+        showDetail()
         // Do any additional setup after loading the view.
     }
     
     // Update the view with infos of the recipe
     func showDetail() {
-        image.image = UIImage(data: favoriteRecipe!.imageThumbnail!)
-        recipeTitle.text = favoriteRecipe?.name
+        let defaultImage = UIImage(named: "ingredients")?.pngData()
+        
+        let image = UIImage(data: favoriteRecipe?.image ?? defaultImage!)
+        detailsView.recipeImage.image = image
+        detailsView.recipeTitle.text = favoriteRecipe?.name
         var ingredientListText: String {
             var text = ""
             for line in favoriteRecipe?.ingredientsLines ?? [""] {
@@ -35,7 +61,7 @@ class FavoritesDetailsViewController: UIViewController {
             return text
         }
 
-        ingredientList.text = ingredientListText
+        detailsView.recipeIngredientsList.text = ingredientListText
     }
     
     //     In a storyboard-based application, you will often want to do a little preparation before navigation

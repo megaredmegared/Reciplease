@@ -14,60 +14,66 @@ class DetailsViewController: UIViewController {
     // MARK: - Outlets
     
     @IBOutlet weak var starFavorite: UIBarButtonItem!
-    @IBOutlet weak var recipeImage: UIImageView!
-    @IBOutlet weak var recipeTitle: UILabel!
-    @IBOutlet weak var ingredientList: UITextView!
+    @IBOutlet weak var detailsView: DetailsView!
     
     // MARK: - Variables
     
     var recipe: Recipes.Hit.Recipe?
-    var favoritesRecipes: [FavoriteRecipe] {
-        FavoriteRecipe.all
-    }
+    var favoritesRecipes: [FavoriteRecipe] = FavoriteRecipe.all
+    
+//    var favoritesRecipes: [FavoriteRecipe] {
+//        get {FavoriteRecipe.all}
+//        set {}
+//    }
+    
     var image: UIImage?
     var imageThumbnail: UIImage?
+    let starFilled = UIImage(named: "starFilled")
+    let starEmpty = UIImage(named: "starEmpty")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // add logo to navigation
         navigationItem.titleView = UIImageView.init(image: UIImage(named: "logoReciplease"))
-        
-        showDetail()
-        updateStarButton()
-        
+        showDetails()
     }
     
-    /// Check if the recipe is in the Favorite
-    private func isInFavorites() -> Bool {
-        
-        let recipeURI = recipe?.uri
-        if self.favoritesRecipes.contains(where: {$0.uri == recipeURI}) {
-            return true
-        } else {
-            return false
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        updateList()
+         updateStarButton()
     }
+    
+    /// Update
+    private func updateFavorite() {
+        updateList()
+        updateStarButton()
+    }
+    
+    private func updateList() {
+        favoritesRecipes = FavoriteRecipe.all
+    }
+    
+    //MARK: - Manage the Favorite
     
     /// Update star Button
     private func updateStarButton() {
-        if isInFavorites() == true {
-            starFavorite.image = UIImage(named: "starFilled")
+        if recipe?.isFavorite == true {
+            starFavorite.image = starFilled
         } else {
-            starFavorite.image = UIImage(named: "starEmpty")
+            starFavorite.image = starEmpty
         }
     }
     
     /// activate or deactivate favorite
     private func addOrDeleteFavorite() {
-        if isInFavorites() == false {
-          addFavorite()
-            starFavorite.image = UIImage(named: "starFilled")
-            print("ajoute aux favoris")
+        if recipe?.isFavorite == false {
+            addFavorite()
+            print("ajouté aux favoris")
         } else {
-            starFavorite.image = UIImage(named: "starEmpty")
-//            deleteFavorite()
-            print("déjà dans les favoris")
+            deleteFavorite()
+            print("supprimé des favoris")
         }
     }
     
@@ -88,59 +94,62 @@ class DetailsViewController: UIViewController {
         favoriteRecipe.ingredients = ingredients
         favoriteRecipe.ingredientsLines = recipe?.ingredientLines
         favoriteRecipe.imageThumbnail = imageThumbnail?.pngData()
-    
+        favoriteRecipe.image = image?.pngData()
+        
         try? AppDelegate.viewContext.save()
+        updateList()
         updateStarButton()
     }
     
     /// delete favorite
-//    private func deleteFavorite() {
-//        let recipeURI = recipe?.uri
-//        for (index, recipe) in self.favoritesRecipes.enumerated() {
-//            if recipe.uri == recipeURI {
-//                AppDelegate.persistentContainer.viewContext.delete(recipe)
-//                self.favoritesRecipes.remove(at: index)
-//                try? AppDelegate.viewContext.save()
-//            }
-//        }
-//    }
-
-
+    private func deleteFavorite() {
+        let recipeURI = recipe?.uri
+        for (index, recipe) in self.favoritesRecipes.enumerated() {
+            if recipe.uri == recipeURI {
+                AppDelegate.persistentContainer.viewContext.delete(recipe)
+                self.favoritesRecipes.remove(at: index)
+                try? AppDelegate.viewContext.save()
+            }
+        }
+        updateList()
+        updateStarButton()
+    }
+    
+    // MARK: - View
     // Update the view with infos of the recipe
-    func showDetail() {
-        recipeImage.image = imageThumbnail
-        recipeTitle.text = recipe?.label
+    func showDetails() {
+        
+        detailsView.recipeImage.image = image //recipeTitle.text = recipe?.label
+        detailsView.recipeTitle.text = recipe?.label //recipeTitle.text = recipe?.label
         var ingredientText: String {
             var text = ""
             for line in recipe?.ingredientLines ?? [""] {
                 text += line + "\n"
             }
-
+            
             return text
         }
-
-        ingredientList.text = ingredientText
+        
+        detailsView.recipeIngredientsList.text = ingredientText //ingredientList.text = ingredientText
     }
     
     // MARK: - Actions
     
     @IBAction func triggerStarButton(_ sender: Any) {
-        //addOrDeleteFavorite()
-        //deleteFavorite()
-        addFavorite()
-        updateStarButton()
+        addOrDeleteFavorite()
     }
     
-    @IBAction func viewInstructions() {
-    }
-
+    
+    
+    //    sender.performSegue(withIdentifier: "WebView", sender: sender)
+    
     // MARK: - Navigation
     
-//     In a storyboard-based application, you will often want to do a little preparation before navigation
+    //     In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//         Get the new view controller using segue.destination.
-     
-//         Pass the selected object to the new view controller.
+        //         Get the new view controller using segue.destination.
+        
+        //         Pass the selected object to the new view controller.
         let stringURL = recipe?.shareAs ?? ""
         let recipeURL = URL(string: stringURL)
         let send = segue.destination as! WebViewController

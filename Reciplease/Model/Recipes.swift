@@ -39,6 +39,8 @@ struct Recipes: Codable {
 
 
 extension Recipes.Hit.Recipe {
+    
+    /// Check if a recipe is already marked as favorite
     var isFavorite: Bool {
         
     if FavoriteRecipe.all.contains(where: {$0.uri == uri}) {

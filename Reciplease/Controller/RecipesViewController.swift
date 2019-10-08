@@ -10,11 +10,8 @@ import UIKit
 
 class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
     @IBOutlet var tableView: UITableView!
-    
     @IBOutlet weak var loadMoreButton: UIButton!
     
     let identities = ["", ""]
@@ -23,12 +20,15 @@ class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewD
     var recipes = Recipes()
     var images = [UIImage?]()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         searchRecipes()
+        
         navigationItem.titleView = UIImageView.init(image: UIImage(named: "logoReciplease"))
-        // Do any additional setup after loading the view.
+        
+        let nibName = UINib(nibName: "RecipesTableViewCell", bundle: nil)
+        tableView.register(nibName, forCellReuseIdentifier: "RecipesCell")
     }
     
     
@@ -37,11 +37,12 @@ class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.reloadData()
     }
     
+    // MARK: - Actions
+    
     @IBAction func moreRecipes() {
         hide(button: true, activity: false)
                searchRecipes()
     }
-    
     
     // MARK: - Search for more results
     
@@ -89,7 +90,8 @@ class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewD
         let ingredientsNames = Ingredient.listIngredients(ingredients: ingredients)
         
         // Load image
-        let imageUrl: URL? = URL(string: recipe.recipe.image)
+        let imageStringURL = recipe.recipe.image
+        let imageUrl: URL? = URL(string: imageStringURL)
         
         cell.searchConfigureWith(imageUrl: imageUrl, recipe: recipeName, ingredients: ingredientsNames)
         
@@ -136,6 +138,11 @@ class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // MARK: - Navigation
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = self.tableView.cellForRow(at: indexPath)
+        self.performSegue(withIdentifier: "RecipeDetails", sender: cell)
+    }
+
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
@@ -147,15 +154,21 @@ class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         // Pass the selected recipe to the DetailsViewController
         let recipe = self.recipes.hits[selectedRowIndex].recipe
-        
+
         // FIXME: - fetch image in cache
-        
+
+
+
         // fetch and cache images with Kingfisher
-        
+
         let imageThumbnail = selectedCell.recipeImage.image
+        let image = selectedCell.originalImage
+
         let details = segue.destination as! DetailsViewController
+        
         details.recipe = recipe
         details.imageThumbnail = imageThumbnail
+        details.image = image
         
     }
     

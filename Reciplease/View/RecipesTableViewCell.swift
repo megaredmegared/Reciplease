@@ -15,10 +15,11 @@ class RecipesTableViewCell: UITableViewCell {
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var ingredientTitle: UILabel!
     
-    var originalIMage: UIImageView!
+    var originalImage: UIImage?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
     }
     
@@ -31,8 +32,8 @@ class RecipesTableViewCell: UITableViewCell {
     // MARK: - Favorites tableView
     
     /// Configure cell for favorite tableView
-    func favoriteConfigureWith(recipe: String, ingredients: String) {
-        recipeImage.image = UIImage(named: "ingredients")
+    func favoriteConfigureWith(recipe: String, ingredients: String, imageThumbnail: UIImage?) {
+        recipeImage.image = imageThumbnail
         recipeTitle.text = recipe
         ingredientTitle.text = ingredients
     }
@@ -49,7 +50,6 @@ class RecipesTableViewCell: UITableViewCell {
         let placeholder = UIImage(named: "ingredients")
         let processorThumbnail = DownsamplingImageProcessor(size: CGSize(width: 70, height: 70))
             >> RoundCornerImageProcessor(cornerRadius: 35)
-        let processorOrginal = DownsamplingImageProcessor(size: CGSize(width: 300, height: 300))
         
         recipeImage.kf.setImage(with: imageUrl,
                                 placeholder: placeholder,
@@ -58,11 +58,14 @@ class RecipesTableViewCell: UITableViewCell {
                                     .scaleFactor(UIScreen.main.scale),
                                     .cacheOriginalImage,
                                     .transition(.fade(1))])
-        
-        originalIMage?.kf.setImage(with: imageUrl,
-                                   options: [
-                                    .processor(processorOrginal),
-                                    .scaleFactor(UIScreen.main.scale)])
+       
+        KingfisherManager.shared.retrieveImage(with: imageUrl!) { result in
+            switch result {
+            case .success(let value):
+                self.originalImage = value.image
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
-    
 }
