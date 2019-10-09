@@ -201,7 +201,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" name="ContrastColor"/>
                                 <view key="tableFooterView" contentMode="center" id="5bq-BP-Xzg">
-                                    <rect key="frame" x="0.0" y="100" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="rVe-fR-EIT">
@@ -228,16 +228,6 @@
                                     </constraints>
                                     <viewLayoutGuide key="safeArea" id="JJ6-1y-aDh"/>
                                 </view>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="rCt-sT-u9F">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rCt-sT-u9F" id="gyV-Xi-wm1">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="JCb-CW-Wyh" id="66v-MO-4Rz"/>
                                     <outlet property="delegate" destination="JCb-CW-Wyh" id="9c8-mS-4fF"/>
@@ -300,28 +290,11 @@
                     <connections>
                         <outlet property="detailsView" destination="3Kc-AE-YRh" id="xql-7R-FZX"/>
                         <outlet property="starFavorite" destination="BxZ-DE-dKc" id="8c8-4w-Bj0"/>
-                        <segue destination="ifs-yb-j0r" kind="show" identifier="WebView" id="QWK-Ap-qQL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daL-8V-S2p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2947.826086956522" y="-369.64285714285711"/>
-        </scene>
-        <!--Web View Controller-->
-        <scene sceneID="BRK-OP-KNw">
-            <objects>
-                <viewController id="ifs-yb-j0r" customClass="WebViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="doT-Lt-K0S">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="46F-Nx-hPe"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="FND-x4-IYT"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GfW-0b-jbF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4009" y="-115"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="mpq-9Y-WsR">
@@ -443,10 +416,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="2C1-YR-0t3">
                         <barButtonItem key="backBarButtonItem" title="Recipe" id="FHE-Ab-C9j"/>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="starFilled" id="b5X-N3-X5I"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="starFilled" id="b5X-N3-X5I">
+                            <connections>
+                                <action selector="starFavoriteButtonTapped:" destination="1DX-hT-jxJ" id="gDd-RF-qwD"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="detailsView" destination="Uaz-OP-Fs9" id="2dD-Yr-sEy"/>
+                        <outlet property="starFavorite" destination="b5X-N3-X5I" id="XrT-oa-UqH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMz-jg-fdv" userLabel="First Responder" sceneMemberID="firstResponder"/>

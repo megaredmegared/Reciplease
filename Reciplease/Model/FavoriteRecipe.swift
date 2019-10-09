@@ -21,4 +21,16 @@ class FavoriteRecipe: NSManagedObject {
 
 }
 
+extension FavoriteRecipe {
+    
+    /// Check if a recipe is already marked as favorite
+    var isFavorite: Bool {
+        
+    if FavoriteRecipe.all.contains(where: {$0.uri == uri}) {
+            return true
+        } else {
+            return false
+        }
+    }
+}
 

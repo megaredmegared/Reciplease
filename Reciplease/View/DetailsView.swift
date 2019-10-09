@@ -8,11 +8,16 @@
 
 import UIKit
 
+protocol ButtonActionDelegate {
+    func triggerWebButton(sender: UIButton)
+}
+
 @IBDesignable
 class DetailsView: UIView {
     
     let nibName = "DetailsView"
     var contentView: UIView?
+    var delegate: ButtonActionDelegate?
     
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeTitle: UILabel!
@@ -50,7 +55,7 @@ class DetailsView: UIView {
     }
 
     @IBAction func triggerWebButton(_ sender: UIButton) {
-        
+        self.delegate?.triggerWebButton(sender: sender)
     }
     
 }

@@ -8,6 +8,9 @@
 
 import UIKit
 import Kingfisher
+import SafariServices
+
+
 
 class DetailsViewController: UIViewController {
     
@@ -15,6 +18,7 @@ class DetailsViewController: UIViewController {
     
     @IBOutlet weak var starFavorite: UIBarButtonItem!
     @IBOutlet weak var detailsView: DetailsView!
+
     
     // MARK: - Variables
     
@@ -37,6 +41,7 @@ class DetailsViewController: UIViewController {
         // add logo to navigation
         navigationItem.titleView = UIImageView.init(image: UIImage(named: "logoReciplease"))
         showDetails()
+        detailsView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -146,13 +151,39 @@ class DetailsViewController: UIViewController {
     // MARK: - Navigation
     
     //     In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //         Get the new view controller using segue.destination.
-        
-        //         Pass the selected object to the new view controller.
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        //         Get the new view controller using segue.destination.
+//        
+//        //         Pass the selected object to the new view controller.
+//        let stringURL = recipe?.shareAs ?? ""
+//        let recipeURL = URL(string: stringURL)
+//        let send = segue.destination as! WebViewController
+//        send.url = recipeURL
+//    }
+}
+
+extension DetailsViewController: ButtonActionDelegate, SFSafariViewControllerDelegate {
+    
+    func openSafariVC() {
         let stringURL = recipe?.shareAs ?? ""
         let recipeURL = URL(string: stringURL)
-        let send = segue.destination as! WebViewController
-        send.url = recipeURL
+        let safariVC = SFSafariViewController(url: recipeURL!)
+        self.present(safariVC, animated: true, completion: nil)
+        safariVC.preferredControlTintColor = .black
+        safariVC.preferredBarTintColor = .mainColor
+        
+        safariVC.delegate = self
     }
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func triggerWebButton(sender: UIButton) {
+        
+        print("bouboule")
+        
+        openSafariVC()
+    }
+    
 }

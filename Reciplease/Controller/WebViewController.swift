@@ -8,26 +8,61 @@
 
 import UIKit
 import WebKit
+import SafariServices
 
-class WebViewController: UIViewController, WKUIDelegate {
-    var url: URL?
-    var webView: WKWebView!
+//class WebViewController: UIViewController, SFSafariViewControllerDelegate WKUIDelegate {
+//    var url: URL?
+//    var webView: WKWebView!
+//
+//    override func loadView() {
+//        let webConfiguration = WKWebViewConfiguration()
+//        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+//        webView.uiDelegate = self
+//        view = webView
+//    }
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        loadPage()
+//    }
+//
+//    func loadPage() {
+//        guard url != nil else {
+//            print("pas d'url")
+//            return
+//        }
+//        let myRequest = URLRequest(url: url!)
+//        webView.load(myRequest)
+//    }
+class WebViewController: UIViewController, SFSafariViewControllerDelegate {
     
-    override func loadView() {
-        let webConfiguration = WKWebViewConfiguration()
-        webView = WKWebView(frame: .zero, configuration: webConfiguration)
-        webView.uiDelegate = self
-        view = webView
-    }
+    var url: URL?
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let myRequest = URLRequest(url: url!)
-        webView.load(myRequest)
+        openSafariVC()
     }
     
+    func openSafariVC() {
+        let safariVC = SFSafariViewController(url: url!)
+        self.present(safariVC, animated: true, completion: nil)
+        safariVC.delegate = self
+    }
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 }
+    
+//    @IBAction func tappedNextButton(_ sender: Any) {
+//    }
+//
+//    @IBAction func tappedBackButton(_ sender: Any) {
+//    }
+//}
 
 
 
