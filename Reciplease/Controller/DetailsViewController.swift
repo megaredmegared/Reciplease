@@ -23,12 +23,9 @@ class DetailsViewController: UIViewController {
     // MARK: - Variables
     
     var recipe: Recipes.Hit.Recipe?
-    var favoritesRecipes: [FavoriteRecipe] = FavoriteRecipe.all
+//    var favoritesRecipes: [FavoriteRecipe] = FavoriteRecipe.all
     
-//    var favoritesRecipes: [FavoriteRecipe] {
-//        get {FavoriteRecipe.all}
-//        set {}
-//    }
+    var favoritesRecipes: [FavoriteRecipe] { FavoriteRecipe.all }
     
     var image: UIImage?
     var imageThumbnail: UIImage?
@@ -46,20 +43,20 @@ class DetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        updateList()
+//        updateList()
          updateStarButton()
     }
     
     /// Update
     private func updateFavorite() {
-        updateList()
+//        updateList()
         updateStarButton()
     }
     
-    private func updateList() {
-        favoritesRecipes = FavoriteRecipe.all
-    }
-    
+//    private func updateList() {
+//        favoritesRecipes = FavoriteRecipe.all
+//    }
+//
     //MARK: - Manage the Favorite
     
     /// Update star Button
@@ -102,8 +99,9 @@ class DetailsViewController: UIViewController {
         favoriteRecipe.image = image?.pngData()
         
         try? AppDelegate.viewContext.save()
-        updateList()
+//        updateList()
         updateStarButton()
+        
     }
     
     /// delete favorite
@@ -112,11 +110,11 @@ class DetailsViewController: UIViewController {
         for (index, recipe) in self.favoritesRecipes.enumerated() {
             if recipe.uri == recipeURI {
                 AppDelegate.persistentContainer.viewContext.delete(recipe)
-                self.favoritesRecipes.remove(at: index)
+//                self.favoritesRecipes.remove(at: index)
                 try? AppDelegate.viewContext.save()
             }
         }
-        updateList()
+//        updateList()
         updateStarButton()
     }
     
@@ -180,9 +178,6 @@ extension DetailsViewController: ButtonActionDelegate, SFSafariViewControllerDel
     }
     
     func triggerWebButton(sender: UIButton) {
-        
-        print("bouboule")
-        
         openSafariVC()
     }
     

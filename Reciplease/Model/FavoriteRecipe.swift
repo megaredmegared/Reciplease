@@ -21,6 +21,13 @@ class FavoriteRecipe: NSManagedObject {
 
 }
 
+extension FavoriteRecipe: Comparable {
+    static func < (lhs: FavoriteRecipe, rhs: FavoriteRecipe) -> Bool {
+        
+        return lhs.name ?? "" < rhs.name ?? ""
+    }
+}
+
 extension FavoriteRecipe {
     
     /// Check if a recipe is already marked as favorite
@@ -32,5 +39,25 @@ extension FavoriteRecipe {
             return false
         }
     }
+    
+    static func transformFavoriteRecipeInRecipe(_ favoriteRecipe: FavoriteRecipe) -> Recipes.Hit.Recipe? {
+        var recipe = Recipes.Hit.Recipe()
+        var ingredients = [Recipes.Hit.Recipe.Ingredient]()
+        
+       for name in favoriteRecipe.ingredients! {
+        let ingredient = Recipes.Hit.Recipe.Ingredient(food: name)
+        ingredients.append(ingredient)
+        }
+        
+        recipe.label = "No recipe name" //favoriteRecipe.name ??
+        recipe.ingredientLines = favoriteRecipe.ingredientsLines ?? ["no ingredients"]
+        recipe.ingredients = ingredients
+        recipe.shareAs = favoriteRecipe.shareAs ?? ""
+        recipe.uri = favoriteRecipe.uri ?? ""
+        recipe.url = favoriteRecipe.url ?? ""
+        
+        return recipe
+    }
 }
+
 

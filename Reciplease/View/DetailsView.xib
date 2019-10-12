@@ -55,7 +55,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WUp-Aj-6nt">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WUp-Aj-6nt" customClass="CustomButton" customModule="Reciplease" customModuleProvider="target">
                     <rect key="frame" x="10" y="838" width="372" height="40"/>
                     <color key="backgroundColor" name="MainColor"/>
                     <constraints>

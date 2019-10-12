@@ -294,7 +294,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daL-8V-S2p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2947.826086956522" y="-369.64285714285711"/>
+            <point key="canvasLocation" x="3271" y="-24"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="mpq-9Y-WsR">
@@ -385,51 +385,12 @@
                     <connections>
                         <outlet property="favoritesTableView" destination="qui-DF-7kw" id="MB8-kZ-A3H"/>
                         <outlet property="howToAddFavoriteMessage" destination="9wK-Cm-am9" id="HvX-7h-f9O"/>
-                        <segue destination="1DX-hT-jxJ" kind="show" identifier="FavoritesDetails" id="PFI-UD-fN1"/>
+                        <segue destination="jPr-Us-96o" kind="show" identifier="FavoritesDetails" id="f1o-yF-Ayx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uO3-qY-kZL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1997" y="389"/>
-        </scene>
-        <!--Favorites Details View Controller-->
-        <scene sceneID="EJh-ES-eIf">
-            <objects>
-                <viewController id="1DX-hT-jxJ" customClass="FavoritesDetailsViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="DjY-aY-VXz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uaz-OP-Fs9" customClass="DetailsView" customModule="Reciplease" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="Uaz-OP-Fs9" firstAttribute="top" secondItem="Mqo-Zd-F5F" secondAttribute="top" id="0nu-Xb-WoZ"/>
-                            <constraint firstItem="Uaz-OP-Fs9" firstAttribute="leading" secondItem="Mqo-Zd-F5F" secondAttribute="leading" id="9zw-cw-czK"/>
-                            <constraint firstItem="Mqo-Zd-F5F" firstAttribute="bottom" secondItem="Uaz-OP-Fs9" secondAttribute="bottom" id="d3n-C9-Sm5"/>
-                            <constraint firstItem="Mqo-Zd-F5F" firstAttribute="trailing" secondItem="Uaz-OP-Fs9" secondAttribute="trailing" id="ybS-e4-sbu"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Mqo-Zd-F5F"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="2C1-YR-0t3">
-                        <barButtonItem key="backBarButtonItem" title="Recipe" id="FHE-Ab-C9j"/>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="starFilled" id="b5X-N3-X5I">
-                            <connections>
-                                <action selector="starFavoriteButtonTapped:" destination="1DX-hT-jxJ" id="gDd-RF-qwD"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="detailsView" destination="Uaz-OP-Fs9" id="2dD-Yr-sEy"/>
-                        <outlet property="starFavorite" destination="b5X-N3-X5I" id="XrT-oa-UqH"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gMz-jg-fdv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2948" y="389"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ihW-GS-GEw">
@@ -461,7 +422,6 @@
     </scenes>
     <resources>
         <image name="starEmpty" width="30" height="30"/>
-        <image name="starFilled" width="30" height="30"/>
         <namedColor name="ContrastColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -472,4 +432,7 @@
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="f1o-yF-Ayx"/>
+    </inferredMetricsTieBreakers>
 </document>

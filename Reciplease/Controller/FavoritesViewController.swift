@@ -13,7 +13,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var howToAddFavoriteMessage: UILabel!
     @IBOutlet weak var favoritesTableView: UITableView!
     
-    var favoritesRecipes: [FavoriteRecipe] = FavoriteRecipe.all
+    var favoritesRecipes: [FavoriteRecipe] = FavoriteRecipe.all.sorted(by: < )
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
      }
 
     private func updateList() {
-        favoritesRecipes = FavoriteRecipe.all
+        favoritesRecipes = FavoriteRecipe.all.sorted(by: < )
     }
     
     func animateHiddenView(_ view: UIView, hidden: Bool) {
@@ -122,11 +122,18 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             else {
                 fatalError("sender is not a UITableViewCell or was not found in the tableView, or segue.identifier is incorrect")
         }
+        
         // Pass the selected recipe to the DetailsViewController
         let favoriteRecipe = favoritesRecipes[selectedRowIndex]
-        let details = segue.destination as! FavoritesDetailsViewController
+    
         
-        details.favoriteRecipe = favoriteRecipe
+        let recipe = FavoriteRecipe.transformFavoriteRecipeInRecipe(favoriteRecipe)
+        let details = segue.destination as! DetailsViewController
+        
+        details.recipe = recipe
+        details.imageThumbnail = UIImage(data: favoriteRecipe.imageThumbnail ?? UIImage.placeholderImage.pngData()!)
+        details.image = UIImage(data: favoriteRecipe.image ?? UIImage.placeholderImage.pngData()!)
+        
     }
 
 }
