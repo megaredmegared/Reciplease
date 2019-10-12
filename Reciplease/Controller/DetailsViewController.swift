@@ -40,9 +40,13 @@ class DetailsViewController: UIViewController {
         // add logo to navigation
         navigationItem.titleView = UIImageView.init(image: UIImage(named: "logoReciplease"))
         showDetails()
-        ingredientsList.scrollRangeToVisible(NSMakeRange(0, 0))
     }
-    
+    override func viewDidLayoutSubviews() {
+            super.viewDidLayoutSubviews()
+
+            // Can add an if statement HERE to limit when you wish to scroll to top
+            ingredientsList.setContentOffset(.zero, animated: false)
+    }
     // FIXME: Scroll to the top for textview
     
     override func viewWillAppear(_ animated: Bool) {
