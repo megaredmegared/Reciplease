@@ -17,8 +17,10 @@ class DetailsViewController: UIViewController {
     // MARK: - Outlets
     
     @IBOutlet weak var starFavorite: UIBarButtonItem!
-    @IBOutlet weak var detailsView: DetailsView!
-
+    @IBOutlet weak var recipeImage: UIImageView!
+    @IBOutlet weak var recipeTitle: UILabel!
+    @IBOutlet weak var ingredientsList: UITextView!
+    
     
     // MARK: - Variables
     
@@ -38,18 +40,20 @@ class DetailsViewController: UIViewController {
         // add logo to navigation
         navigationItem.titleView = UIImageView.init(image: UIImage(named: "logoReciplease"))
         showDetails()
-        detailsView.delegate = self
+        ingredientsList.scrollRangeToVisible(NSMakeRange(0, 0))
     }
+    
+    // FIXME: Scroll to the top for textview
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-//        updateList()
+
          updateStarButton()
     }
     
     /// Update
     private func updateFavorite() {
-//        updateList()
+
         updateStarButton()
     }
     
@@ -122,8 +126,8 @@ class DetailsViewController: UIViewController {
     // Update the view with infos of the recipe
     func showDetails() {
         
-        detailsView.recipeImage.image = image //recipeTitle.text = recipe?.label
-        detailsView.recipeTitle.text = recipe?.label //recipeTitle.text = recipe?.label
+        recipeImage.image = image //recipeTitle.text = recipe?.label
+        recipeTitle.text = recipe?.label //recipeTitle.text = recipe?.label
         var ingredientText: String {
             var text = ""
             for line in recipe?.ingredientLines ?? [""] {
@@ -133,7 +137,7 @@ class DetailsViewController: UIViewController {
             return text
         }
         
-        detailsView.recipeIngredientsList.text = ingredientText //ingredientList.text = ingredientText
+        ingredientsList.text = ingredientText //ingredientList.text = ingredientText
     }
     
     // MARK: - Actions
@@ -142,6 +146,7 @@ class DetailsViewController: UIViewController {
         addOrDeleteFavorite()
     }
     
+
     
     
     //    sender.performSegue(withIdentifier: "WebView", sender: sender)
@@ -160,7 +165,7 @@ class DetailsViewController: UIViewController {
 //    }
 }
 
-extension DetailsViewController: ButtonActionDelegate, SFSafariViewControllerDelegate {
+extension DetailsViewController: SFSafariViewControllerDelegate {
     
     func openSafariVC() {
         let stringURL = recipe?.shareAs ?? ""
@@ -177,7 +182,7 @@ extension DetailsViewController: ButtonActionDelegate, SFSafariViewControllerDel
         controller.dismiss(animated: true, completion: nil)
     }
     
-    func triggerWebButton(sender: UIButton) {
+    @IBAction func triggerGetDirectionButton(_ sender: Any) {
         openSafariVC()
     }
     

@@ -265,17 +265,89 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Kc-AE-YRh" customClass="DetailsView" customModule="Reciplease" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ingredients" translatesAutoresizingMaskIntoConstraints="NO" id="Chd-If-0LI">
+                                <rect key="frame" x="0.0" y="88" width="414" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="300" id="HyB-6y-8UJ"/>
+                                </constraints>
+                            </imageView>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ufO-SX-xCi">
+                                <rect key="frame" x="0.0" y="388" width="414" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FU5-Fx-BX3">
+                                        <rect key="frame" x="10" y="10" width="394" height="20"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="SecondColor"/>
+                                <constraints>
+                                    <constraint firstItem="FU5-Fx-BX3" firstAttribute="leading" secondItem="ufO-SX-xCi" secondAttribute="leading" constant="10" id="Pnd-1e-ZyW"/>
+                                    <constraint firstAttribute="bottom" secondItem="FU5-Fx-BX3" secondAttribute="bottom" constant="10" id="Sdg-0v-vdf"/>
+                                    <constraint firstAttribute="height" constant="40" id="nAs-X4-aq8"/>
+                                    <constraint firstItem="FU5-Fx-BX3" firstAttribute="top" secondItem="ufO-SX-xCi" secondAttribute="top" constant="10" id="qEs-Qz-ofk"/>
+                                    <constraint firstAttribute="trailing" secondItem="FU5-Fx-BX3" secondAttribute="trailing" constant="10" id="qgV-OE-feL"/>
+                                </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tif-PE-4t9">
+                                <rect key="frame" x="10" y="428" width="394" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="tzm-L3-0QS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcS-ZY-AYe" customClass="CustomButton" customModule="Reciplease" customModuleProvider="target">
+                                <rect key="frame" x="10" y="763" width="394" height="40"/>
+                                <color key="backgroundColor" name="MainColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ckS-Ao-RTH"/>
+                                </constraints>
+                                <state key="normal" title="Get directions">
+                                    <color key="titleColor" name="ContrastColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="triggerGetDirectionButton:" destination="jPr-Us-96o" eventType="touchUpInside" id="RdH-Kx-4M5"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CZH-qm-hcB">
+                                <rect key="frame" x="10" y="458" width="394" height="285"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="175" id="ofI-hA-KnC"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <attributes>
+                                            <font key="NSFont" metaFont="label" size="14"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" firstLineHeadIndent="14" headIndent="14" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="3Kc-AE-YRh" firstAttribute="top" secondItem="z7W-9L-PAh" secondAttribute="top" id="0VZ-7Z-hdz"/>
-                            <constraint firstItem="3Kc-AE-YRh" firstAttribute="centerX" secondItem="iRA-r8-TzX" secondAttribute="centerX" id="K8h-Xu-m7B"/>
-                            <constraint firstItem="3Kc-AE-YRh" firstAttribute="bottom" secondItem="z7W-9L-PAh" secondAttribute="bottom" id="Zgd-UO-ir9"/>
-                            <constraint firstItem="3Kc-AE-YRh" firstAttribute="leading" secondItem="z7W-9L-PAh" secondAttribute="leading" id="rsP-Bx-IKL"/>
+                            <constraint firstItem="Chd-If-0LI" firstAttribute="trailing" secondItem="z7W-9L-PAh" secondAttribute="trailing" id="2pf-k2-EBX"/>
+                            <constraint firstItem="WcS-ZY-AYe" firstAttribute="leading" secondItem="z7W-9L-PAh" secondAttribute="leading" constant="10" id="Ahj-BH-dH9"/>
+                            <constraint firstItem="z7W-9L-PAh" firstAttribute="bottom" secondItem="WcS-ZY-AYe" secondAttribute="bottom" constant="10" id="J1H-Ue-91c"/>
+                            <constraint firstItem="CZH-qm-hcB" firstAttribute="leading" secondItem="z7W-9L-PAh" secondAttribute="leading" constant="10" id="LfA-dK-CCG"/>
+                            <constraint firstItem="CZH-qm-hcB" firstAttribute="top" secondItem="Tif-PE-4t9" secondAttribute="bottom" id="Nmd-eC-gWi"/>
+                            <constraint firstItem="z7W-9L-PAh" firstAttribute="trailing" secondItem="ufO-SX-xCi" secondAttribute="trailing" id="PpT-H0-jU2"/>
+                            <constraint firstItem="z7W-9L-PAh" firstAttribute="trailing" secondItem="WcS-ZY-AYe" secondAttribute="trailing" constant="10" id="UQa-tw-lwV"/>
+                            <constraint firstItem="WcS-ZY-AYe" firstAttribute="top" secondItem="CZH-qm-hcB" secondAttribute="bottom" constant="20" id="dqn-23-jv6"/>
+                            <constraint firstItem="Chd-If-0LI" firstAttribute="leading" secondItem="z7W-9L-PAh" secondAttribute="leading" id="ebK-TN-2hB"/>
+                            <constraint firstItem="Tif-PE-4t9" firstAttribute="top" secondItem="ufO-SX-xCi" secondAttribute="bottom" id="fxj-c5-JFN"/>
+                            <constraint firstItem="z7W-9L-PAh" firstAttribute="trailing" secondItem="CZH-qm-hcB" secondAttribute="trailing" constant="10" id="hKG-0V-s1U"/>
+                            <constraint firstItem="Chd-If-0LI" firstAttribute="top" secondItem="z7W-9L-PAh" secondAttribute="top" id="i9k-30-WZG"/>
+                            <constraint firstItem="ufO-SX-xCi" firstAttribute="leading" secondItem="z7W-9L-PAh" secondAttribute="leading" id="qsp-Uf-bhb"/>
+                            <constraint firstItem="z7W-9L-PAh" firstAttribute="trailing" secondItem="Tif-PE-4t9" secondAttribute="trailing" constant="10" id="uiC-tw-fLp"/>
+                            <constraint firstItem="ufO-SX-xCi" firstAttribute="top" secondItem="Chd-If-0LI" secondAttribute="bottom" id="xHr-zm-Hxk"/>
+                            <constraint firstItem="Tif-PE-4t9" firstAttribute="leading" secondItem="z7W-9L-PAh" secondAttribute="leading" constant="10" id="znL-CD-mlP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="z7W-9L-PAh"/>
                     </view>
@@ -288,13 +360,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="detailsView" destination="3Kc-AE-YRh" id="xql-7R-FZX"/>
+                        <outlet property="ingredientsList" destination="CZH-qm-hcB" id="c9n-dH-7H4"/>
+                        <outlet property="recipeImage" destination="Chd-If-0LI" id="SBL-Ch-DHo"/>
+                        <outlet property="recipeTitle" destination="FU5-Fx-BX3" id="mF2-f7-wHz"/>
                         <outlet property="starFavorite" destination="BxZ-DE-dKc" id="8c8-4w-Bj0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daL-8V-S2p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3271" y="-24"/>
+            <point key="canvasLocation" x="3269.5652173913045" y="-24.107142857142858"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="mpq-9Y-WsR">
@@ -421,6 +495,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ingredients" width="150" height="150"/>
         <image name="starEmpty" width="30" height="30"/>
         <namedColor name="ContrastColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

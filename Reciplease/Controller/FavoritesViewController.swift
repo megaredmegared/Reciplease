@@ -25,7 +25,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
 
     override func viewWillAppear(_ animated: Bool) {
          super.viewWillAppear(true)
-        
+      
         updateList()
         favoritesTableView.reloadData()
         showHowToAddFavoriteMessage()

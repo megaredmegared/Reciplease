@@ -28,8 +28,6 @@
 		4D7D936923522DD3002F430D /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7D936823522DD3002F430D /* UIImageExtension.swift */; };
 		4D7DA4A222B1401700395680 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7DA4A122B1401700395680 /* SearchViewController.swift */; };
 		4DA9780D2341F58900E035D9 /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA9780C2341F58900E035D9 /* RecipesViewController.swift */; };
-		4DB562CA2343944E000CA7E5 /* DetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DB562C92343944E000CA7E5 /* DetailsView.xib */; };
-		4DB562CC23439490000CA7E5 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB562CB23439490000CA7E5 /* DetailsView.swift */; };
 		4DCA1F8822F71DFA009ECE75 /* LogoInNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA1F8722F71DFA009ECE75 /* LogoInNavBar.swift */; };
 		4DCA1F8A22F76079009ECE75 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA1F8922F76079009ECE75 /* TabBarViewController.swift */; };
 		4DF2FA25232B5595000E77B8 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2FA24232B5595000E77B8 /* FavoritesViewController.swift */; };
@@ -83,8 +81,6 @@
 		4D7D936823522DD3002F430D /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		4D7DA4A122B1401700395680 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4DA9780C2341F58900E035D9 /* RecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
-		4DB562C92343944E000CA7E5 /* DetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsView.xib; sourceTree = "<group>"; };
-		4DB562CB23439490000CA7E5 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		4DCA1F8722F71DFA009ECE75 /* LogoInNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoInNavBar.swift; sourceTree = "<group>"; };
 		4DCA1F8922F76079009ECE75 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		4DF2FA24232B5595000E77B8 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -196,8 +192,6 @@
 			isa = PBXGroup;
 			children = (
 				4D42DA7E22B12871006B5A9F /* Main.storyboard */,
-				4DB562C92343944E000CA7E5 /* DetailsView.xib */,
-				4DB562CB23439490000CA7E5 /* DetailsView.swift */,
 				4DF2FA27232B8FCC000E77B8 /* RecipesTableViewCell.xib */,
 				4DF3348C234C975500C6A271 /* UIColorExtension.swift */,
 				4D7D936823522DD3002F430D /* UIImageExtension.swift */,
@@ -358,7 +352,6 @@
 				4D760AB0231AA83500B75C5E /* ApiKeys.plist in Resources */,
 				4D42DA8522B12873006B5A9F /* Assets.xcassets in Resources */,
 				4D42DA8022B12871006B5A9F /* Main.storyboard in Resources */,
-				4DB562CA2343944E000CA7E5 /* DetailsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,7 +420,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DCA1F8A22F76079009ECE75 /* TabBarViewController.swift in Sources */,
-				4DB562CC23439490000CA7E5 /* DetailsView.swift in Sources */,
 				4D57A127232A842100C659F0 /* WebViewController.swift in Sources */,
 				4D7D936923522DD3002F430D /* UIImageExtension.swift in Sources */,
 				4D760AB2231AA86500B75C5E /* ApiKeys.swift in Sources */,
