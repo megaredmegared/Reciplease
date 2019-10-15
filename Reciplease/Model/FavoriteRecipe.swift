@@ -59,6 +59,7 @@ extension FavoriteRecipe {
         return recipe
     }
     
+    
     /// Remove a stored favorite recipe
     static func remove(_ favoriteRecipe: FavoriteRecipe) {
         AppDelegate.persistentContainer.viewContext.delete(favoriteRecipe)

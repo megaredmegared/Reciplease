@@ -103,6 +103,21 @@ class Ingredient: NSManagedObject {
         return ingredientsNames
     }
     
+    /// Format a text ingredient list in one single String
+    static func listIngredients2(ingredients: [String]) -> String {
+        var ingredientsNames = ""
+        for (index, ingredient) in ingredients.enumerated() {
+            // insert the name of the ingredient
+            ingredientsNames += "\(ingredient)"
+            if index == ingredients.count - 1 {
+                ingredientsNames += "."
+            } else {
+                ingredientsNames += ", "
+            }
+        }
+        return ingredientsNames
+    }
+    
     /// Remove a stored ingredient
     static func remove(_ ingredient: Ingredient) {
         AppDelegate.persistentContainer.viewContext.delete(ingredient)

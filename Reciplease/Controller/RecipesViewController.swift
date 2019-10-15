@@ -28,8 +28,8 @@ class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewD
           // add logo to navigation bar
         navigationItem.titleView = UIImageView.init(image: .logoReciplease)
         
-        let nibName = UINib(nibName: "RecipesTableViewCell", bundle: nil)
-        tableView.register(nibName, forCellReuseIdentifier: "RecipesCell")
+        let nibName = UINib(nibName: .recipesTableViewCell, bundle: nil)
+        tableView.register(nibName, forCellReuseIdentifier: .recipesCell)
     }
     
     
@@ -79,7 +79,7 @@ class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipesCell", for: indexPath) as? RecipesTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: .recipesCell, for: indexPath) as? RecipesTableViewCell else {
             return UITableViewCell()
         }
         
@@ -141,7 +141,7 @@ class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = self.tableView.cellForRow(at: indexPath)
-        self.performSegue(withIdentifier: "RecipeDetails", sender: cell)
+        self.performSegue(withIdentifier: .segueRecipeDetails, sender: cell)
     }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -149,7 +149,7 @@ class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Get the new view controller using segue.destination.
         guard
             let selectedCell = sender as? RecipesTableViewCell,
-            let selectedRowIndex = tableView.indexPath(for: selectedCell)?.row, segue.identifier == "RecipeDetails"
+            let selectedRowIndex = tableView.indexPath(for: selectedCell)?.row, segue.identifier == .segueRecipeDetails
             else {
                 fatalError("sender is not a UITableViewCell or was not found in the tableView, or segue.identifier is incorrect")
         }

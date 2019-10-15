@@ -43,7 +43,6 @@ extension SearchViewController: UITableViewDataSource {
     // Enable swipe-to-delete feature
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // handle delete by removing the data from the array first and then removing the tableview row
             let ingredient = ingredients[indexPath.row]
             Ingredient.remove(ingredient)
             listIngredients.deleteRows(at: [indexPath], with: .fade)
