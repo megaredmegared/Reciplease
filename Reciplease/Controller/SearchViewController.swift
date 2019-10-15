@@ -1,10 +1,3 @@
-//
-//  SearchViewController.swift
-//  Reciplease
-//
-//  Created by megared on 12/06/2019.
-//  Copyright © 2019 OpenClassrooms. All rights reserved.
-//
 
 import UIKit
 import CoreData
@@ -12,40 +5,26 @@ import CoreData
 class SearchViewController: UIViewController {
     
     // MARK: - Outlets
+    
     @IBOutlet weak var ingredientTextField: UITextField!
     @IBOutlet weak var listIngredients: UITableView!
     
-    var ingredients = Ingredient.all.sorted(by: < )
+    // MARK: - Variables
     
+    var ingredients: [Ingredient] { Ingredient.all.sorted(by: < ) }
     
     // MARK: - viewDidLoad()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // add logo to navigation
-        navigationItem.titleView = UIImageView.init(image: UIImage(named: "logoReciplease"))
-    }
-    
-    
-    @IBAction func addIngredients() {
-        guard let listOfNames = ingredientTextField.text else {
-            return
-        }
         
-        Ingredient.formatingList(listOfNames: listOfNames)
-        
-        ingredientTextField.text = ""
-        ingredients = Ingredient.all.sorted(by: < )
-        listIngredients.reloadData()
-    }
-    
-    // trigger button "Search recipes"
-    @IBAction func searchRecipe() {
-        
-    }
-    
+        // add logo to navigation bar
+        navigationItem.titleView = UIImageView.init(image: .logoReciplease)
+    } 
 }
 
-// MARK: - List of ingredients
+// MARK: - TableView list of ingredients
+
 extension SearchViewController: UITableViewDataSource {
     
     // Return the number of rows for the table
@@ -55,7 +34,7 @@ extension SearchViewController: UITableViewDataSource {
     
     // Provide a cell object for each row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: .ingredientCell, for: indexPath)
         let ingredient = ingredients[indexPath.row]
         cell.textLabel?.text = ingredient.name
         return cell
@@ -65,38 +44,49 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // handle delete by removing the data from the array first and then removing the tableview row
-            
             let ingredient = ingredients[indexPath.row]
-            removeIngredient(ingredient: ingredient)
+            Ingredient.remove(ingredient)
             listIngredients.deleteRows(at: [indexPath], with: .fade)
-            
         }
     }
+}
+
+// MARK: - Buttons Actions
+
+extension SearchViewController {
     
-    // Button to clear the ingredients list
+    /// Add ingredients to the list
+    @IBAction func addIngredients() {
+        guard let listOfNames = ingredientTextField.text else {
+            return
+        }
+        Ingredient.formatingList(listOfNames: listOfNames)
+        // Reset ingredient text field
+        ingredientTextField.text = ""
+        listIngredients.reloadData()
+    }
+    
+    /// Button to clear the ingredients list
     @IBAction func clearIngredientsList() {
         for ingredient in ingredients {
-            removeIngredient(ingredient: ingredient)
+            Ingredient.remove(ingredient)
         }
         listIngredients.reloadData()
     }
     
-    /// Remove a stored ingredient
-    private func removeIngredient(ingredient: Ingredient) {
-        AppDelegate.persistentContainer.viewContext.delete(ingredient)
-        ingredients.remove(at: 0)
-        try? AppDelegate.viewContext.save()
-        
+    /// trigger button "Search recipes"
+    @IBAction func searchRecipe() {
     }
 }
 
-
-
 // MARK: - Keyboard
+
 extension SearchViewController: UITextFieldDelegate {
+    
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         ingredientTextField.resignFirstResponder()
     }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         addIngredients()
         ingredientTextField.resignFirstResponder()

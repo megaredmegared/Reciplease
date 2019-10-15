@@ -102,6 +102,12 @@ class Ingredient: NSManagedObject {
         }
         return ingredientsNames
     }
+    
+    /// Remove a stored ingredient
+    static func remove(_ ingredient: Ingredient) {
+        AppDelegate.persistentContainer.viewContext.delete(ingredient)
+        try? AppDelegate.viewContext.save()
+    }
 }
 
 // MARK: - Make ingredient comparable

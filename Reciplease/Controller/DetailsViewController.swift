@@ -31,14 +31,14 @@ class DetailsViewController: UIViewController {
     
     var image: UIImage?
     var imageThumbnail: UIImage?
-    let starFilled = UIImage(named: "starFilled")
-    let starEmpty = UIImage(named: "starEmpty")
+//    let starFilled = UIImage(named: "starFilled")
+//    let starEmpty = UIImage(named: "starEmpty")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // add logo to navigation
-        navigationItem.titleView = UIImageView.init(image: UIImage(named: "logoReciplease"))
+   // add logo to navigation bar
+        navigationItem.titleView = UIImageView.init(image: .logoReciplease)
         showDetails()
     }
     override func viewDidLayoutSubviews() {
@@ -70,9 +70,9 @@ class DetailsViewController: UIViewController {
     /// Update star Button
     private func updateStarButton() {
         if recipe?.isFavorite == true {
-            starFavorite.image = starFilled
+            starFavorite.image = .starFilled
         } else {
-            starFavorite.image = starEmpty
+            starFavorite.image = .starEmpty
         }
     }
     

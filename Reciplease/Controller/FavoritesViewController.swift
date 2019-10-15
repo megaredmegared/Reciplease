@@ -13,35 +13,33 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var howToAddFavoriteMessage: UILabel!
     @IBOutlet weak var favoritesTableView: UITableView!
     
-    var favoritesRecipes: [FavoriteRecipe] = FavoriteRecipe.all.sorted(by: < )
+    var favoritesRecipes: [FavoriteRecipe] { FavoriteRecipe.all.sorted(by: < ) }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.titleView = UIImageView.init(image: UIImage(named: "logoReciplease"))
-        let nibName = UINib(nibName: "RecipesTableViewCell", bundle: nil)
-        favoritesTableView.register(nibName, forCellReuseIdentifier: "RecipesCell")
+          // add logo to navigation bar
+        navigationItem.titleView = UIImageView.init(image: .logoReciplease)
+        
+        // Set the custom tableViewCell for the favoritesTableView
+        let nibName = UINib(nibName: .recipesTableViewCell, bundle: nil)
+        favoritesTableView.register(nibName, forCellReuseIdentifier: .recipesCell)
     }
     
 
     override func viewWillAppear(_ animated: Bool) {
          super.viewWillAppear(true)
-      
-        updateList()
         favoritesTableView.reloadData()
         showHowToAddFavoriteMessage()
      }
 
-    private func updateList() {
-        favoritesRecipes = FavoriteRecipe.all.sorted(by: < )
-    }
-    
+
     func animateHiddenView(_ view: UIView, hidden: Bool) {
         UIView.transition(with: view, duration: 0.5, options: .transitionCrossDissolve, animations: {
             view.isHidden = hidden
         })
     }
     
-    func showHowToAddFavoriteMessage() {
+    private func showHowToAddFavoriteMessage() {
         if favoritesRecipes.isEmpty {
             animateHiddenView(howToAddFavoriteMessage, hidden: false)
             favoritesTableView.isHidden = true
@@ -88,19 +86,21 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
     }
     
-    /// Remove a stored favorite recipe
-    private func removeFavoriteRecipe(favoriteRecipe: FavoriteRecipe) {
-        AppDelegate.persistentContainer.viewContext.delete(favoriteRecipe)
-        favoritesRecipes.remove(at: 0)
-        try? AppDelegate.viewContext.save()
-        
-        
+    // Enable swipe-to-delete feature
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // handle delete by removing the data from the array first and then removing the tableview row
+            let favoriteRecipe = favoritesRecipes[indexPath.row]
+            FavoriteRecipe.remove(favoriteRecipe)
+            favoritesTableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        showHowToAddFavoriteMessage()
     }
     
     /// Clear the list of favorites recipes
     @IBAction func clearButtonTapped(_ sender: Any) {
         for favoriteRecipe in favoritesRecipes {
-            removeFavoriteRecipe(favoriteRecipe: favoriteRecipe)
+            FavoriteRecipe.remove(favoriteRecipe)
         }
         favoritesTableView.reloadData()
         showHowToAddFavoriteMessage()

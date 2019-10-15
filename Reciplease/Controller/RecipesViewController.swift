@@ -25,7 +25,8 @@ class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         searchRecipes()
         
-        navigationItem.titleView = UIImageView.init(image: UIImage(named: "logoReciplease"))
+          // add logo to navigation bar
+        navigationItem.titleView = UIImageView.init(image: .logoReciplease)
         
         let nibName = UINib(nibName: "RecipesTableViewCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "RecipesCell")
