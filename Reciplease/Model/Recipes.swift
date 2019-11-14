@@ -30,13 +30,11 @@ struct Recipes: Codable {
             var ingredients: [Ingredient] = []
             
             struct Ingredient: Codable {
-//                var text: String = ""
                 var food: String = ""
             }
         }
     }
 }
-
 
 extension Recipes.Hit.Recipe {
     

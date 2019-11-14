@@ -1,16 +1,7 @@
-//
-//  DetailsViewController.swift
-//  Reciplease
-//
-//  Created by megared on 12/09/2019.
-//  Copyright © 2019 OpenClassrooms. All rights reserved.
-//
 
 import UIKit
 import Kingfisher
 import SafariServices
-
-
 
 class DetailsViewController: UIViewController {
     
@@ -25,14 +16,11 @@ class DetailsViewController: UIViewController {
     // MARK: - Variables
     
     var recipe: Recipes.Hit.Recipe?
-//    var favoritesRecipes: [FavoriteRecipe] = FavoriteRecipe.all
-    
     var favoritesRecipes: [FavoriteRecipe] { FavoriteRecipe.all }
-    
     var image: UIImage?
     var imageThumbnail: UIImage?
-//    let starFilled = UIImage(named: "starFilled")
-//    let starEmpty = UIImage(named: "starEmpty")
+    
+    // MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,31 +29,24 @@ class DetailsViewController: UIViewController {
         navigationItem.titleView = UIImageView.init(image: .logoReciplease)
         showDetails()
     }
+    
+    // MARK: - viewDidLayoutSubviews
+    
     override func viewDidLayoutSubviews() {
             super.viewDidLayoutSubviews()
 
-            // Can add an if statement HERE to limit when you wish to scroll to top
+            // Make by default the list scrolled to the top
             ingredientsList.setContentOffset(.zero, animated: false)
     }
-    // FIXME: Scroll to the top for textview
+    
+    // MARK: - viewWillAppear
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-
          updateStarButton()
     }
     
-    /// Update
-    private func updateFavorite() {
-
-        updateStarButton()
-    }
-    
-//    private func updateList() {
-//        favoritesRecipes = FavoriteRecipe.all
-//    }
-//
-    //MARK: - Manage the Favorite
+    //MARK: - Functions
     
     /// Update star Button
     private func updateStarButton() {
@@ -76,62 +57,43 @@ class DetailsViewController: UIViewController {
         }
     }
     
-    /// activate or deactivate favorite
+    /// add or delete from favorite
     private func addOrDeleteFavorite() {
         if recipe?.isFavorite == false {
             addFavorite()
-            print("ajouté aux favoris")
         } else {
             deleteFavorite()
-            print("supprimé des favoris")
         }
     }
     
     /// add favorite
     private func addFavorite() {
-        let favoriteRecipe = FavoriteRecipe(context: AppDelegate.viewContext)
-        var ingredients = [String]()
-        // FIXME: WARNING optional
-        for (_, ingredient) in recipe!.ingredients.enumerated() {
-            let ingredientName = ingredient.food
-            ingredients.append(ingredientName)
+        guard let recipe = recipe else {
+            return
         }
+        let imageOK = image?.pngData() ?? UIImage.placeholderImage.pngData()!
+        let thumbnail = imageThumbnail?.pngData() ?? UIImage.placeholderImage.pngData()!
         
-        favoriteRecipe.uri = recipe?.uri
-        favoriteRecipe.name = recipe?.label
-        favoriteRecipe.url = recipe?.url
-        favoriteRecipe.shareAs = recipe?.shareAs
-        favoriteRecipe.ingredients = ingredients
-        favoriteRecipe.ingredientsLines = recipe?.ingredientLines
-        favoriteRecipe.imageThumbnail = imageThumbnail?.pngData()
-        favoriteRecipe.image = image?.pngData()
-        
-        try? AppDelegate.viewContext.save()
-//        updateList()
+        FavoriteRecipe.add(recipe, image: imageOK, thumbnail: thumbnail)
+
         updateStarButton()
-        
     }
     
     /// delete favorite
     private func deleteFavorite() {
         let recipeURI = recipe?.uri
-        for (index, recipe) in self.favoritesRecipes.enumerated() {
-            if recipe.uri == recipeURI {
-                AppDelegate.persistentContainer.viewContext.delete(recipe)
-//                self.favoritesRecipes.remove(at: index)
-                try? AppDelegate.viewContext.save()
-            }
+        for recipe in favoritesRecipes where recipe.uri == recipeURI {
+            FavoriteRecipe.remove(recipe)
         }
-//        updateList()
         updateStarButton()
     }
     
     // MARK: - View
     // Update the view with infos of the recipe
-    func showDetails() {
+    private func showDetails() {
         
-        recipeImage.image = image //recipeTitle.text = recipe?.label
-        recipeTitle.text = recipe?.label //recipeTitle.text = recipe?.label
+        recipeImage.image = image
+        recipeTitle.text = recipe?.label
         var ingredientText: String {
             var text = ""
             for line in recipe?.ingredientLines ?? [""] {
@@ -140,8 +102,7 @@ class DetailsViewController: UIViewController {
             
             return text
         }
-        
-        ingredientsList.text = ingredientText //ingredientList.text = ingredientText
+        ingredientsList.text = ingredientText
     }
     
     // MARK: - Actions
@@ -149,36 +110,19 @@ class DetailsViewController: UIViewController {
     @IBAction func triggerStarButton(_ sender: Any) {
         addOrDeleteFavorite()
     }
-    
-
-    
-    
-    //    sender.performSegue(withIdentifier: "WebView", sender: sender)
-    
-    // MARK: - Navigation
-    
-    //     In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        //         Get the new view controller using segue.destination.
-//        
-//        //         Pass the selected object to the new view controller.
-//        let stringURL = recipe?.shareAs ?? ""
-//        let recipeURL = URL(string: stringURL)
-//        let send = segue.destination as! WebViewController
-//        send.url = recipeURL
-//    }
 }
+
+// MARK: - Navigation
 
 extension DetailsViewController: SFSafariViewControllerDelegate {
     
-    func openSafariVC() {
+    private func openSafariVC() {
         let stringURL = recipe?.shareAs ?? ""
         let recipeURL = URL(string: stringURL)
         let safariVC = SFSafariViewController(url: recipeURL!)
         self.present(safariVC, animated: true, completion: nil)
         safariVC.preferredControlTintColor = .black
         safariVC.preferredBarTintColor = .mainColor
-        
         safariVC.delegate = self
     }
     

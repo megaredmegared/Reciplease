@@ -1,10 +1,3 @@
-//
-//  ApiKeys.swift
-//  Reciplease
-//
-//  Created by megared on 31/08/2019.
-//  Copyright © 2019 OpenClassrooms. All rights reserved.
-//
 
 import Foundation
 
@@ -19,6 +12,3 @@ struct ApiKeys {
     static let appID = valueForAPIKey(named: "app_id")
     static let appKey = valueForAPIKey(named: "app_key")
 }
-
-
-

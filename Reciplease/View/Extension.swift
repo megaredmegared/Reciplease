@@ -33,3 +33,9 @@ extension UIColor {
     static let secondColor = UIColor(named: "SecondColor")
     static let contrastSecondColor = UIColor(named: "ContrastSecondColor")
 }
+
+extension Data {
+    var image: UIImage? {
+        UIImage(data: self)
+    }
+}

@@ -1,57 +1,53 @@
-//
-//  RecipesViewController.swift
-//  Reciplease
-//
-//  Created by megared on 30/09/2019.
-//  Copyright © 2019 OpenClassrooms. All rights reserved.
-//
 
 import UIKit
 
-class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RecipesViewController: UIViewController {
+    
+    // MARK: - Outlets
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var loadMoreButton: UIButton!
     
+    // MARK: - Variables
+    
     let identities = ["", ""]
     var ingredients = Ingredient.all
-    
     var recipes = Recipes()
     var images = [UIImage?]()
+    
+    // MARK: - viewDidLoad()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         searchRecipes()
         
-          // add logo to navigation bar
+        // add logo to navigation bar
         navigationItem.titleView = UIImageView.init(image: .logoReciplease)
         
+        // Set the custom tableViewCell for the favoritesTableView
         let nibName = UINib(nibName: .recipesTableViewCell, bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: .recipesCell)
     }
     
+    // MARK: - viewWillAppear()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.tableView.reloadData()
     }
     
-    // MARK: - Actions
     
-    @IBAction func moreRecipes() {
-        hide(button: true, activity: false)
-               searchRecipes()
-    }
+    // MARK: - Functions
     
-    // MARK: - Search for more results
-    
+    /// Toggle the loadMoreButton and/or the activity indicator
     private func hide(button: Bool, activity: Bool) {
         loadMoreButton.isHidden = button
         self.activityIndicator.isHidden = activity
     }
     
+    /// Update the text of the loadMoreButton
     private func updateLoadButton() {
         let numberOfRecipesLoaded = recipes.hits.count
         let totalRecipes = recipes.count
@@ -64,8 +60,11 @@ class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewD
             loadMoreButton.isEnabled = false
         }
     }
-    
-    // MARK: - Table view data source
+}
+
+// MARK: - TableView list of search results of recipes
+
+extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -76,7 +75,6 @@ class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewD
         // #warning Incomplete implementation, return the number of rows
         return self.recipes.hits.count
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: .recipesCell, for: indexPath) as? RecipesTableViewCell else {
@@ -101,7 +99,7 @@ class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // MARK: - Search recipes
     
-    func searchRecipes() {
+    private func searchRecipes() {
         
         let recipesLoaded = self.recipes.hits.count
         let numberOfRecipesToFetch = 20
@@ -135,7 +133,18 @@ class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewD
                     """)
             }
         }
+    }    
+}
+
+// MARK: - Actions
+
+extension RecipesViewController {
+    
+    @IBAction func moreRecipes() {
+        hide(button: true, activity: false)
+        searchRecipes()
     }
+    
     
     // MARK: - Navigation
     
@@ -143,8 +152,7 @@ class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = self.tableView.cellForRow(at: indexPath)
         self.performSegue(withIdentifier: .segueRecipeDetails, sender: cell)
     }
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         guard
@@ -155,16 +163,10 @@ class RecipesViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         // Pass the selected recipe to the DetailsViewController
         let recipe = self.recipes.hits[selectedRowIndex].recipe
-
-        // FIXME: - fetch image in cache
-
-
-
-        // fetch and cache images with Kingfisher
-
+        
         let imageThumbnail = selectedCell.recipeImage.image
         let image = selectedCell.originalImage
-
+        
         let details = segue.destination as! DetailsViewController
         
         details.recipe = recipe

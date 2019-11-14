@@ -3,10 +3,10 @@ import Alamofire
 
 enum APIRouter: URLRequestConvertible {
     
-    case searchRecipe(numberOfRecipesToFetch: Int, Intingredients: [Ingredient], recipes: Recipes)
-    
+    case searchRecipe(numberOfRecipesToFetch: Int, ingredients: [Ingredient], recipes: Recipes)
     
     // MARK: - HTTPMethod
+    
     private var method: HTTPMethod {
         switch self {
         case .searchRecipe:
@@ -15,6 +15,7 @@ enum APIRouter: URLRequestConvertible {
     }
     
     // MARK: - BaseURL
+    
     private var baseURL: String {
         switch self {
         case .searchRecipe:
@@ -23,6 +24,7 @@ enum APIRouter: URLRequestConvertible {
     }
     
     // MARK: - Path
+    
     private var path: String {
         switch self {
         case .searchRecipe:
@@ -32,11 +34,12 @@ enum APIRouter: URLRequestConvertible {
     }
     
     // MARK: - Parameters
+    
     private var parameters: Parameters? {
         switch self {
         case .searchRecipe(let numberOfRecipesToFetch, let ingredients, let recipes):
             // make one string of ingredient with no white spaces
-            let ingredientLine = Ingredient.makeOneString(from: ingredients).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            let ingredientLine = Ingredient.makeOneString(from: ingredients).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
             let fromInt = recipes.to
             let from = String(fromInt)
             let to = String(fromInt + numberOfRecipesToFetch)
@@ -46,6 +49,7 @@ enum APIRouter: URLRequestConvertible {
     }
     
     // MARK: - URLRequestConvertible
+    
     func asURLRequest() throws -> URLRequest {
         
         switch self {
@@ -65,17 +69,6 @@ enum APIRouter: URLRequestConvertible {
             
             // creation of the URLRequest
             let urlRequest: URLRequest = try URLRequest(url: url, method:  HTTPMethod(rawValue: method.rawValue))
-            
-            
-            
-            print("""
-                
-                
-                \(urlRequest)
-
-
-
-""")
 
             return urlRequest
         }

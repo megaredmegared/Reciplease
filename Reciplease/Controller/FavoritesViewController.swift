@@ -1,10 +1,3 @@
-//
-//  FavoritesViewController.swift
-//  Reciplease
-//
-//  Created by megared on 13/09/2019.
-//  Copyright © 2019 OpenClassrooms. All rights reserved.
-//
 
 import UIKit
 
@@ -60,7 +53,9 @@ class FavoritesViewController: UIViewController {
         }
     }
 }
-    
+
+// MARK: - TableView list of favorites recipes
+
 extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,25 +71,11 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         let name = favoriteRecipe.name ?? ""
         let ingredients = favoriteRecipe.ingredients ?? []
         
-//        /// Format a text ingredient list in one single String
-//        func listFavIngredients(ingredients: [String]) -> String {
-//            var ingredientsNames = ""
-//            for (index, ingredient) in ingredients.enumerated() {
-//                // insert the name of the ingredient
-//                ingredientsNames += "\(ingredient)"
-//                if index == ingredients.count - 1 {
-//                    ingredientsNames += "."
-//                } else {
-//                    ingredientsNames += ", "
-//                }
-//            }
-//            return ingredientsNames
-//        }
         let defaultImageThumbnail = UIImage.placeholderImage.pngData()
         
         let imageThumbnail = UIImage(data: favoriteRecipe.imageThumbnail ?? defaultImageThumbnail!)
         
-        let ingredientsNames = Ingredient.listIngredients2(ingredients: ingredients)
+        let ingredientsNames = Ingredient.listIngredients(ingredients: ingredients)
         
         cell.favoriteConfigureWith(recipe: name, ingredients: ingredientsNames, imageThumbnail: imageThumbnail)
         
@@ -127,7 +108,6 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         self.performSegue(withIdentifier: .segueFavoritesDetails, sender: cell)
     }
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         guard
@@ -140,14 +120,27 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         // Pass the selected recipe to the DetailsViewController
         let favoriteRecipe = favoritesRecipes[selectedRowIndex]
         
-        
+        // transform favorite recipe in the same recipe structure so we use only one DetailsView
         let recipe = FavoriteRecipe.transformFavoriteRecipeInRecipe(favoriteRecipe)
-        let details = segue.destination as! DetailsViewController
         
+        let details = segue.destination as! DetailsViewController
         details.recipe = recipe
-        details.imageThumbnail = UIImage(data: favoriteRecipe.imageThumbnail ?? UIImage.placeholderImage.pngData()!)
-        details.image = UIImage(data: favoriteRecipe.image ?? UIImage.placeholderImage.pngData()!)
+        // FIXME: Optional????
+        details.imageThumbnail = favoriteRecipe.imageThumbnail?.image ?? UIImage.placeholderImage
+        details.image = favoriteRecipe.image?.image ?? UIImage.placeholderImage
         
     }
     
 }
+
+//extension FavoriteRecipe {
+//    var thumbnail: UIImage? {
+//        if let imageThumbnail = imageThumbnail {
+//            return UIImage(data: imageThumbnail)
+//        } else {
+//            return nil
+//        }
+//    }
+//}
+
+

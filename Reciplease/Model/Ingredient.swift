@@ -59,14 +59,11 @@ class Ingredient: NSManagedObject {
                         }
                     }
                 }
-                
             }
-            
         }
         
         // Save the ingredients
-        for ingredientName in cleanNamedIngredients {
-            
+        for ingredientName in cleanNamedIngredients {  
             let ingredient = Ingredient(context: AppDelegate.viewContext)
             ingredient.name = ingredientName
             try? AppDelegate.viewContext.save()
@@ -88,34 +85,14 @@ class Ingredient: NSManagedObject {
         return ingredientsNames
     }
     
-    /// List the names of all ingredients in one string
+    /// List the names of all ingredients in one single String
     static func listIngredients(ingredients: [Recipes.Hit.Recipe.Ingredient]) -> String {
-        var ingredientsNames = ""
-        for (index, ingredient) in ingredients.enumerated() {
-            // insert the name of the ingredient
-            ingredientsNames += "\(ingredient.food)"
-            if index == ingredients.count - 1 {
-                ingredientsNames += "."
-            } else {
-                ingredientsNames += ", "
-            }
-        }
-        return ingredientsNames
+        return listIngredients(ingredients: ingredients.map { $0.food })
     }
     
     /// Format a text ingredient list in one single String
-    static func listIngredients2(ingredients: [String]) -> String {
-        var ingredientsNames = ""
-        for (index, ingredient) in ingredients.enumerated() {
-            // insert the name of the ingredient
-            ingredientsNames += "\(ingredient)"
-            if index == ingredients.count - 1 {
-                ingredientsNames += "."
-            } else {
-                ingredientsNames += ", "
-            }
-        }
-        return ingredientsNames
+    static func listIngredients(ingredients: [String]) -> String {
+        return ingredients.joined(separator: ", ") + "."
     }
     
     /// Remove a stored ingredient
@@ -128,11 +105,17 @@ class Ingredient: NSManagedObject {
 // MARK: - Make ingredient comparable
 extension Ingredient: Comparable {
     static func < (lhs: Ingredient, rhs: Ingredient) -> Bool {
-        
         return lhs.name ?? "" < rhs.name ?? ""
     }
-    
-    
+}
+
+extension Collection where Element == Recipes.Hit.Recipe.Ingredient {
+    func listing() -> String {
+        return self
+            .map({ $0.food })
+            .joined(separator: ",")
+            .appending(".")
+    }
 }
 
 
