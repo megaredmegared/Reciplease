@@ -11,7 +11,11 @@ class SearchViewController: UIViewController {
     
     // MARK: - Variables
     
-    var ingredients: [Ingredient] { Ingredient.all.sorted(by: < ) }
+//    var ingredients: [Ingredient] { Ingredient.all.sorted(by: < ) }
+    
+    var ingredients: [Ingredient] { Ingredient.all }
+    
+    let storageManager = StorageManager()
     
     // MARK: - viewDidLoad()
     
@@ -44,7 +48,9 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let ingredient = ingredients[indexPath.row]
-            Ingredient.remove(ingredient)
+//            Ingredient.remove(ingredient)
+            storageManager.remove(objectID: ingredient.objectID)
+            storageManager.save()
             listIngredients.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -68,7 +74,9 @@ extension SearchViewController {
     /// Button to clear the ingredients list
     @IBAction func clearIngredientsList() {
         for ingredient in ingredients {
-            Ingredient.remove(ingredient)
+//            Ingredient.remove(ingredient)
+            storageManager.remove(objectID: ingredient.objectID)
+            storageManager.save()
         }
         listIngredients.reloadData()
     }

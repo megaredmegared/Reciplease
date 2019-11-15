@@ -12,19 +12,25 @@ import CoreData
 class Ingredient: NSManagedObject {
     
     // MARK: - Variables
+//    static var all: [Ingredient] {
+//        let request: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
+//        guard let ingredients = try? AppDelegate.viewContext.fetch(request) else {
+//            return []
+//        }
+//        return ingredients
+//    }
+    
     static var all: [Ingredient] {
-        let request: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
-        guard let ingredients = try? AppDelegate.viewContext.fetch(request) else {
-            return []
-        }
-        return ingredients
+        let storageManager = StorageManager()
+        return storageManager.fetchAllIngredients()
     }
+    
     // MARK: - Decompositing of the text line in more ingredients
     /// Formating ingredient name
     static private func formatIngredient(name: String) -> String? {
         var ingredientName = name
         /// remove unwanted caracters
-        let characterToTrim = CharacterSet.init(charactersIn: " ./@')([]_;?!+*$€^¨£`%<>#°§")
+        let characterToTrim = CharacterSet.init(charactersIn: " ./@')([]_;?!+*$€^¨'£`%<>#°§-")
         ingredientName = name.trimmingCharacters(in: characterToTrim)
         /// return nil if just a whitespace
         if ingredientName == "" {
@@ -64,9 +70,12 @@ class Ingredient: NSManagedObject {
         
         // Save the ingredients
         for ingredientName in cleanNamedIngredients {  
-            let ingredient = Ingredient(context: AppDelegate.viewContext)
-            ingredient.name = ingredientName
-            try? AppDelegate.viewContext.save()
+//            let ingredient = Ingredient(context: AppDelegate.viewContext)
+//            ingredient.name = ingredientName
+//            try? AppDelegate.viewContext.save()
+            let storageManager = StorageManager()
+            storageManager.insertIngredient(name: ingredientName)
+            storageManager.save()
         }
     }
     
@@ -96,18 +105,18 @@ class Ingredient: NSManagedObject {
     }
     
     /// Remove a stored ingredient
-    static func remove(_ ingredient: Ingredient) {
-        AppDelegate.persistentContainer.viewContext.delete(ingredient)
-        try? AppDelegate.viewContext.save()
-    }
+//    static func remove(_ ingredient: Ingredient) {
+//        AppDelegate.persistentContainer.viewContext.delete(ingredient)
+//        try? AppDelegate.viewContext.save()
+//    }
 }
 
 // MARK: - Make ingredient comparable
-extension Ingredient: Comparable {
-    static func < (lhs: Ingredient, rhs: Ingredient) -> Bool {
-        return lhs.name ?? "" < rhs.name ?? ""
-    }
-}
+//extension Ingredient: Comparable {
+//    static func < (lhs: Ingredient, rhs: Ingredient) -> Bool {
+//        return lhs.name ?? "" < rhs.name ?? ""
+//    }
+//}
 
 extension Collection where Element == Recipes.Hit.Recipe.Ingredient {
     func listing() -> String {

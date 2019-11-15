@@ -10,7 +10,10 @@ class FavoritesViewController: UIViewController {
     
     // MARK: - Variables
     
-    var favoritesRecipes: [FavoriteRecipe] { FavoriteRecipe.all.sorted(by: < ) }
+//    var favoritesRecipes: [FavoriteRecipe] { FavoriteRecipe.all.sorted(by: < ) }
+    var favoritesRecipes: [FavoriteRecipe] { FavoriteRecipe.all }
+    
+    let storageManager = StorageManager()
     
     // MARK: - viewDidLoad()
     
@@ -86,7 +89,9 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let favoriteRecipe = favoritesRecipes[indexPath.row]
-            FavoriteRecipe.remove(favoriteRecipe)
+//            FavoriteRecipe.remove(favoriteRecipe)
+            storageManager.remove(objectID: favoriteRecipe.objectID)
+            storageManager.save()
             favoritesTableView.deleteRows(at: [indexPath], with: .fade)
         }
         showHowToAddFavoriteMessage()
@@ -95,7 +100,9 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     /// Clear the list of favorites recipes
     @IBAction func clearButtonTapped(_ sender: Any) {
         for favoriteRecipe in favoritesRecipes {
-            FavoriteRecipe.remove(favoriteRecipe)
+//            FavoriteRecipe.remove(favoriteRecipe)
+            storageManager.remove(objectID: favoriteRecipe.objectID)
+            storageManager.save()
         }
         favoritesTableView.reloadData()
         showHowToAddFavoriteMessage()
