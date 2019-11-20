@@ -48,9 +48,7 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let ingredient = ingredients[indexPath.row]
-//            Ingredient.remove(ingredient)
-            storageManager.remove(objectID: ingredient.objectID)
-            storageManager.save()
+            storageManager.remove(objectID: ingredient.objectID, save: true)
             listIngredients.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -74,9 +72,7 @@ extension SearchViewController {
     /// Button to clear the ingredients list
     @IBAction func clearIngredientsList() {
         for ingredient in ingredients {
-//            Ingredient.remove(ingredient)
-            storageManager.remove(objectID: ingredient.objectID)
-            storageManager.save()
+            storageManager.remove(objectID: ingredient.objectID, save: true)
         }
         listIngredients.reloadData()
     }

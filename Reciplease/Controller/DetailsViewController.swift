@@ -76,10 +76,7 @@ class DetailsViewController: UIViewController {
         let imageOK = image?.pngData() ?? UIImage.placeholderImage.pngData()!
         let thumbnail = imageThumbnail?.pngData() ?? UIImage.placeholderImage.pngData()!
         
-//        FavoriteRecipe.add(recipe, image: imageOK, thumbnail: thumbnail)
-        
-        storageManager.insertFavoriteRecipe(recipe, image: imageOK, thumbnail: thumbnail)
-        storageManager.save()
+        storageManager.insertFavoriteRecipe(recipe, image: imageOK, thumbnail: thumbnail, save: true)
 
         updateStarButton()
     }
@@ -88,9 +85,7 @@ class DetailsViewController: UIViewController {
     private func deleteFavorite() {
         let recipeURI = recipe?.uri
         for recipe in favoritesRecipes where recipe.uri == recipeURI {
-//            FavoriteRecipe.remove(recipe)
-            storageManager.remove(objectID: recipe.objectID)
-            storageManager.save()
+            storageManager.remove(objectID: recipe.objectID, save: true)
         }
         updateStarButton()
     }

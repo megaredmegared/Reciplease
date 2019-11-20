@@ -89,9 +89,7 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let favoriteRecipe = favoritesRecipes[indexPath.row]
-//            FavoriteRecipe.remove(favoriteRecipe)
-            storageManager.remove(objectID: favoriteRecipe.objectID)
-            storageManager.save()
+            storageManager.remove(objectID: favoriteRecipe.objectID, save: true)
             favoritesTableView.deleteRows(at: [indexPath], with: .fade)
         }
         showHowToAddFavoriteMessage()
@@ -100,9 +98,7 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     /// Clear the list of favorites recipes
     @IBAction func clearButtonTapped(_ sender: Any) {
         for favoriteRecipe in favoritesRecipes {
-//            FavoriteRecipe.remove(favoriteRecipe)
-            storageManager.remove(objectID: favoriteRecipe.objectID)
-            storageManager.save()
+            storageManager.remove(objectID: favoriteRecipe.objectID, save: true)
         }
         favoritesTableView.reloadData()
         showHowToAddFavoriteMessage()

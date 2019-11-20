@@ -35,7 +35,7 @@ class StorageManager {
     //MARK: - CRUD
     
     /// Create a stored favorite recipe
-    func insertFavoriteRecipe(_ recipe: Recipes.Hit.Recipe, image: Data, thumbnail: Data) {
+    func insertFavoriteRecipe(_ recipe: Recipes.Hit.Recipe, image: Data, thumbnail: Data, save: Bool) {
         guard let favoriteRecipe = NSEntityDescription.insertNewObject(forEntityName: "FavoriteRecipe", into: backgroundContext) as? FavoriteRecipe else { return }
         
         var ingredientsNames = [String]()
@@ -54,12 +54,20 @@ class StorageManager {
         favoriteRecipe.ingredientsLines = recipe.ingredientLines
         favoriteRecipe.imageThumbnail = thumbnail
         favoriteRecipe.image = image
+        
+        if save == true {
+            self.save()
+        }
     }
     
     /// Create a stored ingredient
-    func insertIngredient( name: String) {
+    func insertIngredient( name: String, save: Bool) {
         guard let ingredient = NSEntityDescription.insertNewObject(forEntityName: "Ingredient", into: backgroundContext) as? Ingredient else { return }
         ingredient.name = name
+        
+        if save == true {
+            self.save()
+        }
     }
     
     /// Read all favorites recipes
@@ -98,9 +106,13 @@ class StorageManager {
         }
     }
     
-    func remove( objectID: NSManagedObjectID ) {
+    func remove( objectID: NSManagedObjectID, save: Bool ) {
         let obj = backgroundContext.object(with: objectID)
         backgroundContext.delete(obj)
+        
+        if save == true {
+            self.save()
+        }
     }
 
     
