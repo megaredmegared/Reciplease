@@ -14,7 +14,7 @@
 		4D1290702321461C0099E2DC /* FakeJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D12906F2321461C0099E2DC /* FakeJson.json */; };
 		4D15AD9C22FAFB35007F25B6 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15AD9B22FAFB35007F25B6 /* Ingredient.swift */; };
 		4D1B6B9822F6BB8A0025C936 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1B6B9722F6BB8A0025C936 /* APIRouter.swift */; };
-		4D21536A22FC216200B61320 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D21536922FC216200B61320 /* CustomButton.swift */; };
+		4D21536A22FC216200B61320 /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D21536922FC216200B61320 /* CustomViews.swift */; };
 		4D39593B231FC25C00ECDE74 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D39593A231FC25C00ECDE74 /* APIClient.swift */; };
 		4D42DA7B22B12871006B5A9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42DA7A22B12871006B5A9F /* AppDelegate.swift */; };
 		4D42DA8022B12871006B5A9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D42DA7E22B12871006B5A9F /* Main.storyboard */; };
@@ -63,7 +63,7 @@
 		4D12906F2321461C0099E2DC /* FakeJson.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FakeJson.json; sourceTree = "<group>"; };
 		4D15AD9B22FAFB35007F25B6 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		4D1B6B9722F6BB8A0025C936 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
-		4D21536922FC216200B61320 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		4D21536922FC216200B61320 /* CustomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
 		4D39593A231FC25C00ECDE74 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		4D42DA7722B12871006B5A9F /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D42DA7A22B12871006B5A9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 				4DF2FA27232B8FCC000E77B8 /* RecipesTableViewCell.xib */,
 				4DF2FA26232B8FCC000E77B8 /* RecipesTableViewCell.swift */,
 				4D125AE52355D283003FFD88 /* Extension.swift */,
-				4D21536922FC216200B61320 /* CustomButton.swift */,
+				4D21536922FC216200B61320 /* CustomViews.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -437,7 +437,7 @@
 				4D1B6B9822F6BB8A0025C936 /* APIRouter.swift in Sources */,
 				4D42DA8322B12871006B5A9F /* Reciplease.xcdatamodeld in Sources */,
 				4D125AE62355D283003FFD88 /* Extension.swift in Sources */,
-				4D21536A22FC216200B61320 /* CustomButton.swift in Sources */,
+				4D21536A22FC216200B61320 /* CustomViews.swift in Sources */,
 				4DF2FA25232B5595000E77B8 /* FavoritesViewController.swift in Sources */,
 				4D57A125232A3D6400C659F0 /* DetailsViewController.swift in Sources */,
 				4D12906E2320F4DD0099E2DC /* Recipes.swift in Sources */,

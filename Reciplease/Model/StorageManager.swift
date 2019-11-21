@@ -35,7 +35,7 @@ class StorageManager {
     //MARK: - CRUD
     
     /// Create a stored favorite recipe
-    func insertFavoriteRecipe(_ recipe: Recipes.Hit.Recipe, image: Data, thumbnail: Data, save: Bool) {
+    func insertFavoriteRecipe(_ recipe: Recipe, image: Data, thumbnail: Data, save: Bool) {
         guard let favoriteRecipe = NSEntityDescription.insertNewObject(forEntityName: "FavoriteRecipe", into: backgroundContext) as? FavoriteRecipe else { return }
         
         var ingredientsNames = [String]()
@@ -54,6 +54,7 @@ class StorageManager {
         favoriteRecipe.ingredientsLines = recipe.ingredientLines
         favoriteRecipe.imageThumbnail = thumbnail
         favoriteRecipe.image = image
+        favoriteRecipe.time = recipe.totalTime
         
         if save == true {
             self.save()

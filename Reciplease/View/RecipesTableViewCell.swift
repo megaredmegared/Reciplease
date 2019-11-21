@@ -9,6 +9,7 @@ class RecipesTableViewCell: UITableViewCell {
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var ingredientTitle: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     // MARK: - Variables
     
@@ -17,10 +18,11 @@ class RecipesTableViewCell: UITableViewCell {
     //MARK: - Search tableView
     
     /// Configure cell for search tableView
-    func searchConfigureWith(imageUrl: URL?, recipe: String, ingredients: String) {
+    func searchConfigureWith(imageUrl: URL?, recipe: String, ingredients: String, time: String) {
         
         recipeTitle.text = recipe
         ingredientTitle.text = ingredients
+        timeLabel.text = time
         
         // fetch and cache images with Kingfisher
         let placeholder = UIImage.placeholderImage
@@ -49,10 +51,11 @@ class RecipesTableViewCell: UITableViewCell {
     // MARK: - Favorites tableView
     
     /// Configure cell for favorite tableView
-    func favoriteConfigureWith(recipe: String, ingredients: String, imageThumbnail: UIImage?) {
+    func favoriteConfigureWith(recipe: String, ingredients: String, imageThumbnail: UIImage?, time: String) {
         recipeImage.image = imageThumbnail
         recipeTitle.text = recipe
         ingredientTitle.text = ingredients
+        timeLabel.text = time
     }
     
 }

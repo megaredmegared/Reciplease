@@ -29,12 +29,13 @@ extension FavoriteRecipe {
         }
     }
     
-    static func transformFavoriteRecipeInRecipe(_ favoriteRecipe: FavoriteRecipe) -> Recipes.Hit.Recipe? {
-        var recipe = Recipes.Hit.Recipe()
-        var ingredients = [Recipes.Hit.Recipe.Ingredient]()
+    static func transformFavoriteRecipeInRecipe(_ favoriteRecipe: FavoriteRecipe) -> Recipe? {
+//        var recipe = Recipe(label: "", image: "", uri: "", url: "", shareAs: "", ingredientLines: [""], ingredients: [Ingredient2(food: "")], totalTime: 0.0)
+         var recipe = Recipe()
+        var ingredients = [IngredientAPI]()
         
         for name in favoriteRecipe.ingredients! {
-            let ingredient = Recipes.Hit.Recipe.Ingredient(food: name)
+            let ingredient = IngredientAPI(food: name)
             ingredients.append(ingredient)
         }
         
@@ -44,6 +45,7 @@ extension FavoriteRecipe {
         recipe.shareAs = favoriteRecipe.shareAs ?? ""
         recipe.uri = favoriteRecipe.uri ?? ""
         recipe.url = favoriteRecipe.url ?? ""
+        recipe.totalTime = favoriteRecipe.time
         
         return recipe
     }

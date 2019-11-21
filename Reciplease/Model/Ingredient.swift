@@ -12,15 +12,7 @@ import UIKit
 
 class Ingredient: NSManagedObject {
     
-    // MARK: - Variables
-//    static var all: [Ingredient] {
-//        let request: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
-//        guard let ingredients = try? AppDelegate.viewContext.fetch(request) else {
-//            return []
-//        }
-//        return ingredients
-//    }
-    
+    // MARK: - Variables    
     static var all: [Ingredient] {
         let storageManager = StorageManager()
         return storageManager.fetchAllIngredients()
@@ -97,7 +89,7 @@ class Ingredient: NSManagedObject {
     }
     
     /// List the names of all ingredients in one single String
-    static func listIngredients(ingredients: [Recipes.Hit.Recipe.Ingredient]) -> String {
+    static func listIngredients(ingredients: [IngredientAPI]) -> String {
         return listIngredients(ingredients: ingredients.map { $0.food })
     }
     
@@ -108,7 +100,7 @@ class Ingredient: NSManagedObject {
     
 }
 
-extension Collection where Element == Recipes.Hit.Recipe.Ingredient {
+extension Collection where Element == IngredientAPI {
     func listing() -> String {
         return self
             .map({ $0.food })

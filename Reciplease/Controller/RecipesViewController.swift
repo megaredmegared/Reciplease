@@ -92,7 +92,20 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
         let imageStringURL = recipe.recipe.image
         let imageUrl: URL? = URL(string: imageStringURL)
         
-        cell.searchConfigureWith(imageUrl: imageUrl, recipe: recipeName, ingredients: ingredientsNames)
+        // Fill time
+        let time = recipe.recipe.totalTime
+        let formatedTime = Recipe.formatedTime(time: time)
+//        var formatedTime: String {
+//            if time < 60 {
+//                return String(time) + "m"
+//            } else {
+//                let hours = time / 60
+//                return String(hours) + "h"
+//            }
+//        }
+        
+            
+        cell.searchConfigureWith(imageUrl: imageUrl, recipe: recipeName, ingredients: ingredientsNames, time: formatedTime)
         
         return cell
     }

@@ -80,7 +80,11 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         
         let ingredientsNames = Ingredient.listIngredients(ingredients: ingredients)
         
-        cell.favoriteConfigureWith(recipe: name, ingredients: ingredientsNames, imageThumbnail: imageThumbnail)
+        // Fill time
+        let time = favoriteRecipe.time
+        let formatedTime = Recipe.formatedTime(time: time)
+        
+        cell.favoriteConfigureWith(recipe: name, ingredients: ingredientsNames, imageThumbnail: imageThumbnail, time: formatedTime)
         
         return cell
     }

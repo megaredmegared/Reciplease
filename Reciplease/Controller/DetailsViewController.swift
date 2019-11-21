@@ -11,11 +11,12 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var ingredientsList: UITextView!
+    @IBOutlet weak var timeLabel: UILabel!
     
     
     // MARK: - Variables
     
-    var recipe: Recipes.Hit.Recipe?
+    var recipe: Recipe?
     var favoritesRecipes: [FavoriteRecipe] { FavoriteRecipe.all }
     var image: UIImage?
     var imageThumbnail: UIImage?
@@ -96,6 +97,11 @@ class DetailsViewController: UIViewController {
         
         recipeImage.image = image
         recipeTitle.text = recipe?.label
+        
+        if let time = recipe?.totalTime {
+            timeLabel.text = Recipe.formatedTime(time: time)
+        }
+        
         var ingredientText: String {
             var text = ""
             for line in recipe?.ingredientLines ?? [""] {

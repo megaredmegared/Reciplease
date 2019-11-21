@@ -39,6 +39,8 @@ let decoder = JSONDecoder()
 //    }
 //}
 
+// MARK: - Recipes
+
 struct Recipes: Codable {
     
     var from: Int
@@ -55,23 +57,26 @@ struct Recipes: Codable {
         case hits
     }
     
-    init(from decoder: Decoder) throws {
+    init() {
+        self.from = 0
+        self.to = 0
+        self.more = false
+        self.count = 0
+        self.hits = [Hit]()
+    }
+    
+    init(fromDecoder decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: RecipesCodingKeys.self)
         from = try container.decodeIfPresent(Int.self, forKey: .from) ?? 0
         to = try container.decodeIfPresent(Int.self, forKey: .from) ?? 0
         more = try container.decodeIfPresent(Bool.self, forKey: .from) ?? false
         count = try container.decodeIfPresent(Int.self, forKey: .from) ?? 0
-        hits = try container.decodeIfPresent([Hit].self, forKey: .from) ?? [Hit(recipe: Recipe(label: "N/A",
-                                                                                               image: "N/A",
-                                                                                               uri: "N/A",
-                                                                                               url: "N/A",
-                                                                                               shareAs: "N/A",
-                                                                                               ingredientLines: ["N/A"],
-                                                                                               ingredients: [Ingredient2(food: "N/A")]))]
+        hits = try container.decodeIfPresent([Hit].self, forKey: .from) ?? [Hit()]
     }
-    
-    
+
 }
+
+// MARK: - Hit
 
 struct Hit: Codable {
     var recipe: Recipe
@@ -79,21 +84,22 @@ struct Hit: Codable {
     private enum HitCodingKeys: String, CodingKey {
         case recipe
     }
-    init(recipe: Recipe) {
-        self.recipe = recipe
+    
+    init() {
+        self.recipe = Recipe()
     }
+    
+//    init(recipe: Recipe) {
+//        self.recipe = recipe
+//    }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: HitCodingKeys.self)
-        recipe = try container.decodeIfPresent(Recipe.self, forKey: .recipe) ?? Recipe(label: "N/A",
-                                                                                       image: "N/A",
-                                                                                       uri: "N/A",
-                                                                                       url: "N/A",
-                                                                                       shareAs: "N/A",
-                                                                                       ingredientLines: ["N/A"],
-                                                                                       ingredients: [Ingredient2(food: "N/A")])
+        recipe = try container.decodeIfPresent(Recipe.self, forKey: .recipe) ?? Recipe()
     }
 }
+
+// MARK: - Recipe
 
 struct Recipe: Codable {
     var label: String
@@ -102,7 +108,8 @@ struct Recipe: Codable {
     var url: String
     var shareAs: String
     var ingredientLines: [String]
-    var ingredients: [Ingredient2]
+    var ingredients: [IngredientAPI]
+    var totalTime: Double
     
     private enum RecipeCodingKeys: String, CodingKey {
         case label
@@ -112,23 +119,37 @@ struct Recipe: Codable {
         case shareAs
         case ingredientLines
         case ingredients
+        case totalTime
     }
     
-    init(label: String,
-         image: String,
-         uri: String,
-         url: String,
-         shareAs: String,
-         ingredientLines: [String],
-        ingredients: [Ingredient2]) {
-        self.label = label
-        self.image = image
-        self.uri = uri
-        self.url = url
-        self.shareAs = shareAs
-        self.ingredientLines = ingredientLines
-        self.ingredients = ingredients
+    init() {
+        self.label = ""
+        self.image = ""
+        self.uri = ""
+        self.url = ""
+        self.shareAs = ""
+        self.ingredientLines = [""]
+        self.ingredients = [IngredientAPI()]
+        self.totalTime = 0.0
     }
+    
+//    init(label: String,
+//         image: String,
+//         uri: String,
+//         url: String,
+//         shareAs: String,
+//         ingredientLines: [String],
+//        ingredients: [Ingredient2],
+//        totalTime: Double) {
+//        self.label = label
+//        self.image = image
+//        self.uri = uri
+//        self.url = url
+//        self.shareAs = shareAs
+//        self.ingredientLines = ingredientLines
+//        self.ingredients = ingredients
+//        self.totalTime = totalTime
+//    }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: RecipeCodingKeys.self)
@@ -138,15 +159,48 @@ struct Recipe: Codable {
         url = try container.decodeIfPresent(String.self, forKey: .url) ?? "N/A"
         shareAs = try container.decodeIfPresent(String.self, forKey: .shareAs) ?? "N/A"
         ingredientLines = try container.decodeIfPresent([String].self, forKey: .ingredientLines) ?? ["N/A"]
-        ingredients = try container.decodeIfPresent([Ingredient2].self, forKey: .ingredients) ?? [Ingredient2(food: "N/A")]
+        ingredients = try container.decodeIfPresent([IngredientAPI].self, forKey: .ingredients) ?? [IngredientAPI()]
+        totalTime = try container.decodeIfPresent(Double.self, forKey: .totalTime) ?? 0.0
     }
 }
+extension Recipe {
+    
+    /// Check if a recipe is already marked as favorite
+    var isFavorite: Bool {
+        
+        if FavoriteRecipe.all.contains(where: {$0.uri == uri}) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    static func formatedTime(time: Double) -> String {
+        if time < 60 {
+            return String(Int(time)) + "m"
+        } else if time == 60 {
+            let hours = time / 60
+            return String(Int(hours)) + "h"
+        } else {
+            let hours = time / 60
+            let minutes = time.truncatingRemainder(dividingBy: 60)
+            return String(Int(hours)) + "h" + String(Int(minutes)) + "m"
+        }
+    }
+    
+}
 
-struct Ingredient2: Codable {
+// MARK: - IngredientAPI
+
+struct IngredientAPI: Codable {
     var food: String
     
     private enum IngredientCodingKeys: String, CodingKey {
         case food
+    }
+    
+    init() {
+        self.food = ""
     }
     
     init(food: String) {
@@ -161,30 +215,3 @@ struct Ingredient2: Codable {
 }
 
 
-//extension Recipes.Hit.Recipe {
-//
-//    /// Check if a recipe is already marked as favorite
-//    var isFavorite: Bool {
-//
-//        if FavoriteRecipe.all.contains(where: {$0.uri == uri}) {
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
-//
-//}
-
-extension Recipe {
-    
-    /// Check if a recipe is already marked as favorite
-    var isFavorite: Bool {
-        
-        if FavoriteRecipe.all.contains(where: {$0.uri == uri}) {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-}

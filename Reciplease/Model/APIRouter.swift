@@ -43,8 +43,8 @@ enum APIRouter: URLRequestConvertible {
             let fromInt = recipes.to
             let from = String(fromInt)
             let to = String(fromInt + numberOfRecipesToFetch)
-            
-            return ["q": ingredientLine, "from": from, "to": to]
+            let time = "1%2B"
+            return ["q": ingredientLine, "from": from, "to": to, "time": time]
         }
     }
     
