@@ -71,20 +71,25 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         let favoriteRecipe = self.favoritesRecipes[indexPath.row]
-        let name = favoriteRecipe.name ?? ""
-        let ingredients = favoriteRecipe.ingredients ?? []
+        let name = favoriteRecipe.name
+        let ingredients = favoriteRecipe.ingredients
         
         let defaultImageThumbnail = UIImage.placeholderImage.pngData()
         
         let imageThumbnail = UIImage(data: favoriteRecipe.imageThumbnail ?? defaultImageThumbnail!)
         
-        let ingredientsNames = Ingredient.listIngredients(ingredients: ingredients)
+//        let ingredientsNames = Ingredient.listIngredients(ingredients: ingredients)
+        
+        let ingredientsNames = ingredients?.formatListNames()
         
         // Fill time
         let time = favoriteRecipe.time
         let formatedTime = Recipe.formatedTime(time: time)
         
-        cell.favoriteConfigureWith(recipe: name, ingredients: ingredientsNames, imageThumbnail: imageThumbnail, time: formatedTime)
+        cell.favoriteConfigureWith(recipe: name ?? "no recipe name",
+                                   ingredients: ingredientsNames ?? "no ingredient found",
+                                   imageThumbnail: imageThumbnail,
+                                   time: formatedTime)
         
         return cell
     }

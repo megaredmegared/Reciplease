@@ -38,13 +38,16 @@ class StorageManager {
     func insertFavoriteRecipe(_ recipe: Recipe, image: Data, thumbnail: Data, save: Bool) {
         guard let favoriteRecipe = NSEntityDescription.insertNewObject(forEntityName: "FavoriteRecipe", into: backgroundContext) as? FavoriteRecipe else { return }
         
-        var ingredientsNames = [String]()
+//        var ingredientsNames = [String]()
+//        let ingredients = recipe.ingredients
+//
+//        for ingredient in ingredients {
+//            if let ingredientName = ingredient.food {
+//                ingredientsNames.append(ingredientName)
+//            }
+//        }
         let ingredients = recipe.ingredients
-        
-        for ingredient in ingredients {
-            let ingredientName = ingredient.food
-            ingredientsNames.append(ingredientName)
-        }
+        let ingredientsNames = Ingredient.listNames(ingredients: ingredients)
         
         favoriteRecipe.uri = recipe.uri
         favoriteRecipe.name = recipe.label

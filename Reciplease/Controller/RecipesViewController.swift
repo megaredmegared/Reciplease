@@ -86,7 +86,8 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
         
         // Fill all the ingredients names in one ingredientsNames String
         let ingredients = recipe.recipe.ingredients
-        let ingredientsNames = Ingredient.listIngredients(ingredients: ingredients)
+//        let ingredientsNames = Ingredient.listIngredients(ingredients: ingredients)
+        let ingredientsNames = Ingredient.listNames(ingredients: ingredients)?.formatListNames()
         
         // Load image
         let imageStringURL = recipe.recipe.image
@@ -95,17 +96,11 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
         // Fill time
         let time = recipe.recipe.totalTime
         let formatedTime = Recipe.formatedTime(time: time)
-//        var formatedTime: String {
-//            if time < 60 {
-//                return String(time) + "m"
-//            } else {
-//                let hours = time / 60
-//                return String(hours) + "h"
-//            }
-//        }
         
-            
-        cell.searchConfigureWith(imageUrl: imageUrl, recipe: recipeName, ingredients: ingredientsNames, time: formatedTime)
+        cell.searchConfigureWith(imageUrl: imageUrl,
+                                 recipe: recipeName,
+                                 ingredients: ingredientsNames ?? "no ingredients found",
+                                 time: formatedTime)
         
         return cell
     }

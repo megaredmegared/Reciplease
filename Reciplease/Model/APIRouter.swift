@@ -40,6 +40,7 @@ enum APIRouter: URLRequestConvertible {
         case .searchRecipe(let numberOfRecipesToFetch, let ingredients, let recipes):
             // make one string of ingredient with no white spaces
             let ingredientLine = Ingredient.makeOneString(from: ingredients).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            
             let fromInt = recipes.to
             let from = String(fromInt)
             let to = String(fromInt + numberOfRecipesToFetch)
@@ -69,7 +70,7 @@ enum APIRouter: URLRequestConvertible {
             
             // creation of the URLRequest
             let urlRequest: URLRequest = try URLRequest(url: url, method:  HTTPMethod(rawValue: method.rawValue))
-
+print(urlRequest)
             return urlRequest
         }
     }

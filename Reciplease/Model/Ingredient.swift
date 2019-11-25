@@ -48,6 +48,7 @@ class Ingredient: NSManagedObject {
                 cleanNamedIngredients.append(name)
             }
         }
+    
         
         // delete duplicated names
         cleanNamedIngredients = Array(Set(cleanNamedIngredients))
@@ -76,34 +77,35 @@ class Ingredient: NSManagedObject {
     // MARK: - Transform an array of ingredients in a single String line
     /// List the names of all ingredients in one string
     static func makeOneString(from ingredients: [Ingredient]) -> String {
-        var ingredientsNames = ""
+        var ingredientsNames = [String]()
         for ingredient in ingredients {
-            // insert a coma if not the first in the list
-            if ingredients.firstIndex(of: ingredient) != 0 {
-                ingredientsNames += ","
+            if let ingredientName = ingredient.name {
+                ingredientsNames.append(ingredientName)
             }
-            // insert the name of the ingredient
-            ingredientsNames += ingredient.name ?? ""
         }
-        return ingredientsNames
+        return ingredientsNames.formatListNames()
     }
     
-    /// List the names of all ingredients in one single String
-    static func listIngredients(ingredients: [IngredientAPI]) -> String {
-        return listIngredients(ingredients: ingredients.map { $0.food })
+    /// List the names of ingredients in array
+    static func listNames(ingredients: [IngredientAPI]) -> [String]? {
+        var ingredientsNames = [String]()
+        for ingredient in ingredients {
+            if let ingredientName = ingredient.food {
+                ingredientsNames.append(ingredientName)
+            }
+        }
+        if ingredientsNames == [] {
+            return nil
+        } else {
+            return ingredientsNames
+        }
     }
-    
-    /// Format a text ingredient list in one single String
-    static func listIngredients(ingredients: [String]) -> String {
-        return ingredients.joined(separator: ", ") + "."
-    }
-    
 }
 
-extension Collection where Element == IngredientAPI {
-    func listing() -> String {
+extension Collection where Element == String {
+    /// Format array of string in one string with "," and a end "."
+    func formatListNames() -> String {
         return self
-            .map({ $0.food })
             .joined(separator: ",")
             .appending(".")
     }
