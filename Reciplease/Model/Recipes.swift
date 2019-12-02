@@ -81,26 +81,6 @@ struct IngredientAPI: Codable {
     var text: String?
 }
 
-extension IngredientAPI {
-    /// List the names of ingredients in array
-    static func listIngredientsLines(ingredients: [IngredientAPI]?) -> [String]? {
-        guard let ingredients = ingredients else {
-            return nil
-        }
-        
-        var ingredientsLines = [String]()
-        for ingredient in ingredients {
-            if let ingredientLine = ingredient.text {
-                ingredientsLines.append(ingredientLine)
-            }
-        }
-        if ingredientsLines == [] {
-            return nil
-        } else {
-            return ingredientsLines
-        }
-    }
-}
 
 
 

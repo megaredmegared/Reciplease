@@ -32,7 +32,7 @@ extension FavoriteRecipe {
     static func transformFavoriteRecipeInRecipe(_ favoriteRecipe: FavoriteRecipe) -> Recipe? {
         var recipe = Recipe()
         var ingredients = [IngredientAPI]()
-        
+  
         for text in favoriteRecipe.ingredients ?? [String]() {
             let ingredient = IngredientAPI(text: text)
             ingredients.append(ingredient)

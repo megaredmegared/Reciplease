@@ -10,7 +10,6 @@ class FavoritesViewController: UIViewController {
     
     // MARK: - Variables
     
-//    var favoritesRecipes: [FavoriteRecipe] { FavoriteRecipe.all.sorted(by: < ) }
     var favoritesRecipes: [FavoriteRecipe] { FavoriteRecipe.all }
     
     let storageManager = StorageManager()
@@ -78,8 +77,6 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         
         let imageThumbnail = UIImage(data: favoriteRecipe.imageThumbnail ?? defaultImageThumbnail!)
         
-//        let ingredientsNames = Ingredient.listIngredients(ingredients: ingredients)
-        
         let ingredientsLines = ingredients?.formatListNames()
         
         // Fill time
@@ -145,14 +142,5 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 
-//extension FavoriteRecipe {
-//    var thumbnail: UIImage? {
-//        if let imageThumbnail = imageThumbnail {
-//            return UIImage(data: imageThumbnail)
-//        } else {
-//            return nil
-//        }
-//    }
-//}
 
 

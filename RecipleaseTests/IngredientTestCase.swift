@@ -23,18 +23,8 @@ class IngredientTestCase: XCTestCase {
     
     
     // Test format Array of strings in one string with comas beetween strings that where in the array and a point at the end.
-    func testGivenArrayOfString_WhenMakeOneStringOfTheArray_ThenOneStringOfTheArrayWithComasEndPointAtEnd() {
-        let arrayOfString = ["one", "two", "three"]
-        
-        let oneString = Ingredient.listIngredients(ingredients: arrayOfString)
-        
-        XCTAssertEqual(oneString, "one, two, three.")
-    }
     
     
     // Array of string in one string with
-    func testGivenArrayOfIngredients_WhenMakeOneString_ThenOneString() {
-        
-    }
 
 }

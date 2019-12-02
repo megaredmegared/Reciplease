@@ -83,8 +83,7 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
         
         // Fill all the ingredients names in one ingredientsNames String
         let ingredients = hit?.recipe?.ingredients
-//        let ingredientsNames = Ingredient.listIngredients(ingredients: ingredients)
-        let ingredientsLines = IngredientAPI.listIngredientsLines(ingredients: ingredients)?.formatListNames()
+        let ingredientsLines = ingredients?.compactMap({$0.text}).formatListNames()
         
         // Load image
         let imageStringURL = hit?.recipe?.image ?? "no Image URL"

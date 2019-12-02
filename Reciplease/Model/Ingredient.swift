@@ -73,19 +73,6 @@ class Ingredient: NSManagedObject {
             storageManager.insertIngredient(name: ingredientName, save: true)
         }
     }
-    
-    // MARK: - Transform an array of ingredients in a single String line
-    /// List the names of all ingredients in one string
-    static func makeOneString(from ingredients: [Ingredient]) -> String {
-        var ingredientsNames = [String]()
-        for ingredient in ingredients {
-            if let ingredientName = ingredient.name {
-                ingredientsNames.append(ingredientName)
-            }
-        }
-        return ingredientsNames.formatListNames()
-    }
-
 }
 
 extension Collection where Element == String {

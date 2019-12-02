@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import Foundation
 import CoreData
 
 class StorageManager {
@@ -38,8 +37,9 @@ class StorageManager {
     func insertFavoriteRecipe(_ recipe: Recipe, image: Data, thumbnail: Data, save: Bool) {
         guard let favoriteRecipe = NSEntityDescription.insertNewObject(forEntityName: "FavoriteRecipe", into: backgroundContext) as? FavoriteRecipe else { return }
 
-        let ingredients = recipe.ingredients ?? [IngredientAPI]()
-        let ingredientsLines = IngredientAPI.listIngredientsLines(ingredients: ingredients)
+        let ingredients = recipe.ingredients
+        let ingredientsLines = ingredients?.compactMap({$0.text})
+//        let ingredientsLines = IngredientAPI.listIngredientsLines(ingredients: ingredients)
         
         favoriteRecipe.uri = recipe.uri
         favoriteRecipe.name = recipe.label
@@ -56,7 +56,7 @@ class StorageManager {
     }
     
     /// Create a stored ingredient
-    func insertIngredient( name: String, save: Bool) {
+    func insertIngredient(name: String, save: Bool) {
         guard let ingredient = NSEntityDescription.insertNewObject(forEntityName: "Ingredient", into: backgroundContext) as? Ingredient else { return }
         ingredient.name = name
         
@@ -109,8 +109,6 @@ class StorageManager {
             self.save()
         }
     }
-
-    
 }
 
 
