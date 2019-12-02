@@ -85,21 +85,7 @@ class Ingredient: NSManagedObject {
         }
         return ingredientsNames.formatListNames()
     }
-    
-    /// List the names of ingredients in array
-    static func listNames(ingredients: [IngredientAPI]) -> [String]? {
-        var ingredientsNames = [String]()
-        for ingredient in ingredients {
-            if let ingredientName = ingredient.food {
-                ingredientsNames.append(ingredientName)
-            }
-        }
-        if ingredientsNames == [] {
-            return nil
-        } else {
-            return ingredientsNames
-        }
-    }
+
 }
 
 extension Collection where Element == String {

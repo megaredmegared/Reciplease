@@ -41,9 +41,9 @@ enum APIRouter: URLRequestConvertible {
             // make one string of ingredient with no white spaces
             let ingredientLine = Ingredient.makeOneString(from: ingredients).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
             
-            let fromInt = recipes.to
+            let fromInt = recipes.to ?? 0
             let from = String(fromInt)
-            let to = String(fromInt + numberOfRecipesToFetch)
+            let to = String((fromInt) + numberOfRecipesToFetch)
             let time = "1%2B"
             return ["q": ingredientLine, "from": from, "to": to, "time": time]
         }

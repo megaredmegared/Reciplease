@@ -4,10 +4,9 @@
         <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="imageThumbnail" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="ingredients" optional="YES" attributeType="Transformable" customClassName=".[String]"/>
-        <attribute name="ingredientsLines" optional="YES" attributeType="Transformable" customClassName=".[String]"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="shareAs" optional="YES" attributeType="String"/>
-        <attribute name="time" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="time" optional="YES" attributeType="Double" valueTransformerName="" usesScalarValueType="YES" customClassName=".Double"/>
         <attribute name="uri" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
     </entity>
@@ -15,7 +14,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="FavoriteRecipe" positionX="175.12109375" positionY="-5.94921875" width="128" height="178"/>
+        <element name="FavoriteRecipe" positionX="175.12109375" positionY="-5.94921875" width="128" height="163"/>
         <element name="Ingredient" positionX="-63" positionY="-18" width="128" height="60"/>
     </elements>
 </model>

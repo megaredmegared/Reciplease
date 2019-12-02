@@ -13,7 +13,7 @@ class RecipesViewController: UIViewController {
     
     let identities = ["", ""]
     var ingredients = Ingredient.all
-    var recipes = Recipes()
+    var recipes = Recipes(from: 0, to: 0, count: 0, hits: [Hit]())
     var images = [UIImage?]()
     
     // MARK: - viewDidLoad()
@@ -38,7 +38,6 @@ class RecipesViewController: UIViewController {
         self.tableView.reloadData()
     }
     
-    
     // MARK: - Functions
     
     /// Toggle the loadMoreButton and/or the activity indicator
@@ -49,14 +48,12 @@ class RecipesViewController: UIViewController {
     
     /// Update the text of the loadMoreButton
     private func updateLoadButton() {
-        let numberOfRecipesLoaded = recipes.hits.count
-        let totalRecipes = recipes.count
+        let numberOfRecipesLoaded = recipes.hits?.count ?? 0
+        let totalRecipes = recipes.count ?? 0
         if numberOfRecipesLoaded < totalRecipes {
-            loadMoreButton.setTitle("\(numberOfRecipesLoaded)/\(totalRecipes) + load more recipes...", for: .normal)
-        } else if numberOfRecipesLoaded >= totalRecipes {
-            loadMoreButton.setTitle("All \(totalRecipes) recipes are loaded !", for: .disabled)
-            print(numberOfRecipesLoaded)
-            print(totalRecipes)
+            loadMoreButton.setTitle("\(numberOfRecipesLoaded) recipes + load more recipes...", for: .normal)
+        } else {
+            loadMoreButton.setTitle("All \(String(numberOfRecipesLoaded)) recipes are loaded !", for: .disabled)
             loadMoreButton.isEnabled = false
         }
     }
@@ -73,7 +70,7 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.recipes.hits.count
+        return self.recipes.hits?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,25 +78,25 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let recipe = self.recipes.hits[indexPath.row]
-        let recipeName = recipe.recipe.label
+        let hit = self.recipes.hits?[indexPath.row]
+        let recipeName = hit?.recipe?.label
         
         // Fill all the ingredients names in one ingredientsNames String
-        let ingredients = recipe.recipe.ingredients
+        let ingredients = hit?.recipe?.ingredients
 //        let ingredientsNames = Ingredient.listIngredients(ingredients: ingredients)
-        let ingredientsNames = Ingredient.listNames(ingredients: ingredients)?.formatListNames()
+        let ingredientsLines = IngredientAPI.listIngredientsLines(ingredients: ingredients)?.formatListNames()
         
         // Load image
-        let imageStringURL = recipe.recipe.image
+        let imageStringURL = hit?.recipe?.image ?? "no Image URL"
         let imageUrl: URL? = URL(string: imageStringURL)
         
         // Fill time
-        let time = recipe.recipe.totalTime
+        let time = hit?.recipe?.totalTime
         let formatedTime = Recipe.formatedTime(time: time)
         
         cell.searchConfigureWith(imageUrl: imageUrl,
                                  recipe: recipeName,
-                                 ingredients: ingredientsNames ?? "no ingredients found",
+                                 ingredients: ingredientsLines,
                                  time: formatedTime)
         
         return cell
@@ -109,10 +106,10 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     
     private func searchRecipes() {
         
-        let recipesLoaded = self.recipes.hits.count
+        let numberOfRecipesLoaded = self.recipes.hits?.count
         let numberOfRecipesToFetch = 20
         
-        APIClient.search(numberOfRecipesToFetch: numberOfRecipesToFetch, recipes: recipes, ingredients: ingredients) { response in
+        APIClient.search(numberOfRecipesToFetch: numberOfRecipesToFetch, recipes: recipes , ingredients: ingredients) { response in
             
             switch response.result {
                 
@@ -122,13 +119,11 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
                     return
                 }
                 
-                // set the next range of recipes to fetch
-                self.recipes.from = recipesLoaded
-                self.recipes.to = self.recipes.from + numberOfRecipesToFetch
-                // add new fetched recipes
-                self.recipes.hits += recipesResponse.hits
-                // fetch the total existing recipes
-                self.recipes.count = recipesResponse.count
+                // add recipes
+                self.recipes.addRecipes(numberOfRecipesLoaded: numberOfRecipesLoaded,
+                                        numberOfRecipesToFetch: numberOfRecipesToFetch,
+                                        recipesResponse: recipesResponse)
+                
                 // update the tableView with the new datas
                 self.tableView.reloadData()
                 self.updateLoadButton()
@@ -170,7 +165,7 @@ extension RecipesViewController {
                 fatalError("sender is not a UITableViewCell or was not found in the tableView, or segue.identifier is incorrect")
         }
         // Pass the selected recipe to the DetailsViewController
-        let recipe = self.recipes.hits[selectedRowIndex].recipe
+        let recipe = self.recipes.hits?[selectedRowIndex].recipe
         
         let imageThumbnail = selectedCell.recipeImage.image
         let image = selectedCell.originalImage

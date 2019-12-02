@@ -102,14 +102,16 @@ class DetailsViewController: UIViewController {
             timeLabel.text = Recipe.formatedTime(time: time)
         }
         
-        var ingredientText: String {
-            var text = ""
-            for line in recipe?.ingredientLines ?? [""] {
-                text += line + "\n"
+        var ingredientText: String? {
+            guard let ingredientsLines = recipe?.ingredients?.compactMap({($0.text)}) else {
+                return nil
             }
-            
-            return text
+            return ingredientsLines
+                .map({"- " + $0})
+                .joined(separator: ",\n\n")
+                .appending(".")
         }
+        
         ingredientsList.text = ingredientText
     }
     

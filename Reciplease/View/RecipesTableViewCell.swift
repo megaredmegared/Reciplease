@@ -18,7 +18,7 @@ class RecipesTableViewCell: UITableViewCell {
     //MARK: - Search tableView
     
     /// Configure cell for search tableView
-    func searchConfigureWith(imageUrl: URL?, recipe: String, ingredients: String, time: String) {
+    func searchConfigureWith(imageUrl: URL?, recipe: String?, ingredients: String?, time: String?) {
         
         recipeTitle.text = recipe
         ingredientTitle.text = ingredients
@@ -51,7 +51,7 @@ class RecipesTableViewCell: UITableViewCell {
     // MARK: - Favorites tableView
     
     /// Configure cell for favorite tableView
-    func favoriteConfigureWith(recipe: String, ingredients: String, imageThumbnail: UIImage?, time: String) {
+    func favoriteConfigureWith(recipe: String?, ingredients: String?, imageThumbnail: UIImage?, time: String?) {
         recipeImage.image = imageThumbnail
         recipeTitle.text = recipe
         ingredientTitle.text = ingredients

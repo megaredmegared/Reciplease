@@ -30,26 +30,23 @@ extension FavoriteRecipe {
     }
     
     static func transformFavoriteRecipeInRecipe(_ favoriteRecipe: FavoriteRecipe) -> Recipe? {
-//        var recipe = Recipe(label: "", image: "", uri: "", url: "", shareAs: "", ingredientLines: [""], ingredients: [Ingredient2(food: "")], totalTime: 0.0)
-         var recipe = Recipe()
+        var recipe = Recipe()
         var ingredients = [IngredientAPI]()
         
-        for name in favoriteRecipe.ingredients! {
-            let ingredient = IngredientAPI(food: name)
+        for text in favoriteRecipe.ingredients ?? [String]() {
+            let ingredient = IngredientAPI(text: text)
             ingredients.append(ingredient)
         }
         
-        recipe.label = favoriteRecipe.name ?? "No recipe name"
-        recipe.ingredientLines = favoriteRecipe.ingredientsLines ?? ["no ingredients"]
+        recipe.label = favoriteRecipe.name
         recipe.ingredients = ingredients
-        recipe.shareAs = favoriteRecipe.shareAs ?? ""
-        recipe.uri = favoriteRecipe.uri ?? ""
-        recipe.url = favoriteRecipe.url ?? ""
+        recipe.shareAs = favoriteRecipe.shareAs
+        recipe.uri = favoriteRecipe.uri
+        recipe.url = favoriteRecipe.url
         recipe.totalTime = favoriteRecipe.time
         
         return recipe
     }
-    
 }
 
 
