@@ -106,6 +106,7 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         for favoriteRecipe in favoritesRecipes {
             storageManager.remove(objectID: favoriteRecipe.objectID, save: true)
         }
+        
         favoritesTableView.reloadData()
         showHowToAddFavoriteMessage()
     }

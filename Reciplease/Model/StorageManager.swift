@@ -34,21 +34,21 @@ class StorageManager {
     //MARK: - CRUD
     
     /// Create a stored favorite recipe
-    func insertFavoriteRecipe(_ recipe: Recipe, image: Data, thumbnail: Data, save: Bool) {
+    func insertFavoriteRecipe(_ recipe: Recipe?, image: Data?, thumbnail: Data?, save: Bool) {
         guard let favoriteRecipe = NSEntityDescription.insertNewObject(forEntityName: "FavoriteRecipe", into: backgroundContext) as? FavoriteRecipe else { return }
 
-        let ingredients = recipe.ingredients
+        let ingredients = recipe?.ingredients
         let ingredientsLines = ingredients?.compactMap({$0.text})
 //        let ingredientsLines = IngredientAPI.listIngredientsLines(ingredients: ingredients)
         
-        favoriteRecipe.uri = recipe.uri
-        favoriteRecipe.name = recipe.label
-        favoriteRecipe.url = recipe.url
-        favoriteRecipe.shareAs = recipe.shareAs
+        favoriteRecipe.uri = recipe?.uri
+        favoriteRecipe.name = recipe?.label
+        favoriteRecipe.url = recipe?.url
+        favoriteRecipe.shareAs = recipe?.shareAs
         favoriteRecipe.ingredients = ingredientsLines
         favoriteRecipe.imageThumbnail = thumbnail
         favoriteRecipe.image = image
-        favoriteRecipe.time = recipe.totalTime ?? 0
+        favoriteRecipe.time = recipe?.totalTime ?? 0
         
         if save == true {
             self.save()
@@ -72,7 +72,7 @@ class StorageManager {
                request.sortDescriptors = [
                    NSSortDescriptor(key: "name", ascending: true)
                ]
-        guard let favortiesRecipes = try? AppDelegate.viewContext.fetch(request) else {
+        guard let favortiesRecipes = try? persistentContainer.viewContext.fetch(request) else {
             return []
         }
         return favortiesRecipes
@@ -85,7 +85,7 @@ class StorageManager {
                request.sortDescriptors = [
                    NSSortDescriptor(key: "name", ascending: true)
                ]
-        guard let ingredients = try? AppDelegate.viewContext.fetch(request) else {
+        guard let ingredients = try? persistentContainer.viewContext.fetch(request) else {
             return []
         }
         return ingredients

@@ -15,6 +15,7 @@
 		4D15AD9C22FAFB35007F25B6 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15AD9B22FAFB35007F25B6 /* Ingredient.swift */; };
 		4D1B6B9822F6BB8A0025C936 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1B6B9722F6BB8A0025C936 /* APIRouter.swift */; };
 		4D21536A22FC216200B61320 /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D21536922FC216200B61320 /* CustomViews.swift */; };
+		4D31B1652398FCFE00B171AB /* FakeRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D31B1642398FCFE00B171AB /* FakeRecipes.swift */; };
 		4D39593B231FC25C00ECDE74 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D39593A231FC25C00ECDE74 /* APIClient.swift */; };
 		4D42DA7B22B12871006B5A9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42DA7A22B12871006B5A9F /* AppDelegate.swift */; };
 		4D42DA8022B12871006B5A9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D42DA7E22B12871006B5A9F /* Main.storyboard */; };
@@ -64,6 +65,7 @@
 		4D15AD9B22FAFB35007F25B6 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		4D1B6B9722F6BB8A0025C936 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		4D21536922FC216200B61320 /* CustomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
+		4D31B1642398FCFE00B171AB /* FakeRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRecipes.swift; sourceTree = "<group>"; };
 		4D39593A231FC25C00ECDE74 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		4D42DA7722B12871006B5A9F /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D42DA7A22B12871006B5A9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				4D12906F2321461C0099E2DC /* FakeJson.json */,
+				4D31B1642398FCFE00B171AB /* FakeRecipes.swift */,
 				4D42DA9422B12873006B5A9F /* Info.plist */,
 				4D8F85872360E3C20075CAA1 /* IngredientTestCase.swift */,
 				4DC09E6323701B3A00F490B3 /* FakeResponseData.swift */,
@@ -455,6 +458,7 @@
 				4D00F3FA2368D3EE00179582 /* APIRouterTestCase.swift in Sources */,
 				4DC09E6423701B3A00F490B3 /* FakeResponseData.swift in Sources */,
 				4D44EBDB237E962A00EE01E9 /* StorageManagerTestCase.swift in Sources */,
+				4D31B1652398FCFE00B171AB /* FakeRecipes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
