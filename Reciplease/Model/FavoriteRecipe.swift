@@ -29,6 +29,7 @@ extension FavoriteRecipe {
         }
     }
     
+    /// Transform Favorite Recipe in Recipe
     static func transformFavoriteRecipeInRecipe(_ favoriteRecipe: FavoriteRecipe) -> Recipe? {
         var recipe = Recipe()
         var ingredients = [IngredientAPI]()

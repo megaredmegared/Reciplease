@@ -14,7 +14,8 @@ class RecipesViewController: UIViewController {
     let identities = ["", ""]
     var ingredients = Ingredient.all
     var recipes = Recipes(from: 0, to: 0, count: 0, hits: [Hit]())
-    var images = [UIImage?]()
+//    var recipes: Recipes?
+    var images: UIImage?
     
     // MARK: - viewDidLoad()
     
@@ -108,7 +109,7 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
         let numberOfRecipesLoaded = self.recipes.hits?.count
         let numberOfRecipesToFetch = 20
         
-        APIClient.search(numberOfRecipesToFetch: numberOfRecipesToFetch, recipes: recipes , ingredients: ingredients) { response in
+        APIClient.search(numberOfRecipesToFetch: numberOfRecipesToFetch, recipes: recipes, ingredients: ingredients) { response in
             
             switch response.result {
                 

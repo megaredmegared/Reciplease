@@ -74,7 +74,9 @@ enum APIRouter: URLRequestConvertible {
             
             // creation of the URLRequest
             let urlRequest: URLRequest = try URLRequest(url: url, method:  HTTPMethod(rawValue: method.rawValue))
-print(urlRequest)
+            
+            print(urlRequest)
+            
             return urlRequest
         }
     }

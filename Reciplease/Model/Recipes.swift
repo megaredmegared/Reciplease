@@ -40,7 +40,6 @@ struct Recipe: Codable {
     var uri: String?
     var url: String?
     var shareAs: String?
-//    var ingredientLines: [String]?
     var ingredients: [IngredientAPI]?
     var totalTime: Double?
 }
@@ -59,19 +58,20 @@ extension Recipe {
     
     ///format Time minute Double to a String in hours and minutes
     static func formatedTime(time: Double?) -> String? {
-        guard let timeOk = time else {
+        guard let time = time else {
             return nil
         }
-        if timeOk == 0 {
+        
+        if time == 0 {
             return nil
-        } else if (1..<60).contains(timeOk) {
-            return String(Int(timeOk)) + "m"
-        } else if timeOk == 60 {
-            let hours = timeOk / 60
+        } else if (1..<60).contains(time) {
+            return String(Int(time)) + "m"
+        } else if time == 60 {
+            let hours = time / 60
             return String(Int(hours)) + "h"
         } else {
-            let hours = timeOk / 60
-            let minutes = timeOk.truncatingRemainder(dividingBy: 60)
+            let hours = time / 60
+            let minutes = time.truncatingRemainder(dividingBy: 60)
             return String(Int(hours)) + "h" + String(Int(minutes)) + "m"
         }
     }

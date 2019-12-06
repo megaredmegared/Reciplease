@@ -11,12 +11,12 @@ import CoreData
 
 class StorageManager {
     
-    let persistentContainer: NSPersistentContainer!
+    let persistentContainer: NSPersistentContainer?
     
     //MARK: Init with dependency
     init(container: NSPersistentContainer) {
         self.persistentContainer = container
-        self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+        self.persistentContainer?.viewContext.automaticallyMergesChangesFromParent = true
     }
     
     convenience init() {
@@ -28,7 +28,10 @@ class StorageManager {
     }
     
     lazy var backgroundContext: NSManagedObjectContext = {
-        return self.persistentContainer.newBackgroundContext()
+        guard let persistentContainer = self.persistentContainer else {
+            fatalError()
+        }
+        return persistentContainer.newBackgroundContext()
     }()
     
     //MARK: - CRUD
@@ -72,7 +75,7 @@ class StorageManager {
                request.sortDescriptors = [
                    NSSortDescriptor(key: "name", ascending: true)
                ]
-        guard let favortiesRecipes = try? persistentContainer.viewContext.fetch(request) else {
+        guard let favortiesRecipes = try? persistentContainer?.viewContext.fetch(request) else {
             return []
         }
         return favortiesRecipes
@@ -85,7 +88,7 @@ class StorageManager {
                request.sortDescriptors = [
                    NSSortDescriptor(key: "name", ascending: true)
                ]
-        guard let ingredients = try? persistentContainer.viewContext.fetch(request) else {
+        guard let ingredients = try? persistentContainer?.viewContext.fetch(request) else {
             return []
         }
         return ingredients

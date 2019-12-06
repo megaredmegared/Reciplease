@@ -95,6 +95,7 @@ class StorageManagerTestCase: XCTestCase {
         let objectID = recipes[3].objectID
         customStorageManager.remove(objectID: objectID, save: true)
         
+        
         // check there is 3 ordered recipes
         let imageData = "image".data(using: .utf8)!
         let imageThumbnailData = "imageThumbnail".data(using: .utf8)!
@@ -112,11 +113,7 @@ class StorageManagerTestCase: XCTestCase {
         XCTAssertNil(recipes[2].image)
         XCTAssertNil(recipes[2].imageThumbnail)
         
-        XCTAssertEqual(recipes[3].name, "Pineapple-Tomato Salsa")
-        XCTAssertNil(recipes[3].image)
-        XCTAssertNil(recipes[3].imageThumbnail)
-        
-        XCTAssertEqual(recipes.count, 3)
+        XCTAssertEqual(customStorageManager.fetchAllFavoritesRecipes().count, 3)
     }
        
 

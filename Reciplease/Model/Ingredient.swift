@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreData
-import UIKit
 
 class Ingredient: NSManagedObject {
     
@@ -72,26 +71,6 @@ class Ingredient: NSManagedObject {
             let storageManager = StorageManager()
             storageManager.insertIngredient(name: ingredientName, save: true)
         }
-    }
-}
-
-extension Collection where Element == String {
-    /// Format array of string in one string with "," and a end "."
-    func formatListNames() -> String {
-        return self
-            .joined(separator: ",")
-            .appending(".")
-    }
-}
-
-extension String {
-    /// check if word exist in English
-    func isRealEnglishWord() -> Bool {
-        let checker = UITextChecker()
-        let range = NSRange(location: 0, length: self.utf16.count)
-        let misspelledRange = checker.rangeOfMisspelledWord(in: self, range: range, startingAt: 0, wrap: false, language: "en")
-        
-        return misspelledRange.location == NSNotFound
     }
 }
 
