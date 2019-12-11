@@ -29,10 +29,13 @@
 		4D44EBDB237E962A00EE01E9 /* StorageManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D44EBDA237E962A00EE01E9 /* StorageManagerTestCase.swift */; };
 		4D57A125232A3D6400C659F0 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D57A124232A3D6400C659F0 /* DetailsViewController.swift */; };
 		4D57A127232A842100C659F0 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D57A126232A842100C659F0 /* WebViewController.swift */; };
+		4D6D64AC23A0E898001403BA /* APIClientTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6D64AB23A0E898001403BA /* APIClientTestCase.swift */; };
+		4D6D64AE23A127F6001403BA /* FavoriteRecipeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6D64AD23A127F6001403BA /* FavoriteRecipeTestCase.swift */; };
 		4D760AB0231AA83500B75C5E /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D760AAF231AA83500B75C5E /* ApiKeys.plist */; };
 		4D760AB2231AA86500B75C5E /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D760AB1231AA86500B75C5E /* ApiKeys.swift */; };
 		4D7DA4A222B1401700395680 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7DA4A122B1401700395680 /* SearchViewController.swift */; };
 		4D8F85882360E3C20075CAA1 /* IngredientTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8F85872360E3C20075CAA1 /* IngredientTestCase.swift */; };
+		4D97CCA1239E8FBA009107DF /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D97CCA0239E8FBA009107DF /* MockURLProtocol.swift */; };
 		4DA9780D2341F58900E035D9 /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA9780C2341F58900E035D9 /* RecipesViewController.swift */; };
 		4DC09E6423701B3A00F490B3 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC09E6323701B3A00F490B3 /* FakeResponseData.swift */; };
 		4DCA1F8A22F76079009ECE75 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA1F8922F76079009ECE75 /* TabBarViewController.swift */; };
@@ -87,10 +90,13 @@
 		4D44EBDA237E962A00EE01E9 /* StorageManagerTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManagerTestCase.swift; sourceTree = "<group>"; };
 		4D57A124232A3D6400C659F0 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		4D57A126232A842100C659F0 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		4D6D64AB23A0E898001403BA /* APIClientTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTestCase.swift; sourceTree = "<group>"; };
+		4D6D64AD23A127F6001403BA /* FavoriteRecipeTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeTestCase.swift; sourceTree = "<group>"; };
 		4D760AAF231AA83500B75C5E /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		4D760AB1231AA86500B75C5E /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		4D7DA4A122B1401700395680 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4D8F85872360E3C20075CAA1 /* IngredientTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTestCase.swift; sourceTree = "<group>"; };
+		4D97CCA0239E8FBA009107DF /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		4DA9780C2341F58900E035D9 /* RecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
 		4DC09E6323701B3A00F490B3 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
 		4DCA1F8922F76079009ECE75 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -188,8 +194,11 @@
 				4D31B1642398FCFE00B171AB /* FakeRecipes.swift */,
 				4D42DA9422B12873006B5A9F /* Info.plist */,
 				4D8F85872360E3C20075CAA1 /* IngredientTestCase.swift */,
+				4D97CCA0239E8FBA009107DF /* MockURLProtocol.swift */,
 				4DC09E6323701B3A00F490B3 /* FakeResponseData.swift */,
+				4D6D64AD23A127F6001403BA /* FavoriteRecipeTestCase.swift */,
 				4D00F3F92368D3EE00179582 /* APIRouterTestCase.swift */,
+				4D6D64AB23A0E898001403BA /* APIClientTestCase.swift */,
 				4D44EBDA237E962A00EE01E9 /* StorageManagerTestCase.swift */,
 			);
 			path = RecipleaseTests;
@@ -465,7 +474,10 @@
 				4D8F85882360E3C20075CAA1 /* IngredientTestCase.swift in Sources */,
 				4D00F3FA2368D3EE00179582 /* APIRouterTestCase.swift in Sources */,
 				4DC09E6423701B3A00F490B3 /* FakeResponseData.swift in Sources */,
+				4D6D64AE23A127F6001403BA /* FavoriteRecipeTestCase.swift in Sources */,
+				4D97CCA1239E8FBA009107DF /* MockURLProtocol.swift in Sources */,
 				4D44EBDB237E962A00EE01E9 /* StorageManagerTestCase.swift in Sources */,
+				4D6D64AC23A0E898001403BA /* APIClientTestCase.swift in Sources */,
 				4D31B1652398FCFE00B171AB /* FakeRecipes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

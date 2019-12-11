@@ -21,7 +21,6 @@ class RecipesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         searchRecipes()
         
         // add logo to navigation bar
@@ -105,11 +104,12 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: - Search recipes
     
     private func searchRecipes() {
-        
         let numberOfRecipesLoaded = self.recipes.hits?.count
         let numberOfRecipesToFetch = 20
-        
-        APIClient.search(numberOfRecipesToFetch: numberOfRecipesToFetch, recipes: recipes, ingredients: ingredients) { response in
+        hide(button: true, activity: false)
+
+        let apiClient = APIClient()
+        apiClient.search(numberOfRecipesToFetch: numberOfRecipesToFetch, recipes: recipes, ingredients: ingredients) { response in
             
             switch response.result {
                 
@@ -144,7 +144,6 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
 extension RecipesViewController {
     
     @IBAction func moreRecipes() {
-        hide(button: true, activity: false)
         searchRecipes()
     }
     

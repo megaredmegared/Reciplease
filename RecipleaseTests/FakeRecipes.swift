@@ -46,6 +46,14 @@ let recipe3 = Recipe(label: "Pineapple-Tomato Salsa",
                      ingredients: ingredients3,
                      totalTime: 15.0)
 
+let hits1: [Hit] = [Hit.init(recipe: recipe1),
+                   Hit.init(recipe: recipe2),
+                   Hit.init(recipe: recipe3)]
+
+let recipes1: Recipes = Recipes(from: 0, to: 2, count: 3, hits: hits1)
+
+let ingredientsSearch1: [Ingredient] = Ingredient.all
+
 let imageData = "image".data(using: .utf8)!
 let imageThumbnailData = "imageThumbnail".data(using: .utf8)!
 

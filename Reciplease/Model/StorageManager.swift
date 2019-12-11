@@ -1,10 +1,3 @@
-//
-//  DataManager.swift
-//  Reciplease
-//
-//  Created by megared on 14/11/2019.
-//  Copyright © 2019 OpenClassrooms. All rights reserved.
-//
 
 import UIKit
 import CoreData
@@ -39,10 +32,9 @@ class StorageManager {
     /// Create a stored favorite recipe
     func insertFavoriteRecipe(_ recipe: Recipe?, image: Data?, thumbnail: Data?, save: Bool) {
         guard let favoriteRecipe = NSEntityDescription.insertNewObject(forEntityName: "FavoriteRecipe", into: backgroundContext) as? FavoriteRecipe else { return }
-
+        
         let ingredients = recipe?.ingredients
         let ingredientsLines = ingredients?.compactMap({$0.text})
-//        let ingredientsLines = IngredientAPI.listIngredientsLines(ingredients: ingredients)
         
         favoriteRecipe.uri = recipe?.uri
         favoriteRecipe.name = recipe?.label
@@ -71,10 +63,10 @@ class StorageManager {
     /// Read all favorites recipes
     func fetchAllFavoritesRecipes() -> [FavoriteRecipe] {
         let request: NSFetchRequest<FavoriteRecipe> = FavoriteRecipe.fetchRequest()
-        //  array of NSSortDescriptors to sort favoritesRecipes by name
-               request.sortDescriptors = [
-                   NSSortDescriptor(key: "name", ascending: true)
-               ]
+        // array of NSSortDescriptors to sort favoritesRecipes by name
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "name", ascending: true)
+        ]
         guard let favortiesRecipes = try? persistentContainer?.viewContext.fetch(request) else {
             return []
         }
@@ -85,15 +77,16 @@ class StorageManager {
     func fetchAllIngredients() -> [Ingredient] {
         let request: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
         //  array of NSSortDescriptors to sort favoritesRecipes by name
-               request.sortDescriptors = [
-                   NSSortDescriptor(key: "name", ascending: true)
-               ]
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "name", ascending: true)
+        ]
         guard let ingredients = try? persistentContainer?.viewContext.fetch(request) else {
             return []
         }
         return ingredients
     }
-
+    
+    /// Save the backgroundContext
     func save() {
         if backgroundContext.hasChanges {
             do {
@@ -104,6 +97,7 @@ class StorageManager {
         }
     }
     
+    /// Remove object
     func remove( objectID: NSManagedObjectID, save: Bool ) {
         let obj = backgroundContext.object(with: objectID)
         backgroundContext.delete(obj)

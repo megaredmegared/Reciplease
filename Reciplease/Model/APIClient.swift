@@ -1,16 +1,21 @@
-
+import Foundation
 import Alamofire
 
 class APIClient {
+    
+    private let manager: Session
+    init(manager: Session = Session.default) {
+        self.manager = manager
+    }
+    
     /// search function for recipes datas
-    static func search(numberOfRecipesToFetch: Int, recipes: Recipes, ingredients: [Ingredient], completionHandler: @escaping (_ response: DataResponse<Recipes, AFError>) -> Void ) {
+    func search(numberOfRecipesToFetch: Int, recipes: Recipes, ingredients: [Ingredient], completionHandler: @escaping (_ response: DataResponse<Recipes, AFError>) -> Void ) {
 
         AF.request(APIRouter.searchRecipe(numberOfRecipesToFetch: numberOfRecipesToFetch, ingredients: ingredients, recipes: recipes)).validate().responseDecodable(of: Recipes.self) { response in
             completionHandler(response)
         }
     }    
 }
-
 
 protocol Car {
     mutating func start()

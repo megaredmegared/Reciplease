@@ -21,11 +21,13 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // add logo to navigation bar
         navigationItem.titleView = UIImageView.init(image: .logoReciplease)
     } 
 }
+
+
+
 
 // MARK: - TableView list of ingredients
 
@@ -60,10 +62,14 @@ extension SearchViewController {
     
     /// Add ingredients to the list
     @IBAction func addIngredients() {
-        guard let listOfNames = ingredientTextField.text else {
-            return
+        guard let listOfNames = ingredientTextField.text else { return }
+        
+        let ingredientsNamesList = Ingredient.formatingList(listOfNames: listOfNames)
+        
+        // Save the ingredients
+        for ingredientName in ingredientsNamesList {
+            storageManager.insertIngredient(name: ingredientName, save: true)
         }
-        Ingredient.formatingList(listOfNames: listOfNames)
         // Reset ingredient text field
         ingredientTextField.text = ""
         listIngredients.reloadData()

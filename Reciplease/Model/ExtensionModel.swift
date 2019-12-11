@@ -18,6 +18,13 @@ extension String {
         
         return misspelledRange.location == NSNotFound
     }
+    
+    /// Check for string to return only allowed characters
+    var allowedCharacters: String {
+        let characters = Set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLKMNOPQRSTUVWXYZ,")
+        return self.filter {characters.contains($0) }
+    }
+    
 }
 
 

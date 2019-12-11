@@ -19,12 +19,11 @@ class IngredientTestCase: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    // formatinglist, makeonestring, listingredient, listingredient, remove, comparable
-    
-    
-    // Test format Array of strings in one string with comas beetween strings that where in the array and a point at the end.
-    
-    
-    // Array of string in one string with
-
+    func testGivenOneStringListOfIngredients_WhenFormatingTheString_ThenArrayOfStringNameIngredient() {
+        let stringOfIngredients = "butter,  kjh, tomato juice, big Mac 45, ,"
+        
+        let listOfIngredients = Ingredient.formatingList(listOfNames: stringOfIngredients)
+        
+        XCTAssertEqual(listOfIngredients.sorted(), ["Butter", "Tomato Juice", "Big Mac"].sorted())
+    }
 }

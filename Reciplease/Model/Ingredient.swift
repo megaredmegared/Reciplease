@@ -21,10 +21,13 @@ class Ingredient: NSManagedObject {
 
     /// Formating ingredient name
     static private func formatIngredient(name: String) -> String? {
-        var ingredientName = name
-        /// remove unwanted caracters
-        let characterToTrim = CharacterSet.init(charactersIn: " ./@')([]_;?!+*$€^¨'£`%<>#°§-")
-        ingredientName = name.trimmingCharacters(in: characterToTrim)
+        
+        /// remove unwanted caracters and capitalize first letter of each word
+        let ingredientName = name
+            .allowedCharacters
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .capitalized
+        
         /// check if word exist
         if ingredientName.isRealEnglishWord() == false {
             return nil
@@ -37,40 +40,29 @@ class Ingredient: NSManagedObject {
     }
     
     /// Separate multi ingredients entries by ","
-    static func formatingList(listOfNames: String) {
-        let ingredientNameList = listOfNames.components(separatedBy: ",")
-        var cleanNamedIngredients: [String] = []
+    static func formatingList(listOfNames: String) -> [String] {
+        var ingredientsNamesList = listOfNames.components(separatedBy: ",")
         
         // Clean the name of the ingredient
-        for ingredientName in ingredientNameList {
-            if let name = self.formatIngredient(name: ingredientName) {
-                cleanNamedIngredients.append(name)
-            }
-        }
+        ingredientsNamesList = ingredientsNamesList.compactMap({formatIngredient(name: $0)})
     
-        
         // delete duplicated names
-        cleanNamedIngredients = Array(Set(cleanNamedIngredients))
+        ingredientsNamesList = Array(Set(ingredientsNamesList))
         
         // remove ingredients that are already listed
-        for ingredientName in cleanNamedIngredients {
+        for ingredientName in ingredientsNamesList {
             let ingredients = Ingredient.all
             for ingredient in ingredients {
                 if (ingredient.name != nil) {
                     if ingredientName == ingredient.name {
-                        if let index = cleanNamedIngredients.firstIndex(of: ingredientName) {
-                            cleanNamedIngredients.remove(at: index)
+                        if let index = ingredientsNamesList.firstIndex(of: ingredientName) {
+                            ingredientsNamesList.remove(at: index)
                         }
                     }
                 }
             }
         }
-        
-        // Save the ingredients
-        for ingredientName in cleanNamedIngredients { 
-            let storageManager = StorageManager()
-            storageManager.insertIngredient(name: ingredientName, save: true)
-        }
+            return ingredientsNamesList
     }
 }
 
