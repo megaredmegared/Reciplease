@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Foundation
 @testable import Reciplease
 
 class IngredientTestCase: XCTestCase {
@@ -23,7 +24,9 @@ class IngredientTestCase: XCTestCase {
         let stringOfIngredients = "butter,  kjh, tomato juice, big Mac 45, ,"
         
         let listOfIngredients = Ingredient.formatingList(listOfNames: stringOfIngredients)
-        
+        // verif par element
         XCTAssertEqual(listOfIngredients.sorted(), ["Butter", "Tomato Juice", "Big Mac"].sorted())
     }
+    
+    
 }

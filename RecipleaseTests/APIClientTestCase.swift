@@ -43,15 +43,15 @@
 //    func testStatusCode200ReturnsStatusCode200() {
 //        // given
 ////        MockURLProtocol.responseWithStatusCode(code: 200)
-////        
+////
 ////        let expectation = XCTestExpectation(description: "Performs a request")
-////        
+////
 ////        // when
 ////        sut.search(numberOfRecipesToFetch: 10, recipes: recipes1, ingredients: ingredientsSearch1) { result in
 ////            XCTAssertEqual(result.response?.statusCode, 200)
 ////            expectation.fulfill()
 ////        }
-////        
+////
 ////        // then
 ////        wait(for: [expectation], timeout: 3)
 //    }

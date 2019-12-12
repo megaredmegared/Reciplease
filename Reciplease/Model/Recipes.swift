@@ -16,17 +16,19 @@ struct Recipes: Codable {
 }
 
 extension Recipes {
-    mutating func addRecipes(numberOfRecipesLoaded: Int?, numberOfRecipesToFetch: Int, recipesResponse: Recipes) {
+    mutating func addRecipes(numberOfRecipesLoaded: Int?, recipesResponse: Recipes?, numberOfRecipesToFetch: Int) {
 
-        // set the next range of recipes to fetch
+        // update "to" number
+//        self.to = numberOfRecipesLoaded
+        
         self.from = numberOfRecipesLoaded
         self.to = (self.from ?? 0) + (numberOfRecipesToFetch)
         
         // add new fetched recipes
-        self.hits?.append(contentsOf: recipesResponse.hits ?? [])
+        self.hits?.append(contentsOf: recipesResponse?.hits ?? [])
         
         // fetch the total existing recipes
-        self.count = recipesResponse.count
+        self.count = recipesResponse?.count
     }
 }
 

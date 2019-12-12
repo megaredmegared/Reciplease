@@ -3,7 +3,7 @@ import Alamofire
 
 enum APIRouter: URLRequestConvertible {
     
-    case searchRecipe(numberOfRecipesToFetch: Int, ingredients: [Ingredient], recipes: Recipes)
+    case searchRecipe(from: Int?, numberOfRecipesToFetch: Int, ingredients: [Ingredient])
     
     // MARK: - HTTPMethod
     
@@ -37,7 +37,7 @@ enum APIRouter: URLRequestConvertible {
     
     private var parameters: Parameters? {
         switch self {
-        case .searchRecipe(let numberOfRecipesToFetch, let ingredients, let recipes):
+        case .searchRecipe(let from, let numberOfRecipesToFetch, let ingredients):
             // make one string of ingredient with no white spaces
 
             let ingredientLine = ingredients
@@ -45,7 +45,7 @@ enum APIRouter: URLRequestConvertible {
                 .joined(separator: ",")
                 .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
             
-            let fromInt = recipes.to ?? 0
+            let fromInt = from ?? 0
             let from = String(fromInt)
             let to = String((fromInt) + numberOfRecipesToFetch)
             let time = "1%2B"

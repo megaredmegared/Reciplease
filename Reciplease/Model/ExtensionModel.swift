@@ -25,6 +25,25 @@ extension String {
         return self.filter {characters.contains($0) }
     }
     
+    /// Formating ingredient name
+    var formatIngredient: String? {
+        
+        /// remove unwanted caracters and capitalize first letter of each word
+        let ingredientName = self
+            .allowedCharacters
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .capitalized
+        
+        /// check if word exist
+        if ingredientName.isRealEnglishWord() == false {
+            return nil
+        }
+        /// return nil if just a whitespace
+        if ingredientName == "" {
+            return nil
+        }
+        return ingredientName
+    }
 }
 
 

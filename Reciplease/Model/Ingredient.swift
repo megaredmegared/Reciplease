@@ -17,41 +17,20 @@ class Ingredient: NSManagedObject {
         return storageManager.fetchAllIngredients()
     }
     
-    // MARK: - Decompositing of the text line in more ingredients
-
-    /// Formating ingredient name
-    static private func formatIngredient(name: String) -> String? {
-        
-        /// remove unwanted caracters and capitalize first letter of each word
-        let ingredientName = name
-            .allowedCharacters
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-            .capitalized
-        
-        /// check if word exist
-        if ingredientName.isRealEnglishWord() == false {
-            return nil
-        }
-        /// return nil if just a whitespace
-        if ingredientName == "" {
-            return nil
-        }
-        return ingredientName
-    }
+    // MARK: - Decompositing of the ingredients text line in an array
     
     /// Separate multi ingredients entries by ","
-    static func formatingList(listOfNames: String) -> [String] {
+    static func formatingList(listOfNames: String, ingredients: [Ingredient] = Ingredient.all) -> [String] {
         var ingredientsNamesList = listOfNames.components(separatedBy: ",")
         
         // Clean the name of the ingredient
-        ingredientsNamesList = ingredientsNamesList.compactMap({formatIngredient(name: $0)})
+        ingredientsNamesList = ingredientsNamesList.compactMap({$0.formatIngredient})
     
         // delete duplicated names
         ingredientsNamesList = Array(Set(ingredientsNamesList))
         
         // remove ingredients that are already listed
         for ingredientName in ingredientsNamesList {
-            let ingredients = Ingredient.all
             for ingredient in ingredients {
                 if (ingredient.name != nil) {
                     if ingredientName == ingredient.name {
@@ -65,5 +44,3 @@ class Ingredient: NSManagedObject {
             return ingredientsNamesList
     }
 }
-
-

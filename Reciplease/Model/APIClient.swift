@@ -1,17 +1,47 @@
 import Foundation
 import Alamofire
 
+//protocol APIClientNetworkProtocol {
+//    func get<Result: Codable>(url: String, completionHandler:(Error?, Result?) -> Void)
+//}
+//
+//class APIClientNetworkAlamofire: APIClientNetworkProtocol {
+//    func get<Result: Codable>(url: String, completionHandler:(Error?, Result?) -> Void) {
+//        //AF.request(//)
+//    }
+//}
+//
+//struct APIClientNetworkMock: APIClientNetworkProtocol {
+//    var data: Data?
+//    var response: HTTPURLResponse?
+//    var error: Error?
+//    func get<Result: Codable>(url: String, completionHandler:(Error?, Result?) -> Void) {
+//        guard error == nil else {
+//            return completionHandler(error, nil)
+//        }
+//
+//        guard let response = response, response.statusCode == 200 else {
+//            return completionHandler(error, nil)
+//        }
+//
+//        /* */
+//    }
+//}
+
 class APIClient {
     
     private let manager: Session
+//    private var network: APIClientNetworkProtocol = APIClientNetworkAlamofire()
     init(manager: Session = Session.default) {
         self.manager = manager
     }
     
     /// search function for recipes datas
-    func search(numberOfRecipesToFetch: Int, recipes: Recipes, ingredients: [Ingredient], completionHandler: @escaping (_ response: DataResponse<Recipes, AFError>) -> Void ) {
+    func search(from: Int?, numberOfRecipesToFetch: Int, ingredients: [Ingredient], completionHandler: @escaping (_ response: DataResponse<Recipes, AFError>) -> Void ) {
+        
+        //network?.get(url: <#T##String#>, completionHandler: <#T##(Error?, Decodable & Encodable) -> Void#>)
 
-        AF.request(APIRouter.searchRecipe(numberOfRecipesToFetch: numberOfRecipesToFetch, ingredients: ingredients, recipes: recipes)).validate().responseDecodable(of: Recipes.self) { response in
+        AF.request(APIRouter.searchRecipe(from: from, numberOfRecipesToFetch: numberOfRecipesToFetch, ingredients: ingredients)).validate().responseDecodable(of: Recipes.self) { response in
             completionHandler(response)
         }
     }    
