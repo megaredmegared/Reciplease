@@ -62,15 +62,11 @@ enum APIRouter: URLRequestConvertible {
             
             // convert parameters in one string because method is get and not post so no httpbody
             var parametersString = ""
-            var parametersArray = [""]
             if let parameters = self.parameters as? [String: String] {
                 for (key, value) in parameters {
-                    let parameter = "&" + key + "=" + value
-                    parametersArray.append(parameter)
+                    parametersString += "&" + key + "=" + value
                 }
             }
-            // use array sorted to have always the same order from, q, time, to
-            parametersString = parametersArray.sorted().joined()
             
             // concatenation of the elements in an URL
             let stringUrl = self.baseURL + self.path + parametersString

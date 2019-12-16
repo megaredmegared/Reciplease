@@ -74,23 +74,57 @@ class StorageManagerTestCase: XCTestCase {
         XCTAssertEqual(ingredients.count, 3)
         
         //MARK: - APIRouter
-        // check if APIRouter request is correct
-        let url = URL(string: "https://api.edamam.com/search?app_id=\(ApiKeys.appID)&app_key=\(ApiKeys.appKey)&from=2&q=Chicken,Pinapple,Tomato&time=1%2B&to=12")
-        let requestToCreate = URLRequest(url: url!)
-        
+        // create an APIRouter request
         let apiRouter = APIRouter.searchRecipe(from: 2, numberOfRecipesToFetch: 10, ingredients: ingredients)
+        let url = try! APIRouter.asURLRequest(apiRouter)().url
         
-        let request = APIRouter.asURLRequest(apiRouter)
-        // decomposer la request
-        XCTAssertEqual(requestToCreate, try request())
+        // test the URL parts of the APIRouter request
+        let components = URLComponents(url: url!, resolvingAgainstBaseURL: false)
+        let q = URLQueryItem(name: "q", value: "Chicken,Pinapple,Tomato")
+        let app_id = URLQueryItem(name: "app_id", value: "\(ApiKeys.appID)")
+        let app_key = URLQueryItem(name: "app_key", value: "\(ApiKeys.appKey)")
+        let from = URLQueryItem(name: "from", value: "2")
+        let to = URLQueryItem(name: "to", value: "12")
+        let time = URLQueryItem(name: "time", value: "1+")
+        
+        XCTAssertEqual(components?.scheme, "https")
+        XCTAssertEqual(components?.host, "api.edamam.com")
+        XCTAssertEqual(components?.path, "/search")
+        XCTAssertTrue(components?.queryItems?.contains(q) ?? false)
+        XCTAssertTrue(components?.queryItems?.contains(app_id) ?? false)
+        XCTAssertTrue(components?.queryItems?.contains(app_key) ?? false)
+        XCTAssertTrue(components?.queryItems?.contains(from) ?? false)
+        XCTAssertTrue(components?.queryItems?.contains(to) ?? false)
+        XCTAssertTrue(components?.queryItems?.contains(time) ?? false)
+        XCTAssertEqual(components?.queryItems?.count, 6)
+        
+
         
         //MARK: - Ingredient
         
         let stringOfIngredients = "butter,  kjh, tomato juice, big Mac 45, , tomato"
         
-        let listOfIngredients = Ingredient.formatingList(listOfNames: stringOfIngredients, ingredients: ingredients)
+        let arrayOfIngredient = stringOfIngredients.formatList
+        
+        let listOfIngredients = Ingredient.removeAlreadylistedIngredient(ingredientsNamesList: arrayOfIngredient, ingredients: ingredients)
+        
         
         XCTAssertEqual(listOfIngredients.sorted(), ["Butter", "Tomato Juice", "Big Mac"].sorted())
+        
+        // check by element
+        if let getBigMac = listOfIngredients.firstIndex(of: "Big Mac") {
+                         XCTAssertEqual(listOfIngredients[getBigMac], "Big Mac")
+                     }
+               
+               if let getTomatoJuice = listOfIngredients.firstIndex(of: "Tomato Juice") {
+                   XCTAssertEqual(listOfIngredients[getTomatoJuice], "Tomato Juice")
+               }
+               
+               if let getButter = listOfIngredients.firstIndex(of: "Butter") {
+                   XCTAssertEqual(listOfIngredients[getButter], "Butter")
+               }
+               
+               XCTAssertEqual(listOfIngredients.count, 3)
         
     }
     

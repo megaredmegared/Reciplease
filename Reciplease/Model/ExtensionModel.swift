@@ -44,6 +44,18 @@ extension String {
         }
         return ingredientName
     }
+    
+    /// Separate multi ingredients entries by ","
+    var formatList: [String] {
+        var ingredientsNamesList = self.components(separatedBy: ",")
+        
+        // Clean the name of the ingredient
+        ingredientsNamesList = ingredientsNamesList.compactMap({$0.formatIngredient})
+        
+        // delete duplicated names
+        ingredientsNamesList = Array(Set(ingredientsNamesList))
+        
+        
+        return ingredientsNamesList
+    }
 }
-
-

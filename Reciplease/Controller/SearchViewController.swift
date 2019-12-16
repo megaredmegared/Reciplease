@@ -12,8 +12,9 @@ class SearchViewController: UIViewController {
     // MARK: - Variables
     
 //    var ingredients: [Ingredient] { Ingredient.all.sorted(by: < ) }
-    
-    var ingredients: [Ingredient] { Ingredient.all }
+    var ingredient = Ingredient()
+    var ingredients = Ingredient.all
+//    var ingredients: [Ingredient] { Ingredient.all }
     
     let storageManager = StorageManager()
     
@@ -64,7 +65,8 @@ extension SearchViewController {
     @IBAction func addIngredients() {
         guard let listOfNames = ingredientTextField.text else { return }
         
-        let ingredientsNamesList = Ingredient.formatingList(listOfNames: listOfNames)
+//        let ingredientsNamesList = Ingredient.formatingList(listOfNames: listOfNames)
+        let ingredientsNamesList = Ingredient.removeAlreadylistedIngredient(ingredientsNamesList: listOfNames.formatList)
         
         // Save the ingredients
         for ingredientName in ingredientsNamesList {
