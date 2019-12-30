@@ -15,19 +15,9 @@ class FavoriteRecipe: NSManagedObject {
         let storageManager = StorageManager()
         return storageManager.fetchAllFavoritesRecipes()
     }
-    
 }
 
 extension FavoriteRecipe {
-    
-    /// Check if a recipe is already marked as favorite
-    var isFavorite: Bool {
-        if FavoriteRecipe.all.contains(where: {$0.uri == uri}) {
-            return true
-        } else {
-            return false
-        }
-    }
     
     /// Transform Favorite Recipe in Recipe
     static func transformFavoriteRecipeInRecipe(_ favoriteRecipe: FavoriteRecipe) -> Recipe? {

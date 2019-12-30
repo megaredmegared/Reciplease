@@ -10,11 +10,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var listIngredients: UITableView!
     
     // MARK: - Variables
-    
-//    var ingredients: [Ingredient] { Ingredient.all.sorted(by: < ) }
-    var ingredient = Ingredient()
-    var ingredients = Ingredient.all
-//    var ingredients: [Ingredient] { Ingredient.all }
+    var ingredients: [Ingredient] { Ingredient.all }
     
     let storageManager = StorageManager()
     
@@ -66,7 +62,7 @@ extension SearchViewController {
         guard let listOfNames = ingredientTextField.text else { return }
         
 //        let ingredientsNamesList = Ingredient.formatingList(listOfNames: listOfNames)
-        let ingredientsNamesList = Ingredient.removeAlreadylistedIngredient(ingredientsNamesList: listOfNames.formatList)
+        let ingredientsNamesList = Ingredient.removeAlreadylistedIngredient(ingredientsNamesList: listOfNames.formatList())
         
         // Save the ingredients
         for ingredientName in ingredientsNamesList {

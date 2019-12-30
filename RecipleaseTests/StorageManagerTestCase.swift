@@ -104,7 +104,7 @@ class StorageManagerTestCase: XCTestCase {
         
         let stringOfIngredients = "butter,  kjh, tomato juice, big Mac 45, , tomato"
         
-        let arrayOfIngredient = stringOfIngredients.formatList
+        let arrayOfIngredient = stringOfIngredients.formatList()
         
         let listOfIngredients = Ingredient.removeAlreadylistedIngredient(ingredientsNamesList: arrayOfIngredient, ingredients: ingredients)
         
@@ -139,10 +139,10 @@ class StorageManagerTestCase: XCTestCase {
         XCTAssertEqual(rows.count, 0)
         
         // add 3 recipes
-        customStorageManager.insertFavoriteRecipe(recipe1, image: imageData, thumbnail: imageThumbnailData, save: false)
-        customStorageManager.insertFavoriteRecipe(recipe2, image: imageData, thumbnail: imageThumbnailData, save: false)
-        customStorageManager.insertFavoriteRecipe(recipe3, image: nil, thumbnail: nil, save: false)
-        customStorageManager.insertFavoriteRecipe(recipe3, image: nil, thumbnail: nil, save: true)
+        customStorageManager.insertFavoriteRecipe(FakeData.recipe1, image: FakeData.imageData, thumbnail: FakeData.imageThumbnailData, save: false)
+        customStorageManager.insertFavoriteRecipe(FakeData.recipe2, image: FakeData.imageData, thumbnail: FakeData.imageThumbnailData, save: false)
+        customStorageManager.insertFavoriteRecipe(FakeData.recipe3, image: nil, thumbnail: nil, save: false)
+        customStorageManager.insertFavoriteRecipe(FakeData.recipe3, image: nil, thumbnail: nil, save: true)
         
         // remove one recipe
         var recipes = customStorageManager.fetchAllFavoritesRecipes()

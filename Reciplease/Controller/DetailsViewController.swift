@@ -98,9 +98,7 @@ class DetailsViewController: UIViewController {
         recipeImage.image = image
         recipeTitle.text = recipe?.label
         
-        if let time = recipe?.totalTime {
-            timeLabel.text = Recipe.formatedTime(time: time)
-        }
+        timeLabel.text = recipe?.totalTime?.formatTime()
         
         var ingredientText: String? {
             guard let ingredientsLines = recipe?.ingredients?.compactMap({($0.text)}) else {

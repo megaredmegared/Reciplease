@@ -11,9 +11,8 @@ class RecipesViewController: UIViewController {
     
     // MARK: - Variables
     
-    let identities = ["", ""]
-    var ingredients = Ingredient.all
-//    var recipes = Recipes(from: 0, to: 0, count: 0, hits: [Hit]())
+//    let identities = ["", ""]
+    var ingredients: [Ingredient] { Ingredient.all }
     var recipes: Recipes?
     var images: UIImage?
     
@@ -90,13 +89,12 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
         let imageUrl: URL? = URL(string: imageStringURL)
         
         // Fill time
-        let time = hit?.recipe?.totalTime
-        let formatedTime = Recipe.formatedTime(time: time)
+        let time = hit?.recipe?.totalTime?.formatTime()
         
         cell.searchConfigureWith(imageUrl: imageUrl,
                                  recipe: recipeName,
                                  ingredients: ingredientsLines,
-                                 time: formatedTime)
+                                 time: time)
         
         return cell
     }
@@ -109,12 +107,36 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
         hide(button: true, activity: false)
 
         let apiClient = APIClient()
+        
+//        apiClient.search(from: recipes?.to, numberOfRecipesToFetch: numberOfRecipesToFetch, ingredients: ingredients) { (result, error) in
+//
+//            if result != nil {
+//
+//            guard let recipesResponse = result else {
+//                     return
+//                 }
+//
+//                 // add recipes
+//                 if self.recipes == nil {
+//                     self.recipes = Recipes(from: 0, to: numberOfRecipesToFetch, count: 0, hits: [Hit]())
+//                 }
+//                 self.recipes?.addRecipes(numberOfRecipesLoaded: numberOfRecipesLoaded,
+//                                          recipesResponse: recipesResponse, numberOfRecipesToFetch: numberOfRecipesToFetch)
+//
+//                 // update the tableView with the new datas
+//                 self.tableView.reloadData()
+//                 self.updateLoadButton()
+//                 self.hide(button: false, activity: true)
+//            } else if (error != nil) {
+//                print("debug error: \(String(describing: error))")
+//            }
+//        }
         apiClient.search(from: recipes?.to, numberOfRecipesToFetch: numberOfRecipesToFetch, ingredients: ingredients) { response in
-            
+
             switch response.result {
-                
+
             case .success:
-                
+
                 guard let recipesResponse = response.value else {
                     return
                 }
@@ -125,12 +147,12 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
                 }
                 self.recipes?.addRecipes(numberOfRecipesLoaded: numberOfRecipesLoaded,
                                          recipesResponse: recipesResponse, numberOfRecipesToFetch: numberOfRecipesToFetch)
-                
+
                 // update the tableView with the new datas
                 self.tableView.reloadData()
                 self.updateLoadButton()
                 self.hide(button: false, activity: true)
-                
+
             case let .failure(error):
                 print("""
                     debug error:
