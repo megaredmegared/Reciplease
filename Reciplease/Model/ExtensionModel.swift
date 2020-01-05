@@ -2,7 +2,6 @@
 import Foundation
 import UIKit
 
-
 extension String {
     /// check if word exist in English
     var isRealEnglishWord: Bool {
@@ -48,7 +47,6 @@ extension String {
         
         // delete duplicated names
         ingredientsNamesList = Array(Set(ingredientsNamesList))
-        
         
         return ingredientsNamesList
     }

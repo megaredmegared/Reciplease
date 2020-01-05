@@ -2,6 +2,7 @@
 import UIKit
 import CoreData
 
+/// Manage stored datas with CoreData
 class StorageManager {
     
     let persistentContainer: NSPersistentContainer?

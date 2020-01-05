@@ -74,6 +74,7 @@ class StorageManagerTestCase: XCTestCase {
         XCTAssertEqual(ingredients.count, 3)
         
         //MARK: - APIRouter
+        
         // create an APIRouter request
         let apiRouter = APIRouter.searchRecipe(from: 2, numberOfRecipesToFetch: 10, ingredients: ingredients)
         let url = try! APIRouter.asURLRequest(apiRouter)().url
@@ -97,8 +98,6 @@ class StorageManagerTestCase: XCTestCase {
         XCTAssertTrue(components?.queryItems?.contains(to) ?? false)
         XCTAssertTrue(components?.queryItems?.contains(time) ?? false)
         XCTAssertEqual(components?.queryItems?.count, 6)
-        
-
         
         //MARK: - Ingredient
         
@@ -171,6 +170,7 @@ class StorageManagerTestCase: XCTestCase {
         XCTAssertEqual(customStorageManager.fetchAllFavoritesRecipes().count, 3)
         
         // MARK: - FavoriteRecipe
+        
         let favoriteRecipe = recipes[0]
         if let recipe = FavoriteRecipe.transformFavoriteRecipeInRecipe(favoriteRecipe) {
             XCTAssertEqual(recipe.label, "ASIAN CHICKEN SALAD WITH GRILLED PINEAPPLE")

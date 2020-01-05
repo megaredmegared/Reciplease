@@ -108,58 +108,30 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
 
         let apiClient = APIClient()
         
-//        apiClient.search(from: recipes?.to, numberOfRecipesToFetch: numberOfRecipesToFetch, ingredients: ingredients) { (result, error) in
-//
-//            if result != nil {
-//
-//            guard let recipesResponse = result else {
-//                     return
-//                 }
-//
-//                 // add recipes
-//                 if self.recipes == nil {
-//                     self.recipes = Recipes(from: 0, to: numberOfRecipesToFetch, count: 0, hits: [Hit]())
-//                 }
-//                 self.recipes?.addRecipes(numberOfRecipesLoaded: numberOfRecipesLoaded,
-//                                          recipesResponse: recipesResponse, numberOfRecipesToFetch: numberOfRecipesToFetch)
-//
-//                 // update the tableView with the new datas
-//                 self.tableView.reloadData()
-//                 self.updateLoadButton()
-//                 self.hide(button: false, activity: true)
-//            } else if (error != nil) {
-//                print("debug error: \(String(describing: error))")
-//            }
-//        }
-        apiClient.search(from: recipes?.to, numberOfRecipesToFetch: numberOfRecipesToFetch, ingredients: ingredients) { response in
+        apiClient.search(from: recipes?.to, numberOfRecipesToFetch: numberOfRecipesToFetch, ingredients: ingredients) { (result, error) in
 
-            switch response.result {
+            if result != nil {
 
-            case .success:
+            guard let recipesResponse = result else {
+                     return
+                 }
 
-                guard let recipesResponse = response.value else {
-                    return
-                }
+                 // add recipes
+                 if self.recipes == nil {
+                     self.recipes = Recipes(from: 0, to: numberOfRecipesToFetch, count: 0, hits: [Hit]())
+                 }
+                 self.recipes?.addRecipes(numberOfRecipesLoaded: numberOfRecipesLoaded,
+                                          recipesResponse: recipesResponse, numberOfRecipesToFetch: numberOfRecipesToFetch)
 
-                // add recipes
-                if self.recipes == nil {
-                    self.recipes = Recipes(from: 0, to: numberOfRecipesToFetch, count: 0, hits: [Hit]())
-                }
-                self.recipes?.addRecipes(numberOfRecipesLoaded: numberOfRecipesLoaded,
-                                         recipesResponse: recipesResponse, numberOfRecipesToFetch: numberOfRecipesToFetch)
-
-                // update the tableView with the new datas
-                self.tableView.reloadData()
-                self.updateLoadButton()
-                self.hide(button: false, activity: true)
-
-            case let .failure(error):
-                print("""
-                    debug error:
-                    \(error)
-                    """)
+                 // update the tableView with the new datas
+                 self.tableView.reloadData()
+                 self.updateLoadButton()
+                 self.hide(button: false, activity: true)
+            } else if (error != nil) {
+                print("debug error: \(String(describing: error))")
             }
         }
+        
     }    
 }
 

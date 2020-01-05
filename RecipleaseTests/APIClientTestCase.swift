@@ -1,54 +1,117 @@
-//import XCTest
-//@testable import Reciplease
-//@testable import Alamofire
+import XCTest
+@testable import Reciplease
+@testable import Alamofire
 
-//class APIClientTestCase: XCTestCase {
-
-//    private var sut: APIClient!
-
-//    override func setUp() {
-//        super.setUp()
-//
-//        let manager: Session = {
-//            let configuration: URLSessionConfiguration = {
-//                let configuration = URLSessionConfiguration.default
-//                configuration.protocolClasses = [MockURLProtocol.self]
-//                return configuration
-//            }()
-//            return Session(configuration: configuration)
-//        }()
-//
-//        sut = APIClient(manager: manager)
-//    }
-
-//    override func tearDown() {
-//        // Put teardown code here. This method is called after the invocation of each test method in the class.
-//        super.tearDown()
-//
-//        sut = nil
-//    }
-
-//    func testPerformanceExample() {
-//        // This is an example of a performance test case.
-//        self.measure {
-//            // Put the code you want to measure the time of here.
-//        }
-//    }
+class APIClientTestCase: XCTestCase {
     
-//    func testStatusCode200ReturnsStatusCode200() {
-//        // given
-//        MockURLProtocol.responseWithStatusCode(code: 200)
-//
-//        let expectation = XCTestExpectation(description: "Performs a request")
-//
-//        // when
-//        sut.search(from: 2, numberOfRecipesToFetch: 20, ingredients: FakeData.ingredientsSearch1, completionHandler: { (response) in
-//            XCTAssertEqual(response.response?.statusCode, 200)
-//            expectation.fulfill()
-//        })
-//
-//        // then
-//        wait(for: [expectation], timeout: 3)
-//    }
-
-//}
+    /// test all good
+    func testGivenAllGood_WhenPostCallBack_ThenSuccesCallBackAndData() {
+        
+        // Given
+        let apiClient = APIClient(APIClientNetworkMock(
+            data: FakeResponseData.fakeRecipes,
+            response: FakeResponseData.responseOK,
+            error: nil))
+        
+        // When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        apiClient.search(from: 0, numberOfRecipesToFetch: 3, ingredients: []) { (result, error) in
+            
+            // Then
+            let count = 203
+            let from = 0
+            let to = 3
+            
+            XCTAssertEqual(result?.count, count)
+            XCTAssertEqual(result?.from, from)
+            XCTAssertEqual(result?.to, to)
+            XCTAssertNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    // Testing error
+    func testGivenError_WhenPostCallBack_ThenFailedCallBack() {
+        
+        // Given
+        let apiClient = APIClient(APIClientNetworkMock(
+            data: nil,
+            response: nil,
+            error: FakeResponseData.error))
+        
+        // When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        apiClient.search(from: 0, numberOfRecipesToFetch: 3, ingredients: []) { (result, error) in
+            
+            // Then
+            XCTAssertNil(result)
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    // Testing bad response
+    func testGivenBadResponse_WhenPostCallBack_ThenFailedCallBack() {
+        
+        // Given
+        let apiClient = APIClient(APIClientNetworkMock(
+            data: FakeResponseData.fakeRecipes,
+            response: FakeResponseData.responseKO,
+            error: nil))
+        
+        // When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        apiClient.search(from: 0, numberOfRecipesToFetch: 3, ingredients: []) { (result, error) in
+            
+            // Then
+            XCTAssertNil(result)
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    /// Testing bad data
+    func testGivenBadData_WhenPostCallBack_ThenFailedCallBack() {
+        
+        // Given
+        let apiClient = APIClient(APIClientNetworkMock(
+            data: FakeResponseData.incorrectData,
+            response: FakeResponseData.responseOK,
+            error: nil))
+        
+        // When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        apiClient.search(from: 0, numberOfRecipesToFetch: 3, ingredients: []) { (result, error) in
+            
+            // Then
+            XCTAssertNil(result)
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+     /// Testing no response, no data
+    func testGivenNoData_WhenPostCallBack_ThenFailedCallBack() {
+        
+        // Given
+        let apiClient = APIClient(APIClientNetworkMock(
+            data: nil,
+            response: nil,
+            error: nil))
+        
+        // When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        apiClient.search(from: 0, numberOfRecipesToFetch: 3, ingredients: []) { (result, error) in
+            
+            // Then
+            XCTAssertNil(result)
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+}

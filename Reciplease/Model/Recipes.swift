@@ -1,13 +1,7 @@
-//
-//  Recipe.swift
-//  Reciplease
-//
-//  Created by megared on 05/09/2019.
-//  Copyright © 2019 OpenClassrooms. All rights reserved.
-//
 
 import Foundation
 
+/// Recipes object: list of recipes
 struct Recipes: Codable {
     var from: Int?
     var to: Int?
@@ -18,9 +12,6 @@ struct Recipes: Codable {
 extension Recipes {
     mutating func addRecipes(numberOfRecipesLoaded: Int?, recipesResponse: Recipes?, numberOfRecipesToFetch: Int) {
 
-        // update "to" number
-//        self.to = numberOfRecipesLoaded
-        
         self.from = numberOfRecipesLoaded
         self.to = (self.from ?? 0) + (numberOfRecipesToFetch)
         
