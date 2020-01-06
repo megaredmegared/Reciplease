@@ -3,6 +3,10 @@ import Foundation
 @testable import Reciplease
 
 class FakeData {
+    static let q = "chicken, tomato, pineapple"
+    static let from = 0
+    static let to = 3
+    static let count = 203
     static let ingredients1 = [IngredientAPI(text: "2 tablespoons Dijon mustard"),
                                IngredientAPI(text: "1 tablespoon olive oil"),
                                IngredientAPI(text: "4 plum tomatoes, thinly sliced lengthwise"),

@@ -34,6 +34,7 @@
 		4D760AB2231AA86500B75C5E /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D760AB1231AA86500B75C5E /* ApiKeys.swift */; };
 		4D7DA4A222B1401700395680 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7DA4A122B1401700395680 /* SearchViewController.swift */; };
 		4DA9780D2341F58900E035D9 /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA9780C2341F58900E035D9 /* RecipesViewController.swift */; };
+		4DB80AF723C325FF002A0823 /* ExtensionModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB80AF623C325FF002A0823 /* ExtensionModelTestCase.swift */; };
 		4DC09E6423701B3A00F490B3 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC09E6323701B3A00F490B3 /* FakeResponseData.swift */; };
 		4DCA1F8A22F76079009ECE75 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA1F8922F76079009ECE75 /* TabBarViewController.swift */; };
 		4DCB02E623B8F04A0044DD50 /* APIClientTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB02E523B8F04A0044DD50 /* APIClientTestCase.swift */; };
@@ -94,6 +95,7 @@
 		4D760AB1231AA86500B75C5E /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		4D7DA4A122B1401700395680 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4DA9780C2341F58900E035D9 /* RecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
+		4DB80AF623C325FF002A0823 /* ExtensionModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionModelTestCase.swift; sourceTree = "<group>"; };
 		4DC09E6323701B3A00F490B3 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
 		4DCA1F8922F76079009ECE75 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		4DCB02E523B8F04A0044DD50 /* APIClientTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTestCase.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				4D23396923C23CB5000A52F8 /* APIClientNetworkMock.swift */,
 				4DCB02E523B8F04A0044DD50 /* APIClientTestCase.swift */,
 				4D6D64AD23A127F6001403BA /* FavoriteRecipeTestCase.swift */,
+				4DB80AF623C325FF002A0823 /* ExtensionModelTestCase.swift */,
 				4D44EBDA237E962A00EE01E9 /* StorageManagerTestCase.swift */,
 			);
 			path = RecipleaseTests;
@@ -520,6 +523,7 @@
 				4D6D64AE23A127F6001403BA /* FavoriteRecipeTestCase.swift in Sources */,
 				4D23396A23C23CB5000A52F8 /* APIClientNetworkMock.swift in Sources */,
 				4D44EBDB237E962A00EE01E9 /* StorageManagerTestCase.swift in Sources */,
+				4DB80AF723C325FF002A0823 /* ExtensionModelTestCase.swift in Sources */,
 				4D31B1652398FCFE00B171AB /* FakeData.swift in Sources */,
 				4DCB02E623B8F04A0044DD50 /* APIClientTestCase.swift in Sources */,
 			);

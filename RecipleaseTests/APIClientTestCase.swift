@@ -18,14 +18,18 @@ class APIClientTestCase: XCTestCase {
         apiClient.search(from: 0, numberOfRecipesToFetch: 3, ingredients: []) { (result, error) in
             
             // Then
-            let count = 203
-            let from = 0
-            let to = 3
-            
-            XCTAssertEqual(result?.count, count)
-            XCTAssertEqual(result?.from, from)
-            XCTAssertEqual(result?.to, to)
+            XCTAssertEqual(result?.count, FakeData.count)
+            XCTAssertEqual(result?.from, FakeData.from)
+            XCTAssertEqual(result?.to, FakeData.to)
             XCTAssertNil(error)
+//            XCTAssertEqual(result?.hits?[0].recipe?.ingredients?.count, FakeData.hits1[0].recipe?.ingredients?.count)
+            XCTAssertEqual(result?.hits?[0].recipe?.ingredients?[0].text, FakeData.hits1[0].recipe?.ingredients?[0].text)
+            XCTAssertEqual(result?.hits?[0].recipe?.label, FakeData.hits1[0].recipe?.label)
+            XCTAssertEqual(result?.hits?[0].recipe?.image, FakeData.hits1[0].recipe?.image)
+            XCTAssertEqual(result?.hits?[0].recipe?.shareAs, FakeData.hits1[0].recipe?.shareAs)
+            XCTAssertEqual(result?.hits?[0].recipe?.uri, FakeData.hits1[0].recipe?.uri)
+            XCTAssertEqual(result?.hits?[0].recipe?.url, FakeData.hits1[0].recipe?.url)
+            XCTAssertEqual(result?.hits?[0].recipe?.totalTime, FakeData.hits1[0].recipe?.totalTime)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.01)

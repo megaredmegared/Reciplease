@@ -18,37 +18,37 @@ extension String {
         return self.filter {characters.contains($0) }
     }
     
-    /// Formating ingredient name
-    func formatIngredient() -> String? {
+    /// Formating word
+    func formatWord() -> String? {
         
         /// remove unwanted caracters and capitalize first letter of each word
-        let ingredientName = self
+        let word = self
             .allowedCharacters()
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .capitalized
         
         /// check if word exist
-        if ingredientName.isRealEnglishWord == false {
+        if word.isRealEnglishWord == false {
             return nil
         }
         /// return nil if empty String
-        if ingredientName.isEmpty {
+        if word.isEmpty {
             return nil
         }
-        return ingredientName
+        return word
     }
     
-    /// Separate multi ingredients entries by ","
+    /// Separate multi words entries by ","
     func formatList() -> [String] {
-        var ingredientsNamesList = self.components(separatedBy: ",")
+        var wordsList = self.components(separatedBy: ",")
         
         // Clean the name of the ingredient
-        ingredientsNamesList = ingredientsNamesList.compactMap({$0.formatIngredient()})
+        wordsList = wordsList.compactMap({$0.formatWord()})
         
         // delete duplicated names
-        ingredientsNamesList = Array(Set(ingredientsNamesList))
+        wordsList = Array(Set(wordsList))
         
-        return ingredientsNamesList
+        return wordsList
     }
 }
 
@@ -61,7 +61,7 @@ extension Double {
             return nil
         } else if (1..<60).contains(time) {
             return String(Int(time)) + "m"
-        } else if time == 60 {
+        } else if time.truncatingRemainder(dividingBy: 60) == 0  {
             let hours = time / 60
             return String(Int(hours)) + "h"
         } else {

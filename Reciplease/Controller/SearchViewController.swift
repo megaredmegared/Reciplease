@@ -23,9 +23,6 @@ class SearchViewController: UIViewController {
     } 
 }
 
-
-
-
 // MARK: - TableView list of ingredients
 
 extension SearchViewController: UITableViewDataSource {
@@ -61,7 +58,6 @@ extension SearchViewController {
     @IBAction func addIngredients() {
         guard let listOfNames = ingredientTextField.text else { return }
         
-//        let ingredientsNamesList = Ingredient.formatingList(listOfNames: listOfNames)
         let ingredientsNamesList = Ingredient.removeAlreadylistedIngredient(ingredientsNamesList: listOfNames.formatList())
         
         // Save the ingredients

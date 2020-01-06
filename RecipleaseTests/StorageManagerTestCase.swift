@@ -41,12 +41,12 @@ class StorageManagerTestCase: XCTestCase {
         }
         return container
     }()
-
+    
     override func setUp() {
         // Before each unit test, setUp is called, which creates a fresh, empty in-memory database for the test to use
         customStorageManager = StorageManager(container: mockPersistantContainer)
     }
-
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
@@ -66,7 +66,7 @@ class StorageManagerTestCase: XCTestCase {
         customStorageManager.insertIngredient(name: "Tomato", save: false)
         customStorageManager.insertIngredient(name: "Pinapple", save: true)
         let ingredients = customStorageManager.fetchAllIngredients()
-
+        
         // check there is 3 ordered ingredients
         XCTAssertEqual(ingredients[0].name, "Chicken")
         XCTAssertEqual(ingredients[1].name, "Pinapple")
@@ -91,12 +91,12 @@ class StorageManagerTestCase: XCTestCase {
         XCTAssertEqual(components?.scheme, "https")
         XCTAssertEqual(components?.host, "api.edamam.com")
         XCTAssertEqual(components?.path, "/search")
-        XCTAssertTrue(components?.queryItems?.contains(q) ?? false)
-        XCTAssertTrue(components?.queryItems?.contains(app_id) ?? false)
-        XCTAssertTrue(components?.queryItems?.contains(app_key) ?? false)
-        XCTAssertTrue(components?.queryItems?.contains(from) ?? false)
-        XCTAssertTrue(components?.queryItems?.contains(to) ?? false)
-        XCTAssertTrue(components?.queryItems?.contains(time) ?? false)
+        XCTAssertTrue((components?.queryItems?.contains(q))!)
+        XCTAssertTrue((components?.queryItems?.contains(app_id))!)
+        XCTAssertTrue((components?.queryItems?.contains(app_key))!)
+        XCTAssertTrue((components?.queryItems?.contains(from))!)
+        XCTAssertTrue((components?.queryItems?.contains(to))!)
+        XCTAssertTrue((components?.queryItems?.contains(time))!)
         XCTAssertEqual(components?.queryItems?.count, 6)
         
         //MARK: - Ingredient
@@ -105,26 +105,13 @@ class StorageManagerTestCase: XCTestCase {
         
         let arrayOfIngredient = stringOfIngredients.formatList()
         
+        // remove one ingredient
         let listOfIngredients = Ingredient.removeAlreadylistedIngredient(ingredientsNamesList: arrayOfIngredient, ingredients: ingredients)
         
-        
-        XCTAssertEqual(listOfIngredients.sorted(), ["Butter", "Tomato Juice", "Big Mac"].sorted())
-        
-        // check by element
-        if let getBigMac = listOfIngredients.firstIndex(of: "Big Mac") {
-                         XCTAssertEqual(listOfIngredients[getBigMac], "Big Mac")
-                     }
-               
-               if let getTomatoJuice = listOfIngredients.firstIndex(of: "Tomato Juice") {
-                   XCTAssertEqual(listOfIngredients[getTomatoJuice], "Tomato Juice")
-               }
-               
-               if let getButter = listOfIngredients.firstIndex(of: "Butter") {
-                   XCTAssertEqual(listOfIngredients[getButter], "Butter")
-               }
-               
-               XCTAssertEqual(listOfIngredients.count, 3)
-        
+        XCTAssertTrue(listOfIngredients.contains("Big Mac"))
+        XCTAssertTrue(listOfIngredients.contains("Tomato Juice"))
+        XCTAssertTrue(listOfIngredients.contains("Butter"))
+        XCTAssertEqual(listOfIngredients.count, 3)
     }
     
     func testNoRecipeAdd4AndRemoveOneThen3OrderedRecipes() {
@@ -185,5 +172,5 @@ class StorageManagerTestCase: XCTestCase {
         
         
     }
-       
+    
 }
