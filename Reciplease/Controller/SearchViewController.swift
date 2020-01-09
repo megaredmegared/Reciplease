@@ -61,9 +61,8 @@ extension SearchViewController {
         let ingredientsNamesList = Ingredient.removeAlreadylistedIngredient(ingredientsNamesList: listOfNames.formatList())
         
         // Save the ingredients
-        for ingredientName in ingredientsNamesList {
-            storageManager.insertIngredient(name: ingredientName, save: true)
-        }
+        storageManager.insertMultiIngredients(ingredientsNames: ingredientsNamesList, save: true)
+        
         // Reset ingredient text field
         ingredientTextField.text = ""
         listIngredients.reloadData()

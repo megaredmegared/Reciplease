@@ -53,7 +53,7 @@ class DetailsViewController: UIViewController {
     
     /// Update star Button
     private func updateStarButton() {
-        if recipe?.isFavorite == true {
+        if recipe?.isFavorite() == true {
             starFavorite.image = .starFilled
         } else {
             starFavorite.image = .starEmpty
@@ -62,7 +62,7 @@ class DetailsViewController: UIViewController {
     
     /// add or delete from favorite
     private func addOrDeleteFavorite() {
-        if recipe?.isFavorite == false {
+        if recipe?.isFavorite() == false {
             addFavorite()
         } else {
             deleteFavorite()

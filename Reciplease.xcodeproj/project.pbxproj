@@ -35,6 +35,7 @@
 		4D7DA4A222B1401700395680 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7DA4A122B1401700395680 /* SearchViewController.swift */; };
 		4DA9780D2341F58900E035D9 /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA9780C2341F58900E035D9 /* RecipesViewController.swift */; };
 		4DB80AF723C325FF002A0823 /* ExtensionModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB80AF623C325FF002A0823 /* ExtensionModelTestCase.swift */; };
+		4DB80AFD23C377FC002A0823 /* RecipesTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB80AFC23C377FC002A0823 /* RecipesTestCase.swift */; };
 		4DC09E6423701B3A00F490B3 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC09E6323701B3A00F490B3 /* FakeResponseData.swift */; };
 		4DCA1F8A22F76079009ECE75 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA1F8922F76079009ECE75 /* TabBarViewController.swift */; };
 		4DCB02E623B8F04A0044DD50 /* APIClientTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB02E523B8F04A0044DD50 /* APIClientTestCase.swift */; };
@@ -96,6 +97,7 @@
 		4D7DA4A122B1401700395680 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4DA9780C2341F58900E035D9 /* RecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
 		4DB80AF623C325FF002A0823 /* ExtensionModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionModelTestCase.swift; sourceTree = "<group>"; };
+		4DB80AFC23C377FC002A0823 /* RecipesTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesTestCase.swift; sourceTree = "<group>"; };
 		4DC09E6323701B3A00F490B3 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
 		4DCA1F8922F76079009ECE75 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		4DCB02E523B8F04A0044DD50 /* APIClientTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTestCase.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				4D12906F2321461C0099E2DC /* FakeRecipesJson.json */,
 				4D31B1642398FCFE00B171AB /* FakeData.swift */,
 				4D42DA9422B12873006B5A9F /* Info.plist */,
+				4DB80AFC23C377FC002A0823 /* RecipesTestCase.swift */,
 				4DC09E6323701B3A00F490B3 /* FakeResponseData.swift */,
 				4D23396923C23CB5000A52F8 /* APIClientNetworkMock.swift */,
 				4DCB02E523B8F04A0044DD50 /* APIClientTestCase.swift */,
@@ -526,6 +529,7 @@
 				4DB80AF723C325FF002A0823 /* ExtensionModelTestCase.swift in Sources */,
 				4D31B1652398FCFE00B171AB /* FakeData.swift in Sources */,
 				4DCB02E623B8F04A0044DD50 /* APIClientTestCase.swift in Sources */,
+				4DB80AFD23C377FC002A0823 /* RecipesTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

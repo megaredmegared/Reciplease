@@ -78,6 +78,33 @@ class ExtensionModelTestCase: XCTestCase {
         XCTAssertEqual(34.0.formatTime(), "34m")
         XCTAssertEqual(60.0.formatTime(), "1h")
         XCTAssertEqual(120.0.formatTime(), "2h")
+        XCTAssertEqual(1.formatTime(), "1m")
+        XCTAssertNil((-34).formatTime())
         XCTAssertNil(0.0.formatTime())
     }
+    
+        // MARK: - Test % encoding
+//    func testGivenStringWithWhiteSpacesWhenPercentageEncodingThenNoMoreWhiteSpace() {
+//        let myString = "nnn   n"
+//        
+//        .addingPercentEncodingForURLQueryAllowed()
+//        
+//        XCTAssertEqual(myString, "nnn%20%20%20n")
+//    }
+//    
+//    func testGivenStringWithNoWhiteSpacesWhenPercentageEncodingThenNoChanges() {
+//         let myString = "nnnn"
+//         
+//         .addingPercentEncodingForURLQueryAllowed()
+//         
+//         XCTAssertEqual(myString, "nnnn")
+//     }
+// 
+//    func testGivenStringWithNoWhiteSpacesWhenPercentageEncodingThenNoChangess() {
+//          let myString = "2606:2800:220:1:248:1893:25c8:1946"
+//          
+//        .addingPercentEncodingForURLQueryAllowed()
+//        
+//          XCTAssertEqual(myString, "")
+//      }
 }

@@ -24,7 +24,7 @@ class APIClient {
         self.network = network
     }
 
-    func search(from: Int?, numberOfRecipesToFetch: Int, ingredients: [Ingredient], completionHandler: @escaping (Recipes?, Error?) -> Void) {
+    func search(from: Int?, numberOfRecipesToFetch: Int, ingredients: [Ingredient], completionHandler: @escaping (Recipes?, Error?)  -> Void) {
 
         do {
             network.get(request: try APIRouter.searchRecipe(from: from, numberOfRecipesToFetch: numberOfRecipesToFetch, ingredients: ingredients).asURLRequest()) { (result: Recipes?, error: Error?) in
@@ -34,4 +34,15 @@ class APIClient {
             completionHandler(nil, error)
         }
     }
+    
+//    func search(from: Int?, numberOfRecipesToFetch: Int, ingredients: [Ingredient], completionHandler: @escaping (Recipes?, Error?) -> Void) {
+//
+//        do {
+//            network.get(request: try APIRouter.searchRecipe(from: from, numberOfRecipesToFetch: numberOfRecipesToFetch, ingredients: ingredients).asURLRequest()) { (result: Recipes?, error: Error?) in
+//                completionHandler(result, error)
+//            }
+//        } catch {
+//            completionHandler(nil, error)
+//        }
+//    }
 }

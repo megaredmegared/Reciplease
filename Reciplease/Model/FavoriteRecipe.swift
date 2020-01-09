@@ -21,9 +21,11 @@ extension FavoriteRecipe {
         var recipe = Recipe()
         var ingredients = [IngredientAPI]()
         
-        for text in favoriteRecipe.ingredients ?? [String]() {
-            let ingredient = IngredientAPI(text: text)
-            ingredients.append(ingredient)
+        if let favoriteRecipeIngredients = favoriteRecipe.ingredients {
+            for text in favoriteRecipeIngredients {
+                let ingredient = IngredientAPI(text: text)
+                ingredients.append(ingredient)
+            }
         }
         
         recipe.label = favoriteRecipe.name
@@ -36,5 +38,7 @@ extension FavoriteRecipe {
         return recipe
     }
 }
+
+
 
 

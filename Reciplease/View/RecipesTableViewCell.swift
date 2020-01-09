@@ -53,9 +53,9 @@ class RecipesTableViewCell: UITableViewCell {
     /// Configure cell for favorite tableView
     func favoriteConfigureWith(recipe: String?, ingredients: String?, imageThumbnail: UIImage?, time: String?) {
         recipeImage.image = imageThumbnail
-        recipeTitle.text = recipe
+        recipeTitle.text = recipe ?? "No Title"
         ingredientTitle.text = ingredients
-        timeLabel.text = time
+        timeLabel.text = time ?? "no time indicated"
     }
     
 }

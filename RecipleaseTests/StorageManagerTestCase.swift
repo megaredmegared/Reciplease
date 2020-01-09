@@ -58,20 +58,41 @@ class StorageManagerTestCase: XCTestCase {
         }
         
         // check no ingredient
-        let rows = customStorageManager.fetchAllIngredients()
-        XCTAssertEqual(rows.count, 0)
+        var ingredients = customStorageManager.fetchAllIngredients()
+        XCTAssertEqual(ingredients.count, 0)
         
         // add 3 ingredients
         customStorageManager.insertIngredient(name: "Chicken", save: false)
         customStorageManager.insertIngredient(name: "Tomato", save: false)
         customStorageManager.insertIngredient(name: "Pinapple", save: true)
-        let ingredients = customStorageManager.fetchAllIngredients()
+        ingredients = customStorageManager.fetchAllIngredients()
         
         // check there is 3 ordered ingredients
         XCTAssertEqual(ingredients[0].name, "Chicken")
         XCTAssertEqual(ingredients[1].name, "Pinapple")
         XCTAssertEqual(ingredients[2].name, "Tomato")
         XCTAssertEqual(ingredients.count, 3)
+        
+        //MARK: - Ingredient
+        
+        let stringOfIngredients = "butter,  kjh, tomato juice, big Mac 45, , tomato, pinapple"
+        
+        let arrayOfIngredient = stringOfIngredients.formatList()
+        
+        // remove one ingredient
+        let listOfIngredients = Ingredient.removeAlreadylistedIngredient(ingredientsNamesList: arrayOfIngredient, ingredients: ingredients)
+        
+        // add list to existing list
+        customStorageManager.insertMultiIngredients(ingredientsNames: listOfIngredients, save: true)
+        
+        ingredients = customStorageManager.fetchAllIngredients()
+        XCTAssertEqual(ingredients[0].name, "Big Mac")
+        XCTAssertEqual(ingredients[1].name, "Butter")
+        XCTAssertEqual(ingredients[2].name, "Chicken")
+        XCTAssertEqual(ingredients[3].name, "Pinapple")
+        XCTAssertEqual(ingredients[4].name, "Tomato")
+        XCTAssertEqual(ingredients[5].name, "Tomato Juice")
+        XCTAssertEqual(ingredients.count, 6)
         
         //MARK: - APIRouter
         
@@ -81,7 +102,7 @@ class StorageManagerTestCase: XCTestCase {
         
         // test the URL parts of the APIRouter request
         let components = URLComponents(url: url!, resolvingAgainstBaseURL: false)
-        let q = URLQueryItem(name: "q", value: "Chicken,Pinapple,Tomato")
+        let q = URLQueryItem(name: "q", value: "Big Mac,Butter,Chicken,Pinapple,Tomato,Tomato Juice")
         let app_id = URLQueryItem(name: "app_id", value: "\(ApiKeys.appID)")
         let app_key = URLQueryItem(name: "app_key", value: "\(ApiKeys.appKey)")
         let from = URLQueryItem(name: "from", value: "2")
@@ -98,31 +119,19 @@ class StorageManagerTestCase: XCTestCase {
         XCTAssertTrue((components?.queryItems?.contains(to))!)
         XCTAssertTrue((components?.queryItems?.contains(time))!)
         XCTAssertEqual(components?.queryItems?.count, 6)
-        
-        //MARK: - Ingredient
-        
-        let stringOfIngredients = "butter,  kjh, tomato juice, big Mac 45, , tomato"
-        
-        let arrayOfIngredient = stringOfIngredients.formatList()
-        
-        // remove one ingredient
-        let listOfIngredients = Ingredient.removeAlreadylistedIngredient(ingredientsNamesList: arrayOfIngredient, ingredients: ingredients)
-        
-        XCTAssertTrue(listOfIngredients.contains("Big Mac"))
-        XCTAssertTrue(listOfIngredients.contains("Tomato Juice"))
-        XCTAssertTrue(listOfIngredients.contains("Butter"))
-        XCTAssertEqual(listOfIngredients.count, 3)
     }
     
-    func testNoRecipeAdd4AndRemoveOneThen3OrderedRecipes() {
+    //MARK: - FavoriteRecipe
+    
+    func testNoFavoriteRecipeAdd4AndRemoveOneThen3OrderedRecipes() {
         guard let customStorageManager = self.customStorageManager else {
             XCTFail()
             return
         }
         
         // check no recipe
-        let rows = customStorageManager.fetchAllFavoritesRecipes()
-        XCTAssertEqual(rows.count, 0)
+        var favoritesRecipes = customStorageManager.fetchAllFavoritesRecipes()
+        XCTAssertEqual(favoritesRecipes.count, 0)
         
         // add 3 recipes
         customStorageManager.insertFavoriteRecipe(FakeData.recipe1, image: FakeData.imageData, thumbnail: FakeData.imageThumbnailData, save: false)
@@ -131,34 +140,34 @@ class StorageManagerTestCase: XCTestCase {
         customStorageManager.insertFavoriteRecipe(FakeData.recipe3, image: nil, thumbnail: nil, save: true)
         
         // remove one recipe
-        var recipes = customStorageManager.fetchAllFavoritesRecipes()
-        let objectID = recipes[3].objectID
+        favoritesRecipes = customStorageManager.fetchAllFavoritesRecipes()
+        let objectID = favoritesRecipes[3].objectID
         customStorageManager.remove(objectID: objectID, save: true)
         // update recipe
-        recipes = customStorageManager.fetchAllFavoritesRecipes()
+        favoritesRecipes = customStorageManager.fetchAllFavoritesRecipes()
         
         // check there is 3 ordered recipes
         let imageData = "image".data(using: .utf8)!
         let imageThumbnailData = "imageThumbnail".data(using: .utf8)!
         
-        XCTAssertEqual(recipes[0].name, "ASIAN CHICKEN SALAD WITH GRILLED PINEAPPLE")
+        XCTAssertEqual(favoritesRecipes[0].name, "ASIAN CHICKEN SALAD WITH GRILLED PINEAPPLE")
         
-        XCTAssertEqual(recipes[0].image, imageData)
-        XCTAssertEqual(recipes[0].imageThumbnail, imageThumbnailData)
+        XCTAssertEqual(favoritesRecipes[0].image, imageData)
+        XCTAssertEqual(favoritesRecipes[0].imageThumbnail, imageThumbnailData)
         
-        XCTAssertEqual(recipes[1].name, "Chicken and Pineapple Salad")
-        XCTAssertEqual(recipes[1].image, imageData)
-        XCTAssertEqual(recipes[1].imageThumbnail, imageThumbnailData)
+        XCTAssertEqual(favoritesRecipes[1].name, "Chicken and Pineapple Salad")
+        XCTAssertEqual(favoritesRecipes[1].image, imageData)
+        XCTAssertEqual(favoritesRecipes[1].imageThumbnail, imageThumbnailData)
         
-        XCTAssertEqual(recipes[2].name, "Pineapple-Tomato Salsa")
-        XCTAssertNil(recipes[2].image)
-        XCTAssertNil(recipes[2].imageThumbnail)
+        XCTAssertEqual(favoritesRecipes[2].name, "Pineapple-Tomato Salsa")
+        XCTAssertNil(favoritesRecipes[2].image)
+        XCTAssertNil(favoritesRecipes[2].imageThumbnail)
         
         XCTAssertEqual(customStorageManager.fetchAllFavoritesRecipes().count, 3)
         
         // MARK: - FavoriteRecipe
         
-        let favoriteRecipe = recipes[0]
+        let favoriteRecipe = favoritesRecipes[0]
         if let recipe = FavoriteRecipe.transformFavoriteRecipeInRecipe(favoriteRecipe) {
             XCTAssertEqual(recipe.label, "ASIAN CHICKEN SALAD WITH GRILLED PINEAPPLE")
             XCTAssertEqual(recipe.ingredients?[0].text, "2 pieces grilled chicken breast")
@@ -168,9 +177,35 @@ class StorageManagerTestCase: XCTestCase {
             XCTAssertEqual(recipe.uri, "http://www.edamam.com/ontologies/edamam.owl#recipe_2b1e27b21abfacab4e81b4b220ee9225")
             XCTAssertEqual(recipe.url, "https://food52.com/recipes/16604-asian-chicken-salad-with-grilled-pineapple")
             XCTAssertEqual(recipe.totalTime, 313.0)
+            
+            // MARK: - Recipe
+            
+            // test is in favourite must be true
+            let allFavouritesRecipes = customStorageManager.fetchAllFavoritesRecipes()
+            XCTAssertEqual(recipe.isFavorite(favoritesRecipes: allFavouritesRecipes), true)
         }
-        
-        
     }
     
+//    func testNoIngredientAdd3Then3OrderedIngredients_Fail() {
+//    guard let customStorageManager = self.customStorageManager else {
+//        XCTFail()
+//        return
+//    }
+//    
+//    // check no ingredient
+//    var ingredients = customStorageManager.fetchAllIngredients()
+//    XCTAssertEqual(ingredients.count, 0)
+//    
+//    // add 3 ingredients
+//    customStorageManager.insertIngredient(name: "Chicken", save: false)
+//    customStorageManager.insertIngredient(name: "Tomato", save: false)
+//    customStorageManager.insertIngredient(name: "Pinapple", save: true)
+//    ingredients = customStorageManager.fetchAllIngredients()
+//    
+//    // check there is 3 ordered ingredients
+//    XCTAssertEqual(ingredients[0].name, "Chicken")
+//    XCTAssertEqual(ingredients[1].name, "Pinapple")
+//    XCTAssertEqual(ingredients[2].name, "Tomato")
+//    XCTAssertEqual(ingredients.count, 3)
+//    }
 }

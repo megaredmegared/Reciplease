@@ -9,7 +9,7 @@ class FakeData {
     static let count = 203
     static let ingredients1 = [IngredientAPI(text: "2 tablespoons Dijon mustard"),
                                IngredientAPI(text: "1 tablespoon olive oil"),
-                               IngredientAPI(text: "4 plum tomatoes, thinly sliced lengthwise"),
+                               IngredientAPI(text: "1/4 cup freshly squeezed lime juice"),
                                IngredientAPI(text: "Salt and pepper")]
     
     static let recipe1 = Recipe(label: "Chicken and Pineapple Salad",
@@ -34,7 +34,7 @@ class FakeData {
     
     static let ingredients3 = [IngredientAPI(text: "1 lb. ripe tomatoes"),
                                IngredientAPI(text: "2 c. chopped fresh pineapple"),
-                               IngredientAPI(text: "2 tsp. chopped fresh tarragon leaves")]
+                               IngredientAPI(text: "1 tbsp. fresh lemon juice")]
     
     static let recipe3 = Recipe(label: "Pineapple-Tomato Salsa",
                                 image: "https://www.edamam.com/web-img/0f2/0f27daa0493617c2e5b8845c7950b35b.jpg",
@@ -48,7 +48,17 @@ class FakeData {
                                Hit.init(recipe: recipe2),
                                Hit.init(recipe: recipe3)]
     
-    static let recipes1: Recipes = Recipes(from: 0, to: 2, count: 3, hits: hits1)
+    static let hits2: [Hit] = [Hit.init(recipe: recipe1)]
+    
+    static let hits3: [Hit] = [Hit.init(recipe: recipe2),
+                               Hit.init(recipe: recipe3)]
+    
+    static let recipes1: Recipes = Recipes(from: from.self, to: to.self, count: count.self, hits: hits1)
+    
+    static let recipes2: Recipes = Recipes(from: from.self, to: to.self, count: count.self, hits: hits2)
+    
+    static let recipes3: Recipes = Recipes(from: from.self, to: to.self, count: count.self, hits: hits3)
+    
     
     static let ingredientsSearch1: [Ingredient] = Ingredient.all
     

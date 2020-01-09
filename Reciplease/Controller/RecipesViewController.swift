@@ -13,7 +13,7 @@ class RecipesViewController: UIViewController {
     
 //    let identities = ["", ""]
     var ingredients: [Ingredient] { Ingredient.all }
-    var recipes: Recipes?
+    var recipes: Recipes = Recipes(from: nil, to: nil, count: nil, hits: [Hit]())
     var images: UIImage?
     
     // MARK: - viewDidLoad()
@@ -47,8 +47,8 @@ class RecipesViewController: UIViewController {
     
     /// Update the text of the loadMoreButton
     private func updateLoadButton() {
-        let numberOfRecipesLoaded = recipes?.hits?.count ?? 0
-        let totalRecipes = recipes?.count ?? 0
+        let numberOfRecipesLoaded = recipes.hits?.count ?? 0
+        let totalRecipes = recipes.count ?? 0
         if numberOfRecipesLoaded < totalRecipes {
             loadMoreButton.setTitle("\(numberOfRecipesLoaded) recipes + load more recipes...", for: .normal)
         } else {
@@ -69,7 +69,7 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.recipes?.hits?.count ?? 0
+        return self.recipes.hits?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,7 +77,7 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let hit = self.recipes?.hits?[indexPath.row]
+        let hit = self.recipes.hits?[indexPath.row]
         let recipeName = hit?.recipe?.label
         
         // Fill all the ingredients names in one ingredientsNames String
@@ -102,36 +102,33 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: - Search recipes
     
     private func searchRecipes() {
-        let numberOfRecipesLoaded = self.recipes?.hits?.count
-        let numberOfRecipesToFetch = 2
+        let numberOfRecipesLoaded = self.recipes.hits?.count ?? 0
+        let numberOfRecipesToFetch = 20
         hide(button: true, activity: false)
-
+        
         let apiClient = APIClient()
         
-        apiClient.search(from: recipes?.to, numberOfRecipesToFetch: numberOfRecipesToFetch, ingredients: ingredients) { (result, error) in
-
-            if result != nil {
-
-            guard let recipesResponse = result else {
-                     return
-                 }
-
-                 // add recipes
-                 if self.recipes == nil {
-                     self.recipes = Recipes(from: 0, to: numberOfRecipesToFetch, count: 0, hits: [Hit]())
-                 }
-                 self.recipes?.addRecipes(numberOfRecipesLoaded: numberOfRecipesLoaded,
-                                          recipesResponse: recipesResponse, numberOfRecipesToFetch: numberOfRecipesToFetch)
-
-                 // update the tableView with the new datas
-                 self.tableView.reloadData()
-                 self.updateLoadButton()
-                 self.hide(button: false, activity: true)
-            } else if (error != nil) {
-                print("debug error: \(String(describing: error))")
-            }
+        apiClient.search(from: recipes.to,
+                         numberOfRecipesToFetch: numberOfRecipesToFetch,
+                         ingredients: ingredients) { (result, error) in
+                            
+                            guard let result = result else { return }
+                            
+                            // add recipes
+                            self.recipes.addRecipes(numberOfRecipesLoaded: numberOfRecipesLoaded,
+                                                    recipesResponse: result,
+                                                    numberOfRecipesToFetch: numberOfRecipesToFetch)
+                            
+                            // update the tableView with the new datas
+                            self.tableView.reloadData()
+                            self.updateLoadButton()
+                            self.hide(button: false, activity: true)
+                            
+                            // check for error
+                            if error != nil {
+                                print("debug error: \(String(describing: error))")
+                            }
         }
-        
     }    
 }
 
@@ -160,7 +157,7 @@ extension RecipesViewController {
                 fatalError("sender is not a UITableViewCell or was not found in the tableView, or segue.identifier is incorrect")
         }
         // Pass the selected recipe to the DetailsViewController
-        let recipe = self.recipes?.hits?[selectedRowIndex].recipe
+        let recipe = self.recipes.hits?[selectedRowIndex].recipe
         
         let imageThumbnail = selectedCell.recipeImage.image
         let image = selectedCell.originalImage

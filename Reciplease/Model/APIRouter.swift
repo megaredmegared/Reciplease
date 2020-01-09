@@ -41,12 +41,20 @@ enum APIRouter: URLRequestConvertible {
         case .searchRecipe(let from, let numberOfRecipesToFetch, let ingredients):
             
             // make one string of ingredient with no white spaces
-            let ingredientLine = ingredients
+            var ingredientLine = ingredients
                 .compactMap({$0.name})
                 .joined(separator: ",")
-                .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+//                .addingPercentEncodingForURLQueryAllowed()
             
-            let fromInt = from ?? 0
+            if let percentEncoding = ingredientLine.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                ingredientLine = percentEncoding
+            }
+            
+            var fromInt = 0
+            if let from = from {
+                fromInt = from
+            }
+            
             let from = String(fromInt)
             let to = String((fromInt) + numberOfRecipesToFetch)
             let time = "1%2B"

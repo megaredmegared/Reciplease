@@ -3,7 +3,6 @@ import Foundation
 import UIKit
 
 extension String {
-    
     /// Cell identifier for ingredient
     static let ingredientCell = "IngredientCell"
     /// Cell identifier for custom cell RecipesTableViewCell
@@ -14,8 +13,6 @@ extension String {
     static let segueRecipeDetails = "SegueRecipeDetails"
     /// Segue identifier from favorite to detailsView
     static let segueFavoritesDetails = "SegueFavoritesDetails"
-    
-    
 }
 
 extension UIImage {

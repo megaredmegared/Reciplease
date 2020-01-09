@@ -44,7 +44,12 @@ class StorageManager {
         favoriteRecipe.ingredients = ingredientsLines
         favoriteRecipe.imageThumbnail = thumbnail
         favoriteRecipe.image = image
-        favoriteRecipe.time = recipe?.totalTime ?? 0
+//        favoriteRecipe.time = recipe?.totalTime ?? 0
+        var totalTime = 0.0
+        if let time = recipe?.totalTime {
+            totalTime = time
+        }
+        favoriteRecipe.time = totalTime
         
         if save == true {
             self.save()
@@ -61,6 +66,17 @@ class StorageManager {
         }
     }
     
+    /// Create stored mutli ingredients
+    func insertMultiIngredients(ingredientsNames: [String], save: Bool) {
+        for name in ingredientsNames {
+            self.insertIngredient(name: name, save: false)
+        }
+        
+        if save == true {
+            self.save()
+        }
+    }
+    
     /// Read all favorites recipes
     func fetchAllFavoritesRecipes() -> [FavoriteRecipe] {
         let request: NSFetchRequest<FavoriteRecipe> = FavoriteRecipe.fetchRequest()
@@ -69,7 +85,7 @@ class StorageManager {
             NSSortDescriptor(key: "name", ascending: true)
         ]
         guard let favortiesRecipes = try? persistentContainer?.viewContext.fetch(request) else {
-            return []
+            return [FavoriteRecipe]()
         }
         return favortiesRecipes
     }
@@ -77,12 +93,12 @@ class StorageManager {
     /// Read all ingredients
     func fetchAllIngredients() -> [Ingredient] {
         let request: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
-        //  array of NSSortDescriptors to sort favoritesRecipes by name
+        //  array of NSSortDescriptors to sort ingredients by name
         request.sortDescriptors = [
             NSSortDescriptor(key: "name", ascending: true)
         ]
         guard let ingredients = try? persistentContainer?.viewContext.fetch(request) else {
-            return []
+            return [Ingredient]()
         }
         return ingredients
     }

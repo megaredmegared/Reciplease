@@ -3,23 +3,30 @@ import Foundation
 
 /// Recipes object: list of recipes
 struct Recipes: Codable {
-    var from: Int?
+    var from: Int? = 0
     var to: Int?
     var count: Int?
     var hits: [Hit]?
 }
 
 extension Recipes {
-    mutating func addRecipes(numberOfRecipesLoaded: Int?, recipesResponse: Recipes?, numberOfRecipesToFetch: Int) {
+    mutating func addRecipes(numberOfRecipesLoaded: Int,
+                             recipesResponse: Recipes?,
+                             numberOfRecipesToFetch: Int) {
+        
 
         self.from = numberOfRecipesLoaded
-        self.to = (self.from ?? 0) + (numberOfRecipesToFetch)
+        self.to = (numberOfRecipesLoaded) + (numberOfRecipesToFetch)
+
         
         // add new fetched recipes
-        self.hits?.append(contentsOf: recipesResponse?.hits ?? [])
+        if let hits  = recipesResponse?.hits {
+            self.hits?.append(contentsOf: hits)
+        }
         
         // fetch the total existing recipes
-        self.count = recipesResponse?.count
+        
+        self.count = recipesResponse?.count ?? self.count
     }
 }
 
@@ -40,13 +47,12 @@ struct Recipe: Codable {
 extension Recipe {
     
     /// Check if a recipe is already marked as favorite
-    var isFavorite: Bool {
+    func isFavorite(favoritesRecipes: [FavoriteRecipe] = FavoriteRecipe.all) -> Bool {
         
-        if FavoriteRecipe.all.contains(where: {$0.uri == uri}) {
+        if favoritesRecipes.contains(where: {$0.uri == uri}) {
             return true
-        } else {
-            return false
         }
+        return false
     }
 }
 

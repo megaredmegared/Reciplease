@@ -21,9 +21,14 @@ class APIClientNetworkMock: APIClientNetworkProtocol {
         guard let response = self.response,
             response.statusCode == 200,
             let data = data,
-            self.error == nil,
-            let value = try? decoder.decode(T.self , from: data)
-            else { return completionHandler(nil, FakeResponseData.error) }
+            self.error == nil
+        else {
+            return completionHandler(nil, FakeResponseData.RecipesError.badResponse)
+        }
+        
+        guard let value = try? decoder.decode(T.self , from: data) else {
+            return completionHandler(nil, FakeResponseData.RecipesError.badData)
+        }
         
         completionHandler(value, nil)
         
