@@ -136,7 +136,9 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
                             // check for error
                             if let error = error {
                                 
+                                #if DEBUG
                                 print("debug error: \(error))")
+                                #endif
                                 
                                 self.presentAlert(title: "Network connexion failure !", message: "Please, retry later...")
                             }
