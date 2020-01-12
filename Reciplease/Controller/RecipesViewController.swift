@@ -11,7 +11,7 @@ class RecipesViewController: UIViewController {
     
     // MARK: - Variables
     
-//    let identities = ["", ""]
+    //    let identities = ["", ""]
     var ingredients: [Ingredient] { Ingredient.all }
     var recipes: Recipes = Recipes(from: nil, to: nil, count: nil, hits: [Hit]())
     var images: UIImage?
@@ -28,6 +28,7 @@ class RecipesViewController: UIViewController {
         // Set the custom tableViewCell for the favoritesTableView
         let nibName = UINib(nibName: .recipesTableViewCell, bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: .recipesCell)
+        
     }
     
     // MARK: - viewWillAppear()
@@ -55,6 +56,13 @@ class RecipesViewController: UIViewController {
             loadMoreButton.setTitle("All \(String(numberOfRecipesLoaded)) recipes are loaded !", for: .disabled)
             loadMoreButton.isEnabled = false
         }
+    }
+    
+    /// Alert pop up message
+    private func presentAlert(title: String, message: String) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC, animated: true, completion: nil)
     }
 }
 
@@ -112,21 +120,25 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
                          numberOfRecipesToFetch: numberOfRecipesToFetch,
                          ingredients: ingredients) { (result, error) in
                             
-                            guard let result = result else { return }
-                            
-                            // add recipes
-                            self.recipes.addRecipes(numberOfRecipesLoaded: numberOfRecipesLoaded,
-                                                    recipesResponse: result,
-                                                    numberOfRecipesToFetch: numberOfRecipesToFetch)
-                            
-                            // update the tableView with the new datas
-                            self.tableView.reloadData()
-                            self.updateLoadButton()
-                            self.hide(button: false, activity: true)
+                            if let result = result {
+                                
+                                // add recipes
+                                self.recipes.addRecipes(numberOfRecipesLoaded: numberOfRecipesLoaded,
+                                                        recipesResponse: result,
+                                                        numberOfRecipesToFetch: numberOfRecipesToFetch)
+                                
+                                // update the tableView with the new datas
+                                self.tableView.reloadData()
+                                self.updateLoadButton()
+                                self.hide(button: false, activity: true)
+                            }
                             
                             // check for error
-                            if error != nil {
-                                print("debug error: \(String(describing: error))")
+                            if let error = error {
+                                
+                                print("debug error: \(error))")
+                                
+                                self.presentAlert(title: "Network connexion failure !", message: "Please, retry later...")
                             }
         }
     }    

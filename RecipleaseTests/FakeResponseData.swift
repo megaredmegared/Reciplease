@@ -18,6 +18,8 @@ class FakeResponseData {
         case badResponse
         case error
     }
+ 
+    
     
     /// Fake data KO
     static let incorrectData = "error".data(using: .utf8)!

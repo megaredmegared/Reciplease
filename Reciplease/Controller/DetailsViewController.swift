@@ -125,7 +125,7 @@ class DetailsViewController: UIViewController {
 extension DetailsViewController: SFSafariViewControllerDelegate {
     
     private func openSafariVC() {
-        let stringURL = recipe?.shareAs ?? ""
+        let stringURL = recipe?.url ?? ""
         let recipeURL = URL(string: stringURL)
         let safariVC = SFSafariViewController(url: recipeURL!)
         self.present(safariVC, animated: true, completion: nil)

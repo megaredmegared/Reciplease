@@ -2,9 +2,9 @@
 import Alamofire
 
 ///
-enum APIRouter: URLRequestConvertible {
-    
-    case searchRecipe(from: Int?, numberOfRecipesToFetch: Int, ingredients: [Ingredient])
+enum APIRouter: URLRequestConvertible, URLConvertible {
+
+    case searchRecipe(from: Int?, numberOfRecipesToFetch: Int, ingredients: [Ingredient], failRequest: Bool)
     
     // MARK: - HTTPMethod
     
@@ -38,7 +38,7 @@ enum APIRouter: URLRequestConvertible {
     
     private var parameters: Parameters? {
         switch self {
-        case .searchRecipe(let from, let numberOfRecipesToFetch, let ingredients):
+        case .searchRecipe(let from, let numberOfRecipesToFetch, let ingredients, let failRequest):
             
             // make one string of ingredient with no white spaces
             var ingredientLine = ingredients
@@ -57,18 +57,21 @@ enum APIRouter: URLRequestConvertible {
             
             let from = String(fromInt)
             let to = String((fromInt) + numberOfRecipesToFetch)
-            let time = "1%2B"
+            var time = "1%2B"
+            
+            if failRequest == true {
+                time = " "
+            }
+            
             return ["q": ingredientLine, "from": from, "to": to, "time": time]
         }
     }
     
-    // MARK: - URLRequestConvertible
+    // MARK: - URLConvertible
     
-    func asURLRequest() throws -> URLRequest {
-        
+    func asURL() throws -> URL {
         switch self {
         case .searchRecipe:
-            
             // convert parameters in one string because method is get and not post so no httpbody
             var parametersString = ""
             if let parameters = self.parameters as? [String: String] {
@@ -80,10 +83,20 @@ enum APIRouter: URLRequestConvertible {
             // concatenation of the elements in an URL
             let stringUrl = self.baseURL + self.path + parametersString
             let url = try stringUrl.asURL()
+            return url
+        }
+    }
+    
+        // MARK: - URLRequestConvertible
+    func asURLRequest() throws -> URLRequest {
+
+        switch self {
+        case .searchRecipe:
             
             // creation of the URLRequest
-            let urlRequest: URLRequest = try URLRequest(url: url, method:  HTTPMethod(rawValue: method.rawValue))
-                        
+            
+            let urlRequest: URLRequest = try URLRequest(url: self.asURL(), method:  HTTPMethod(rawValue: method.rawValue))
+
             return urlRequest
         }
     }

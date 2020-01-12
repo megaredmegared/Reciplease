@@ -97,7 +97,7 @@ class StorageManagerTestCase: XCTestCase {
         //MARK: - APIRouter
         
         // create an APIRouter request
-        let apiRouter = APIRouter.searchRecipe(from: 2, numberOfRecipesToFetch: 10, ingredients: ingredients)
+        let apiRouter = APIRouter.searchRecipe(from: 2, numberOfRecipesToFetch: 10, ingredients: ingredients, failRequest: false)
         let url = try! APIRouter.asURLRequest(apiRouter)().url
         
         // test the URL parts of the APIRouter request

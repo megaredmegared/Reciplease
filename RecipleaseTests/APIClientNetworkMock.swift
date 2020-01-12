@@ -4,9 +4,9 @@ import Foundation
 
 /// Mock call for testing
 class APIClientNetworkMock: APIClientNetworkProtocol {
-    var data: Data?
-    var response: HTTPURLResponse?
-    var error: Error?
+    private var data: Data?
+    private var response: HTTPURLResponse?
+    private var error: Error?
 
     init(data: Data?, response: HTTPURLResponse?, error: Error?) {
         self.data = data
@@ -18,16 +18,17 @@ class APIClientNetworkMock: APIClientNetworkProtocol {
         
         let decoder = JSONDecoder()
         
+        guard let data = data, let value = try? decoder.decode(T.self , from: data) else {
+            return completionHandler(nil, FakeResponseData.RecipesError.badData)
+        }
+        
         guard let response = self.response,
-            response.statusCode == 200,
-            let data = data,
-            self.error == nil
-        else {
+            response.statusCode == 200 else {
             return completionHandler(nil, FakeResponseData.RecipesError.badResponse)
         }
         
-        guard let value = try? decoder.decode(T.self , from: data) else {
-            return completionHandler(nil, FakeResponseData.RecipesError.badData)
+        guard self.error == nil else {
+            return completionHandler(nil, FakeResponseData.RecipesError.error)
         }
         
         completionHandler(value, nil)
