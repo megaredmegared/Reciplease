@@ -27,7 +27,7 @@ class APIClient {
     func search(from: Int?, numberOfRecipesToFetch: Int, ingredients: [Ingredient], failRequest: Bool = false, completionHandler: @escaping (Recipes?, Error?)  -> Void) {
         
         do {
-            network.get(request: try APIRouter.searchRecipe(from: from, numberOfRecipesToFetch: numberOfRecipesToFetch, ingredients: ingredients, failRequest: failRequest).asURLRequest()) { (result: Recipes?, error: Error?) in
+            network.get(request: try APIRouter.searchRecipe(from: from, numberOfRecipesToFetch: numberOfRecipesToFetch, ingredients: ingredients).asURLRequest()) { (result: Recipes?, error: Error?) in
                 completionHandler(result, error)
             }
         } catch {

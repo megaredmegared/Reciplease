@@ -145,29 +145,4 @@ class APIClientTestCase: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.01)
     }
-    
-    /// Testing bad Request
-       func testGivenBadRequest_ThenError() {
-           
-           // Given
-        let apiClient = APIClient(APIClientNetworkMock(
-            data: FakeResponseData.fakeRecipes,
-            response: FakeResponseData.responseOK,
-            error: nil))
-           
-           // When
-           let expectation = XCTestExpectation(description: "Wait for queue change.")
-           apiClient.search(from: 0, numberOfRecipesToFetch: 3, ingredients: [], failRequest: true) { (result, error) in
-            
-               // Then
-            XCTAssertNil(result)
-            XCTAssertNotNil(error)
-            if let error = error as? Alamofire.AFError {
-                XCTAssertTrue(error.isInvalidURLError)
-                XCTAssertFalse(error.isSessionTaskError)
-            }
-            expectation.fulfill()
-           }
-           wait(for: [expectation], timeout: 0.01)
-       }
 }
