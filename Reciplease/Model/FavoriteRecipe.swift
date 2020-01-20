@@ -22,12 +22,9 @@ extension FavoriteRecipe {
         var ingredients = [IngredientAPI]()
         
         if let favoriteRecipeIngredients = favoriteRecipe.ingredients {
-            for text in favoriteRecipeIngredients {
-                let ingredient = IngredientAPI(text: text)
-                ingredients.append(ingredient)
-            }
+            ingredients = favoriteRecipeIngredients.map { IngredientAPI(text: $0) }
         }
-        
+ 
         recipe.label = favoriteRecipe.name
         recipe.ingredients = ingredients
         recipe.shareAs = favoriteRecipe.shareAs

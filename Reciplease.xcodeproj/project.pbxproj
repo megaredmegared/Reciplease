@@ -29,6 +29,7 @@
 		4D44EBDB237E962A00EE01E9 /* StorageManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D44EBDA237E962A00EE01E9 /* StorageManagerTestCase.swift */; };
 		4D57A125232A3D6400C659F0 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D57A124232A3D6400C659F0 /* DetailsViewController.swift */; };
 		4D57A127232A842100C659F0 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D57A126232A842100C659F0 /* WebViewController.swift */; };
+		4D68A5A723D5C89600B36D70 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D68A5A623D5C89600B36D70 /* Log.swift */; };
 		4D6D64AE23A127F6001403BA /* FavoriteRecipeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6D64AD23A127F6001403BA /* FavoriteRecipeTestCase.swift */; };
 		4D760AB0231AA83500B75C5E /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D760AAF231AA83500B75C5E /* ApiKeys.plist */; };
 		4D760AB2231AA86500B75C5E /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D760AB1231AA86500B75C5E /* ApiKeys.swift */; };
@@ -91,6 +92,7 @@
 		4D44EBDA237E962A00EE01E9 /* StorageManagerTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManagerTestCase.swift; sourceTree = "<group>"; };
 		4D57A124232A3D6400C659F0 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		4D57A126232A842100C659F0 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		4D68A5A623D5C89600B36D70 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		4D6D64AD23A127F6001403BA /* FavoriteRecipeTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeTestCase.swift; sourceTree = "<group>"; };
 		4D760AAF231AA83500B75C5E /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		4D760AB1231AA86500B75C5E /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			children = (
 				4D760AB3231AA88300B75C5E /* Supporting files */,
 				4D42DA7A22B12871006B5A9F /* AppDelegate.swift */,
+				4D68A5A623D5C89600B36D70 /* Log.swift */,
 				4D42DA8422B12873006B5A9F /* Assets.xcassets */,
 				4D1B6B9622F6BB600025C936 /* Model */,
 				4D42DAAB22B12C29006B5A9F /* View */,
@@ -503,6 +506,7 @@
 				4D31B169239A500100B171AB /* ExtensionModel.swift in Sources */,
 				4D15AD9C22FAFB35007F25B6 /* Ingredient.swift in Sources */,
 				4DF2FA28232B8FCC000E77B8 /* RecipesTableViewCell.swift in Sources */,
+				4D68A5A723D5C89600B36D70 /* Log.swift in Sources */,
 				4DA9780D2341F58900E035D9 /* RecipesViewController.swift in Sources */,
 				4D44EBD9237D9E3A00EE01E9 /* StorageManager.swift in Sources */,
 				4D1B6B9822F6BB8A0025C936 /* APIRouter.swift in Sources */,

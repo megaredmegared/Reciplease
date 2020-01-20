@@ -10,22 +10,20 @@ struct Recipes: Codable {
 }
 
 extension Recipes {
+    /// function to add recipes to the list
     mutating func addRecipes(numberOfRecipesLoaded: Int,
                              recipesResponse: Recipes?,
                              numberOfRecipesToFetch: Int) {
         
-
         self.from = numberOfRecipesLoaded
         self.to = (numberOfRecipesLoaded) + (numberOfRecipesToFetch)
 
-        
         // add new fetched recipes
         if let hits  = recipesResponse?.hits {
             self.hits?.append(contentsOf: hits)
         }
         
         // fetch the total existing recipes
-        
         self.count = recipesResponse?.count ?? self.count
     }
 }

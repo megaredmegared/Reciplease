@@ -90,7 +90,7 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
         
         // Fill all the ingredients names in one ingredientsNames String
         let ingredients = hit?.recipe?.ingredients
-        let ingredientsLines = ingredients?.compactMap({$0.text}).formatListNames()
+        let ingredientsLines = ingredients?.compactMap({$0.text}).formatListWords()
         
         // Load image
         let imageStringURL = hit?.recipe?.image ?? "no Image URL"
@@ -168,6 +168,7 @@ extension RecipesViewController {
             else {
                 fatalError("sender is not a UITableViewCell or was not found in the tableView, or segue.identifier is incorrect")
         }
+        
         // Pass the selected recipe to the DetailsViewController
         let recipe = self.recipes.hits?[selectedRowIndex].recipe
         
@@ -178,8 +179,6 @@ extension RecipesViewController {
         
         details.recipe = recipe
         details.imageThumbnail = imageThumbnail
-        details.image = image
-        
+        details.image = image ?? UIImage.placeholderImage
     }
-    
 }

@@ -42,20 +42,14 @@ extension String {
     func formatList() -> [String] {
         var wordsList = self.components(separatedBy: ",")
         
-        // Clean the name of the ingredient
+        // Clean the words
         wordsList = wordsList.compactMap({$0.formatWord()})
         
-        // delete duplicated names
+        // delete duplicated words
         wordsList = Array(Set(wordsList))
         
         return wordsList
     }
-    
-    /// add % encoding for URL
-//    func addingPercentEncodingForURLQueryAllowed() -> String {
-//        self.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-//    }
-    
 }
 
 extension Double {

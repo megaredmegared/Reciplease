@@ -27,7 +27,7 @@ class RecipesTableViewCell: UITableViewCell {
         // fetch and cache images with Kingfisher
         let placeholder = UIImage.placeholderImage
         let processorThumbnail = DownsamplingImageProcessor(size: CGSize(width: 70, height: 70))
-            >> RoundCornerImageProcessor(cornerRadius: 35)
+            |> RoundCornerImageProcessor(cornerRadius: 35)
         
         recipeImage.kf.setImage(with: imageUrl,
                                 placeholder: placeholder,

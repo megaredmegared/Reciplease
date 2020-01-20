@@ -1,9 +1,9 @@
 
 import Alamofire
 
-///
+/// Construction of the URLRequest
 enum APIRouter: URLRequestConvertible, URLConvertible {
-
+    
     case searchRecipe(from: Int?, numberOfRecipesToFetch: Int, ingredients: [Ingredient])
     
     // MARK: - HTTPMethod
@@ -82,16 +82,15 @@ enum APIRouter: URLRequestConvertible, URLConvertible {
         }
     }
     
-        // MARK: - URLRequestConvertible
+    // MARK: - URLRequestConvertible
     func asURLRequest() throws -> URLRequest {
-
+        
         switch self {
         case .searchRecipe:
             
             // creation of the URLRequest
-            
             let urlRequest: URLRequest = try URLRequest(url: self.asURL(), method:  HTTPMethod(rawValue: method.rawValue))
-
+            
             return urlRequest
         }
     }

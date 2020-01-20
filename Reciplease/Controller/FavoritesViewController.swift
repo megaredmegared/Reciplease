@@ -77,7 +77,7 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         
         let imageThumbnail = UIImage(data: favoriteRecipe.imageThumbnail ?? defaultImageThumbnail!)
         
-        let ingredientsLines = ingredients?.formatListNames()
+        let ingredientsLines = ingredients?.formatListWords()
         
         // Fill time
         let time = favoriteRecipe.time.formatTime()
@@ -134,12 +134,9 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         
         let details = segue.destination as! DetailsViewController
         details.recipe = recipe
-        // FIXME: Optional????
         details.imageThumbnail = favoriteRecipe.imageThumbnail?.image ?? UIImage.placeholderImage
         details.image = favoriteRecipe.image?.image ?? UIImage.placeholderImage
-        
     }
-    
 }
 
 

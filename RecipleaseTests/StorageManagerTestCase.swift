@@ -1,10 +1,3 @@
-//
-//  StorageManagerTestCase.swift
-//  RecipleaseTests
-//
-//  Created by megared on 15/11/2019.
-//  Copyright © 2019 OpenClassrooms. All rights reserved.
-//
 
 import XCTest
 import CoreData
@@ -185,27 +178,4 @@ class StorageManagerTestCase: XCTestCase {
             XCTAssertEqual(recipe.isFavorite(favoritesRecipes: allFavouritesRecipes), true)
         }
     }
-    
-//    func testNoIngredientAdd3Then3OrderedIngredients_Fail() {
-//    guard let customStorageManager = self.customStorageManager else {
-//        XCTFail()
-//        return
-//    }
-//    
-//    // check no ingredient
-//    var ingredients = customStorageManager.fetchAllIngredients()
-//    XCTAssertEqual(ingredients.count, 0)
-//    
-//    // add 3 ingredients
-//    customStorageManager.insertIngredient(name: "Chicken", save: false)
-//    customStorageManager.insertIngredient(name: "Tomato", save: false)
-//    customStorageManager.insertIngredient(name: "Pinapple", save: true)
-//    ingredients = customStorageManager.fetchAllIngredients()
-//    
-//    // check there is 3 ordered ingredients
-//    XCTAssertEqual(ingredients[0].name, "Chicken")
-//    XCTAssertEqual(ingredients[1].name, "Pinapple")
-//    XCTAssertEqual(ingredients[2].name, "Tomato")
-//    XCTAssertEqual(ingredients.count, 3)
-//    }
 }

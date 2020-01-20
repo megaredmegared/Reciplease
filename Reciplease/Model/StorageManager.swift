@@ -44,7 +44,7 @@ class StorageManager {
         favoriteRecipe.ingredients = ingredientsLines
         favoriteRecipe.imageThumbnail = thumbnail
         favoriteRecipe.image = image
-//        favoriteRecipe.time = recipe?.totalTime ?? 0
+        
         var totalTime = 0.0
         if let time = recipe?.totalTime {
             totalTime = time

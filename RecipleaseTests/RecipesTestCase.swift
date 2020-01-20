@@ -13,11 +13,14 @@ class RecipesTestCase: XCTestCase {
     }
 
     func testGivenOneRecipeWhenAddRecipesWith2RecipesThen3Recipes() {
+        // Given
         var recipes = FakeData.recipes2
         XCTAssertEqual(recipes.hits?.count, 1)
         
+        // When
         recipes.addRecipes(numberOfRecipesLoaded: recipes.hits!.count, recipesResponse: FakeData.recipes3, numberOfRecipesToFetch: 2)
         
+        //Then
         XCTAssertEqual(recipes.count, 203)
         XCTAssertEqual(recipes.from, 1)
         XCTAssertEqual(recipes.to, 3)
@@ -52,16 +55,19 @@ class RecipesTestCase: XCTestCase {
         XCTAssertEqual(recipes.hits?[2].recipe?.ingredients?[1].text, FakeData.recipe3.ingredients?[1].text)
         XCTAssertEqual(recipes.hits?[2].recipe?.ingredients?[2].text, FakeData.recipe3.ingredients?[2].text)
         
-        // test if recipe is in favourite
+        // test if recipe is not in favourite
         XCTAssertFalse(FakeData.recipe1.isFavorite())
     }
     
     func testGivenOneRecipeWhenAddNoDataRecipeThenOneRecipe() {
+        // Given
         var recipes = FakeData.recipes2
         XCTAssertEqual(recipes.hits?.count, 1)
         
+        // When
         recipes.addRecipes(numberOfRecipesLoaded: recipes.hits!.count, recipesResponse: nil, numberOfRecipesToFetch: 2)
         
+        // Then
         XCTAssertEqual(recipes.count, 203)
         XCTAssertEqual(recipes.from, 1)
         XCTAssertEqual(recipes.to, 3)

@@ -125,7 +125,7 @@ class APIClientTestCase: XCTestCase {
     }
     
      /// Testing no response, no data
-    func testGivenNoData_WhenPostCallBack_ThenFailedCallBack() {
+    func testGivenNoDataNoResponse_WhenPostCallBack_ThenFailedCallBack() {
         
         // Given
         let apiClient = APIClient(APIClientNetworkMock(

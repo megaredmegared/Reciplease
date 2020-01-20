@@ -71,11 +71,11 @@ class DetailsViewController: UIViewController {
     
     /// add favorite
     private func addFavorite() {
-        guard let recipe = recipe else {
+        guard let recipe = recipe, let defaultImage = UIImage.placeholderImage.pngData() else {
             return
         }
-        let imageOK = image?.pngData() ?? UIImage.placeholderImage.pngData()!
-        let thumbnail = imageThumbnail?.pngData() ?? UIImage.placeholderImage.pngData()!
+        let imageOK = image?.pngData()  ?? defaultImage
+        let thumbnail = imageThumbnail?.pngData() ?? defaultImage
         
         storageManager.insertFavoriteRecipe(recipe, image: imageOK, thumbnail: thumbnail, save: true)
 

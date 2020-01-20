@@ -2,6 +2,7 @@
 import Foundation
 
 class FakeResponseData {
+    
     //MARK: - Fake data response
     
     /// Fake response OK
@@ -11,16 +12,12 @@ class FakeResponseData {
     static let responseKO = HTTPURLResponse(url: URL(string: "https://testok.com")!, statusCode: 500, httpVersion: nil, headerFields: nil)!
     
     /// Fake error
-//    class RecipesError: Error {}
-//    static let error = RecipesError()
     enum RecipesError: Error {
         case badData
         case badResponse
         case error
     }
  
-    
-    
     /// Fake data KO
     static let incorrectData = "error".data(using: .utf8)!
 

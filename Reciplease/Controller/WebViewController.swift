@@ -14,7 +14,10 @@ class WebViewController: UIViewController, SFSafariViewControllerDelegate {
     }
     
     func openSafariVC() {
-        let safariVC = SFSafariViewController(url: url!)
+        guard let url = url else {
+            return
+        }
+        let safariVC = SFSafariViewController(url: url)
         self.present(safariVC, animated: true, completion: nil)
         safariVC.delegate = self
     }
