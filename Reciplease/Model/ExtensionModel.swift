@@ -61,13 +61,13 @@ extension Double {
             return nil
         }
         if (1..<60).contains(time) {
-            return String(Int(time)) + "m"
+            return String(Int(time)) + "mn"
         } else if time.truncatingRemainder(dividingBy: 60) == 0  {
             let hours = time / 60
             return String(Int(hours)) + "h"
         }
         let hours = time / 60
         let minutes = time.truncatingRemainder(dividingBy: 60)
-        return String(Int(hours)) + "h" + String(Int(minutes)) + "m"
+        return String(Int(hours)) + "h" + String(Int(minutes)) + "mn"
     }
 }

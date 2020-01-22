@@ -72,13 +72,13 @@ class ExtensionModelTestCase: XCTestCase {
         
         let formatted = minutes.formatTime()
         
-        XCTAssertEqual(formatted, "1h32m")
+        XCTAssertEqual(formatted, "1h32mn")
         
         //more tests with different values
-        XCTAssertEqual(34.0.formatTime(), "34m")
+        XCTAssertEqual(34.0.formatTime(), "34mn")
         XCTAssertEqual(60.0.formatTime(), "1h")
         XCTAssertEqual(120.0.formatTime(), "2h")
-        XCTAssertEqual(1.formatTime(), "1m")
+        XCTAssertEqual(1.formatTime(), "1mn")
         XCTAssertNil((-34).formatTime())
         XCTAssertNil(0.0.formatTime())
     }
